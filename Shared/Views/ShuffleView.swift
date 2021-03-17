@@ -11,15 +11,16 @@ struct ShuffleView: View {
     @Binding var clothFits: [ClothFit]
     let clothItems: [ClothItem]
     @Binding var triedClothFits: [ClothFit]
-    @State var clothFit: ClothFit
+    @State var clothFit: ClothFit?
     var body: some View {
-        VStack {
+        if clothFit != nil {
+                var fit = clothFit!
             VStack {
                 ClothFitView(clothFit: clothFit, clothItems: clothItems)
                     .frame(width: 300, height: 250)
                 HStack {
                     Button(action: {
-                        triedClothFits.append(clothFit)
+                        triedClothFits.append(fit)
                         clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
                     }) {
                         Image(systemName: "xmark.circle")
@@ -29,9 +30,9 @@ struct ShuffleView: View {
                     }
                     Spacer()
                     Button(action: {
-                        clothFit.star = true
-                        clothFits.append(clothFit)
-                        triedClothFits.append(clothFit)
+                        fit.star = true
+                        clothFits.append(fit)
+                        triedClothFits.append(fit)
                         clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
                     }) {
                         Image(systemName: "star")
@@ -41,8 +42,8 @@ struct ShuffleView: View {
                     }
                     Spacer()
                     Button(action: {
-                        clothFits.append(clothFit)
-                        triedClothFits.append(clothFit)
+                        clothFits.append(fit)
+                        triedClothFits.append(fit)
                         clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
                     }) {
                         Image(systemName: "checkmark.circle")
@@ -54,8 +55,12 @@ struct ShuffleView: View {
                 .padding()
             }
             .padding(.top, 150)
+        } else {
+            VStack {
+                Text("You have \(clothItems.count) items")
+                Text("please add items")
+            }
         }
-        .padding()
     }
     private func randomClothFit(clothItems: [ClothItem], triedClothFits: [ClothFit]) -> ClothFit? {
         var found: Bool = false

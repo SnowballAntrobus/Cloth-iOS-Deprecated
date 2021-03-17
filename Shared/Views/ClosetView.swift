@@ -46,12 +46,16 @@ struct ClosetView: View {
                 .navigationBarHidden(true)
             } else {
                 List {
-                    ForEach(clothFits) {clothFit in
-                        HStack {
-                            Spacer()
-                            ClothFitView(clothFit: clothFit,clothItems: clothItems)
-                                .frame(width: 300, height: 250)
-                            Spacer()
+                    if clothFits.isEmpty {
+                        Text("You have \(clothFits.count) fits")
+                    } else {
+                        ForEach(clothFits) {clothFit in
+                            HStack {
+                                Spacer()
+                                ClothFitView(clothFit: clothFit,clothItems: clothItems)
+                                    .frame(width: 300, height: 250)
+                                Spacer()
+                            }
                         }
                     }
                 }

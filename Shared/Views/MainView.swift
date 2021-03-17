@@ -15,7 +15,7 @@ struct MainView: View {
     let saveAction: () -> Void
     var body: some View {
         TabView {
-            ShuffleView(clothFits: $clothFits, clothItems: clothItems, triedClothFits: $userData.triedClothFits, clothFit: randomClothFit(clothItems: clothItems, triedClothFits: userData.triedClothFits)!)
+            ShuffleView(clothFits: $clothFits, clothItems: clothItems, triedClothFits: $userData.triedClothFits, clothFit: randomClothFit(clothItems: clothItems, triedClothFits: userData.triedClothFits))
                 .tabItem { Label("Cloth", systemImage:"shuffle") }
             AddView(clothItems: $clothItems)
                 .tabItem { Label("Add", systemImage:"plus.circle") }
@@ -28,6 +28,9 @@ struct MainView: View {
         .onChange(of: scenePhase) { phase in if phase == .inactive { saveAction() } }
     }
     private func randomClothFit(clothItems: [ClothItem], triedClothFits: [ClothFit]) -> ClothFit? {
+        if clothItems.isEmpty {
+            return nil
+        }
         var found: Bool = false
         var clothFit: ClothFit? = nil
         while !found {

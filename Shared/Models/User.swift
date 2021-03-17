@@ -37,16 +37,16 @@ class User: ObservableObject {
                 guard let clothItems = try? JSONDecoder().decode([ClothItem].self, from: data) else {
                     fatalError("Can't decode saved cloth item data.")
                 }
-                guard let clothFits = try? JSONDecoder().decode([ClothFit].self, from: data) else {
-                    fatalError("Can't decode saved cloth fit data.")
-                }
-                guard let userData = try? JSONDecoder().decode(UserData.self, from: data) else {
-                    fatalError("Can't decode saved cloth user data.")
-                }
+//                guard let clothFits = try? JSONDecoder().decode([ClothFit].self, from: data) else {
+//                    fatalError("Can't decode saved cloth fit data.")
+//                }
+//                guard let userData = try? JSONDecoder().decode(UserData.self, from: data) else {
+//                    fatalError("Can't decode saved cloth user data.")
+//                }
                 DispatchQueue.main.async {
                     self?.clothItems = clothItems
-                    self?.clothFits = clothFits
-                    self?.userData = userData
+//                    self?.clothFits = clothFits
+//                    self?.userData = userData
                 }
             }
     }
