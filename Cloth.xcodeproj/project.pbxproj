@@ -11,22 +11,36 @@
 		9B0CB54B25F825E60098DB8F /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB54925F825E60098DB8F /* AccountView.swift */; };
 		9B0CB55125F8268A0098DB8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB55025F8268A0098DB8F /* User.swift */; };
 		9B0CB55225F8268A0098DB8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB55025F8268A0098DB8F /* User.swift */; };
-		9B0CB55C25F826B10098DB8F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB55B25F826B10098DB8F /* Item.swift */; };
-		9B0CB55D25F826B10098DB8F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB55B25F826B10098DB8F /* Item.swift */; };
 		9B0CB56325F888AF0098DB8F /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB56225F888AF0098DB8F /* ClosetView.swift */; };
 		9B0CB56425F888AF0098DB8F /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB56225F888AF0098DB8F /* ClosetView.swift */; };
-		9B0CB56A25F8ACB90098DB8F /* ItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB56925F8ACB80098DB8F /* ItemRowView.swift */; };
-		9B0CB56B25F8ACB90098DB8F /* ItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB56925F8ACB80098DB8F /* ItemRowView.swift */; };
+		9B110FFF26008FC300271DD2 /* ClothItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B110FFE26008FC300271DD2 /* ClothItem.swift */; };
+		9B11100026008FC300271DD2 /* ClothItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B110FFE26008FC300271DD2 /* ClothItem.swift */; };
+		9B11100626008FE700271DD2 /* ClothItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11100526008FE700271DD2 /* ClothItemView.swift */; };
+		9B11100726008FE700271DD2 /* ClothItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11100526008FE700271DD2 /* ClothItemView.swift */; };
+		9B11101126009E8000271DD2 /* ClothFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11101026009E8000271DD2 /* ClothFit.swift */; };
+		9B11101226009E8000271DD2 /* ClothFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11101026009E8000271DD2 /* ClothFit.swift */; };
+		9B11101826009FB400271DD2 /* ClothFitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11101726009FB400271DD2 /* ClothFitView.swift */; };
+		9B11101926009FB400271DD2 /* ClothFitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11101726009FB400271DD2 /* ClothFitView.swift */; };
+		9B11101F2601023F00271DD2 /* ClothItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11101E2601023F00271DD2 /* ClothItemDetailView.swift */; };
+		9B1110202601023F00271DD2 /* ClothItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11101E2601023F00271DD2 /* ClothItemDetailView.swift */; };
+		9B11102A26014A0E00271DD2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11102926014A0E00271DD2 /* MainView.swift */; };
+		9B11102B26014A0E00271DD2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11102926014A0E00271DD2 /* MainView.swift */; };
+		9B11103126015B7900271DD2 /* ClothItemEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11103026015B7900271DD2 /* ClothItemEditView.swift */; };
+		9B11103226015B7900271DD2 /* ClothItemEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11103026015B7900271DD2 /* ClothItemEditView.swift */; };
+		9B11103C26016B1600271DD2 /* ClothFitEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11103B26016B1600271DD2 /* ClothFitEditView.swift */; };
+		9B11103D26016B1600271DD2 /* ClothFitEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11103B26016B1600271DD2 /* ClothFitEditView.swift */; };
+		9B11104326018B6000271DD2 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11104226018B6000271DD2 /* AddView.swift */; };
+		9B11104426018B6000271DD2 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11104226018B6000271DD2 /* AddView.swift */; };
+		9B11104A26019AE300271DD2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11104926019AE300271DD2 /* UserData.swift */; };
+		9B11104B26019AE300271DD2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11104926019AE300271DD2 /* UserData.swift */; };
 		9BB7DE7025F60F2700AD3147 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE6F25F60F2700AD3147 /* Tests_iOS.swift */; };
 		9BB7DE7B25F60F2700AD3147 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE7A25F60F2700AD3147 /* Tests_macOS.swift */; };
 		9BB7DE7D25F60F2700AD3147 /* ClothApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5425F60F2000AD3147 /* ClothApp.swift */; };
 		9BB7DE7E25F60F2700AD3147 /* ClothApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5425F60F2000AD3147 /* ClothApp.swift */; };
-		9BB7DE7F25F60F2700AD3147 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5525F60F2000AD3147 /* ContentView.swift */; };
-		9BB7DE8025F60F2700AD3147 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5525F60F2000AD3147 /* ContentView.swift */; };
+		9BB7DE7F25F60F2700AD3147 /* ShuffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */; };
+		9BB7DE8025F60F2700AD3147 /* ShuffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */; };
 		9BB7DE8125F60F2700AD3147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5625F60F2700AD3147 /* Assets.xcassets */; };
 		9BB7DE8225F60F2700AD3147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5625F60F2700AD3147 /* Assets.xcassets */; };
-		9BC85D1F25F61D7200C80CED /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC85D1E25F61D7200C80CED /* MenuView.swift */; };
-		9BC85D2025F61D7200C80CED /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC85D1E25F61D7200C80CED /* MenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,11 +63,19 @@
 /* Begin PBXFileReference section */
 		9B0CB54925F825E60098DB8F /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		9B0CB55025F8268A0098DB8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		9B0CB55B25F826B10098DB8F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		9B0CB56225F888AF0098DB8F /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
-		9B0CB56925F8ACB80098DB8F /* ItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowView.swift; sourceTree = "<group>"; };
+		9B110FFE26008FC300271DD2 /* ClothItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItem.swift; sourceTree = "<group>"; };
+		9B11100526008FE700271DD2 /* ClothItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItemView.swift; sourceTree = "<group>"; };
+		9B11101026009E8000271DD2 /* ClothFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothFit.swift; sourceTree = "<group>"; };
+		9B11101726009FB400271DD2 /* ClothFitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothFitView.swift; sourceTree = "<group>"; };
+		9B11101E2601023F00271DD2 /* ClothItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItemDetailView.swift; sourceTree = "<group>"; };
+		9B11102926014A0E00271DD2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9B11103026015B7900271DD2 /* ClothItemEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItemEditView.swift; sourceTree = "<group>"; };
+		9B11103B26016B1600271DD2 /* ClothFitEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothFitEditView.swift; sourceTree = "<group>"; };
+		9B11104226018B6000271DD2 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		9B11104926019AE300271DD2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9BB7DE5425F60F2000AD3147 /* ClothApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothApp.swift; sourceTree = "<group>"; };
-		9BB7DE5525F60F2000AD3147 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleView.swift; sourceTree = "<group>"; };
 		9BB7DE5625F60F2700AD3147 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BB7DE5B25F60F2700AD3147 /* Cloth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cloth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB7DE5E25F60F2700AD3147 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,7 +88,6 @@
 		9BB7DE7625F60F2700AD3147 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB7DE7A25F60F2700AD3147 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9BB7DE7C25F60F2700AD3147 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BC85D1E25F61D7200C80CED /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +126,16 @@
 			isa = PBXGroup;
 			children = (
 				9BB7DE5425F60F2000AD3147 /* ClothApp.swift */,
-				9BB7DE5525F60F2000AD3147 /* ContentView.swift */,
+				9B11104226018B6000271DD2 /* AddView.swift */,
+				9B11102926014A0E00271DD2 /* MainView.swift */,
+				9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */,
 				9B0CB54925F825E60098DB8F /* AccountView.swift */,
-				9BC85D1E25F61D7200C80CED /* MenuView.swift */,
 				9B0CB56225F888AF0098DB8F /* ClosetView.swift */,
-				9B0CB56925F8ACB80098DB8F /* ItemRowView.swift */,
+				9B11100526008FE700271DD2 /* ClothItemView.swift */,
+				9B11101726009FB400271DD2 /* ClothFitView.swift */,
+				9B11101E2601023F00271DD2 /* ClothItemDetailView.swift */,
+				9B11103026015B7900271DD2 /* ClothItemEditView.swift */,
+				9B11103B26016B1600271DD2 /* ClothFitEditView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,7 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				9B0CB55025F8268A0098DB8F /* User.swift */,
-				9B0CB55B25F826B10098DB8F /* Item.swift */,
+				9B11104926019AE300271DD2 /* UserData.swift */,
+				9B110FFE26008FC300271DD2 /* ClothItem.swift */,
+				9B11101026009E8000271DD2 /* ClothFit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -348,13 +376,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BB7DE7F25F60F2700AD3147 /* ContentView.swift in Sources */,
+				9B11104326018B6000271DD2 /* AddView.swift in Sources */,
+				9BB7DE7F25F60F2700AD3147 /* ShuffleView.swift in Sources */,
+				9B11102A26014A0E00271DD2 /* MainView.swift in Sources */,
+				9B11104A26019AE300271DD2 /* UserData.swift in Sources */,
 				9B0CB55125F8268A0098DB8F /* User.swift in Sources */,
-				9BC85D1F25F61D7200C80CED /* MenuView.swift in Sources */,
+				9B11103126015B7900271DD2 /* ClothItemEditView.swift in Sources */,
+				9B11101826009FB400271DD2 /* ClothFitView.swift in Sources */,
+				9B110FFF26008FC300271DD2 /* ClothItem.swift in Sources */,
+				9B11101126009E8000271DD2 /* ClothFit.swift in Sources */,
 				9BB7DE7D25F60F2700AD3147 /* ClothApp.swift in Sources */,
-				9B0CB55C25F826B10098DB8F /* Item.swift in Sources */,
 				9B0CB54A25F825E60098DB8F /* AccountView.swift in Sources */,
-				9B0CB56A25F8ACB90098DB8F /* ItemRowView.swift in Sources */,
+				9B11103C26016B1600271DD2 /* ClothFitEditView.swift in Sources */,
+				9B11101F2601023F00271DD2 /* ClothItemDetailView.swift in Sources */,
+				9B11100626008FE700271DD2 /* ClothItemView.swift in Sources */,
 				9B0CB56325F888AF0098DB8F /* ClosetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,13 +398,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BB7DE8025F60F2700AD3147 /* ContentView.swift in Sources */,
+				9B11104426018B6000271DD2 /* AddView.swift in Sources */,
+				9BB7DE8025F60F2700AD3147 /* ShuffleView.swift in Sources */,
+				9B11102B26014A0E00271DD2 /* MainView.swift in Sources */,
+				9B11104B26019AE300271DD2 /* UserData.swift in Sources */,
 				9B0CB55225F8268A0098DB8F /* User.swift in Sources */,
-				9BC85D2025F61D7200C80CED /* MenuView.swift in Sources */,
+				9B11103226015B7900271DD2 /* ClothItemEditView.swift in Sources */,
+				9B11101926009FB400271DD2 /* ClothFitView.swift in Sources */,
+				9B11100026008FC300271DD2 /* ClothItem.swift in Sources */,
+				9B11101226009E8000271DD2 /* ClothFit.swift in Sources */,
 				9BB7DE7E25F60F2700AD3147 /* ClothApp.swift in Sources */,
-				9B0CB55D25F826B10098DB8F /* Item.swift in Sources */,
 				9B0CB54B25F825E60098DB8F /* AccountView.swift in Sources */,
-				9B0CB56B25F8ACB90098DB8F /* ItemRowView.swift in Sources */,
+				9B11103D26016B1600271DD2 /* ClothFitEditView.swift in Sources */,
+				9B1110202601023F00271DD2 /* ClothItemDetailView.swift in Sources */,
+				9B11100726008FE700271DD2 /* ClothItemView.swift in Sources */,
 				9B0CB56425F888AF0098DB8F /* ClosetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

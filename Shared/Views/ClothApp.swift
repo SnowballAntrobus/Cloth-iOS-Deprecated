@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct ClothApp: App {
+    @ObservedObject private var user = User()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView(clothItems: $user.clothItems, clothFits: $user.clothFits, userData: $user.userData) {
+                user.save()
+            }
+            .onAppear {
+                user.load()
+            }
         }
     }
 }

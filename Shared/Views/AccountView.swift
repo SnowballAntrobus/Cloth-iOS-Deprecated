@@ -8,25 +8,24 @@
 import SwiftUI
 
 struct AccountView: View {
-    var user: User
+    @Binding var userData: UserData
     var body: some View {
         VStack {
             HStack {
-                user.image
+                userData.image
                     .resizable()
-                    .frame(width: 100, height: 100)
-                    .padding(.leading, 50.0)
+                    .frame(width: 75, height: 75)
+                    .clipShape(Circle())
+                    .padding(.leading, 25.0)
                 Spacer()
-                Text(user.name)
-                    .padding(.trailing, 50.0)
+                Text(userData.name)
+                    .padding(.trailing, 25.0)
             }
             .padding(.top, 50)
             HStack {
-                Text("Stats:")
+                Text("StatsView")
             }
             .padding(.top, 50)
-            Spacer()
-            MenuView()
         }
         .padding()
     }
@@ -34,6 +33,6 @@ struct AccountView: View {
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountView(user: User(id: 1, name:"Dante Gil-Marin", items: [], imageName: "UserImage"))
+        AccountView(userData: .constant(UserData.data[0]))
     }
 }
