@@ -20,7 +20,7 @@ class User: ObservableObject {
     
     @Published var userData: UserData = UserData.data[0]
     @Published var clothItems: [ClothItem] = []
-    @Published var clothFits: [ClothFit] = [ClothFit.data[0]]
+    @Published var clothFits: [ClothFit] = []
     
     func load() {
             DispatchQueue.global(qos: .background).async { [weak self] in
@@ -28,15 +28,25 @@ class User: ObservableObject {
                     #if DEBUG
                     DispatchQueue.main.async {
                         self?.clothItems = ClothItem.data
+                        self?.clothFits = ClothFit.data
+                        self?.userData = UserData.data[0]
                     }
                     #endif
                     return
                 }
                 guard let clothItems = try? JSONDecoder().decode([ClothItem].self, from: data) else {
-                    fatalError("Can't decode saved scrum data.")
+                    fatalError("Can't decode saved cloth item data.")
+                }
+                guard let clothFits = try? JSONDecoder().decode([ClothFit].self, from: data) else {
+                    fatalError("Can't decode saved cloth fit data.")
+                }
+                guard let userData = try? JSONDecoder().decode(UserData.self, from: data) else {
+                    fatalError("Can't decode saved cloth user data.")
                 }
                 DispatchQueue.main.async {
                     self?.clothItems = clothItems
+                    self?.clothFits = clothFits
+                    self?.userData = userData
                 }
             }
     }

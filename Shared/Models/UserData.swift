@@ -28,7 +28,7 @@ class UserData: Codable {
 extension UserData {
     static var data: [UserData] {
         [
-            UserData(name:"Dante Gil-Marin", imageName: "UserImage", triedClothFits: ClothFit.data)
+            UserData(name:"Dante Gil-Marin", imageName: "UserImage", triedClothFits: [])
         ]
     }
 }
