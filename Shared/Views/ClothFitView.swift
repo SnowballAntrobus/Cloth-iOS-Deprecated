@@ -19,7 +19,7 @@ struct ClothFitView: View {
                     HStack {
                         Spacer()
                         let clothItem: ClothItem? = findClothItem(clothItems: clothItems, clothItemId: clothItemId)
-                        if clothItem != nil {
+                        if clothItem?.image != nil {
                             let image: UIImage = UIImage(data: clothItem!.image!)!
                             Image(uiImage: image)
                                 .resizable()

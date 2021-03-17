@@ -59,6 +59,14 @@ struct ShuffleView: View {
             VStack {
                 Text("You have \(clothItems.count) items")
                 Text("please add items")
+                Button(action: {
+                    clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
+                }) {
+                    Image(systemName: "shuffle")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.green)
+                }
             }
         }
     }
