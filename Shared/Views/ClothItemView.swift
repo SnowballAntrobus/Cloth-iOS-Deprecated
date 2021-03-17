@@ -10,9 +10,18 @@ import SwiftUI
 struct ClothItemView: View {
     let clothItem: ClothItem
     var body: some View {
-        clothItem.image
-            .resizable()
-            .padding(10)
+        if clothItem.image != nil {
+            let image: UIImage = UIImage(data: clothItem.image!)!
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(10)
+        } else {
+            Image(systemName: "square.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(10)
+        }
     }
 }
 

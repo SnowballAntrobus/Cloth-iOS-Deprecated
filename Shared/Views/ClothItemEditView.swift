@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct ClothItemEditView: View {
-    @Binding var clothItemData: ClothItem.Data
+    @Binding var clothItemData: ClothItem.Datas
     var body: some View {
         List {
             HStack {

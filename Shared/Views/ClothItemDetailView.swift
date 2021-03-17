@@ -9,16 +9,25 @@ import SwiftUI
 
 struct ClothItemDetailView: View {
     @Binding var clothItem: ClothItem
-    @State private var clothItemData: ClothItem.Data = ClothItem.Data()
+    @State private var clothItemData: ClothItem.Datas = ClothItem.Datas()
     @State private var isPresented = false
     var body: some View {
         
         List {
             HStack{
                 Spacer()
-                clothItem.image
-                    .resizable()
-                    .frame(width: 200, height: 200)
+                if clothItem.image != nil {
+                    let image: UIImage = UIImage(data: clothItem.image!)!
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(10)
+                } else {
+                    Image(systemName: "square.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(10)
+                }
                 Spacer()
             }
                 

@@ -7,28 +7,68 @@
 
 import SwiftUI
 
+enum ActiveSheet: Identifiable {
+    case first, second
+    
+    var id: Int {
+        hashValue
+    }
+}
+
 struct AddView: View {
     @Binding var clothItems: [ClothItem]
-    @State private var isPresented = false
-    @State private var newclothItemData = ClothItem.Data()
+    @State private var newclothItemData = ClothItem.Datas()
+    
+    @State var activeSheet: ActiveSheet?
+    
+    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var selectedImage: UIImage?
+    @State private var isImagePickerDisplay = false
     var body: some View {
         VStack {
-            Text("AddView")
-            Button(action: { isPresented = true }) {
+            if selectedImage != nil {
+                                Image(uiImage: selectedImage!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 300, height: 300)
+                            } else {
+                                Image(systemName: "camera")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 300, height: 300)
+                            }
+                            
+                            Button("Camera") {
+                                activeSheet = .first
+                                self.sourceType = .camera
+                                self.isImagePickerDisplay.toggle()
+                            }.padding()
+                            
+                            Button("photo") {
+                                activeSheet = .first
+                                self.sourceType = .photoLibrary
+                                self.isImagePickerDisplay.toggle()
+                            }.padding()
+            Button(action: { activeSheet = .second }) {
                 Image(systemName: "plus")
             }
-            .sheet(isPresented: $isPresented) {
-                NavigationView {
-                    ClothItemEditView(clothItemData: $newclothItemData)
-                        .navigationBarItems(leading: Button("Dismiss") {
-                            isPresented = false
-                        }, trailing: Button("Add") {
-                            let newclothItem = ClothItem(type: newclothItemData.type, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, imageName: "UserImage")
-                                clothItems.append(newclothItem)
-                                isPresented = false
-                            })
-                }
-            }
+            .sheet(item: $activeSheet) { item in
+                        switch item {
+                        case .first:
+                            ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+                        case .second:
+                            NavigationView {
+                                ClothItemEditView(clothItemData: $newclothItemData)
+                                    .navigationBarItems(leading: Button("Dismiss") {
+                                        activeSheet = nil
+                                    }, trailing: Button("Add") {
+                                        let newclothItem = ClothItem(type: newclothItemData.type, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: selectedImage)
+                                            clothItems.append(newclothItem)
+                                        activeSheet = nil
+                                        })
+                            }
+                        }
+                    }
         }
     }
 }

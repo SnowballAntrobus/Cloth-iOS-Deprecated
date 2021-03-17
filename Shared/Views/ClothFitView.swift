@@ -14,7 +14,8 @@ struct ClothFitView: View {
             ForEach(clothFit.items) { clothItem in
                 HStack {
                     Spacer()
-                    clothItem.image
+                    let image: UIImage = UIImage(data: clothItem.image!)!
+                    Image(uiImage: image)
                         .resizable()
                         .frame(width: 100, height: 100)
                     Spacer()

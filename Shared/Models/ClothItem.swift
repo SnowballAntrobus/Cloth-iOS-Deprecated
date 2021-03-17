@@ -14,18 +14,20 @@ struct ClothItem: Identifiable, Codable {
     var color: String
     var brand: String
     var price: String
-    var imageName: String
-        var image: Image {
-            Image(imageName)
-        }
+    var image: Data? = UIImage(systemName: "square.fill")?.pngData()!
     
-    init(id: UUID = UUID(), type: String, color: String, brand: String, price: String, imageName: String) {
+    init(id: UUID = UUID(), type: String, color: String, brand: String, price: String, image: UIImage?) {
         self.id = id
         self.type = type
         self.color = color
         self.brand = brand
         self.price = price
-        self.imageName = imageName
+        if image != nil {
+            let unwrappedImage: UIImage = image!
+            self.image = unwrappedImage.pngData()!
+        } else {
+            self.image = UIImage(systemName: "square.fill")?.pngData()!
+        }
     }
     
 }
@@ -33,31 +35,32 @@ struct ClothItem: Identifiable, Codable {
 extension ClothItem {
     static var data: [ClothItem] {
         [
-            ClothItem(type: "top", color: "pink", brand:"FYE", price: "50", imageName: "UserImage"),
-            ClothItem(type: "top", color: "brown", brand:"Gucci", price: "100", imageName: "UserImage"),
-            ClothItem(type: "bottom", color: "green", brand:"pong", price: "500", imageName: "UserImage"),
-            ClothItem(type: "bottom", color: "yellow", brand:"AWL", price: "20", imageName: "UserImage")
+            ClothItem(type: "top", color: "pink", brand:"FYE", price: "50", image: nil),
+            ClothItem(type: "top", color: "brown", brand:"Gucci", price: "100", image: nil),
+            ClothItem(type: "bottom", color: "green", brand:"pong", price: "500", image: nil),
+            ClothItem(type: "bottom", color: "yellow", brand:"AWL", price: "20", image: nil)
         ]
     }
 }
 
 extension ClothItem {
-    struct Data {
+    struct Datas {
         var type: String = ""
         var color: String = ""
         var brand: String = ""
         var price: String = ""
-        var imageName: String = "UserImage"
+        var image: Data? = UIImage(systemName: "square.fill")?.pngData()!
     }
 
-    var data: Data {
-        return Data(type: type, color: color, brand: brand, price: price, imageName: imageName)
+    var data: Datas {
+        return Datas(type: type, color: color, brand: brand, price: price, image: image)
     }
     
-    mutating func update(from data: Data) {
+    mutating func update(from data: Datas) {
         type = data.type
         color = data.color
         brand = data.brand
         price = data.price
+        image = data.image
         }
 }
