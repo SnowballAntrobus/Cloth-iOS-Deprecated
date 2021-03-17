@@ -10,6 +10,7 @@ import SwiftUI
 struct ClosetView: View {
     @State private var itemType = true
     @Binding var clothItems: [ClothItem]
+    let clothFits: [ClothFit]
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     
@@ -29,19 +30,33 @@ struct ClosetView: View {
                         .foregroundColor(.green)
                 })
             }
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(clothItems) {clothItem in
-                        NavigationLink(
-                            destination: ClothItemDetailView(clothItem: binding(for: clothItem))) {
-                            ClothItemView(clothItem: clothItem)
-                                .frame(width: 100, height: 100)
-                            }
+            if itemType {
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        ForEach(clothItems) {clothItem in
+                            NavigationLink(
+                                destination: ClothItemDetailView(clothItem: binding(for: clothItem))) {
+                                ClothItemView(clothItem: clothItem)
+                                    .frame(width: 100, height: 100)
+                                }
+                        }
                     }
                 }
+                .padding(.top, 10)
+                .navigationBarHidden(true)
+            } else {
+                List {
+                    ForEach(clothFits) {clothFit in
+                        HStack {
+                            Spacer()
+                            ClothFitView(clothFit: clothFit,clothItems: clothItems)
+                                .frame(width: 300, height: 250)
+                            Spacer()
+                        }
+                    }
+                }
+                .navigationBarHidden(true)
             }
-            .padding(.top, 10)
-            .navigationBarHidden(true)
         }
         .padding()
         }
@@ -53,11 +68,11 @@ struct ClosetView: View {
                 fatalError("Can't find scrum in array")
             }
             return $clothItems[clothItemIndex]
-        }
+    }
 }
 
 struct ClosetView_Previews: PreviewProvider {
     static var previews: some View {
-        ClosetView(clothItems: .constant(ClothItem.data))
+        ClosetView(clothItems: .constant(ClothItem.data), clothFits: ClothFit.data)
     }
 }

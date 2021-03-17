@@ -8,28 +8,43 @@
 import SwiftUI
 
 struct ShuffleView: View {
-    var clothFits: [ClothFit]
+    @Binding var clothFits: [ClothFit]
+    let clothItems: [ClothItem]
+    @Binding var triedClothFits: [ClothFit]
+    @State var clothFit: ClothFit
     var body: some View {
         VStack {
             VStack {
-                ClothFitView(clothFit: clothFits[0])
+                ClothFitView(clothFit: clothFit, clothItems: clothItems)
                     .frame(width: 300, height: 250)
                 HStack {
-                    Button(action: {}) {
+                    Button(action: {
+                        triedClothFits.append(clothFit)
+                        clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
+                    }) {
                         Image(systemName: "xmark.circle")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(.red)
                     }
                     Spacer()
-                    Button(action: {}) {
+                    Button(action: {
+                        clothFit.star = true
+                        clothFits.append(clothFit)
+                        triedClothFits.append(clothFit)
+                        clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
+                    }) {
                         Image(systemName: "star")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(.yellow)
                     }
                     Spacer()
-                    Button(action: {}) {
+                    Button(action: {
+                        clothFits.append(clothFit)
+                        triedClothFits.append(clothFit)
+                        clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
+                    }) {
                         Image(systemName: "checkmark.circle")
                             .resizable()
                             .frame(width: 50, height: 50)
@@ -42,11 +57,25 @@ struct ShuffleView: View {
         }
         .padding()
     }
+    private func randomClothFit(clothItems: [ClothItem], triedClothFits: [ClothFit]) -> ClothFit? {
+        var found: Bool = false
+        var clothFit: ClothFit? = nil
+        while !found {
+            let top: ClothItem = clothItems.randomElement()!
+            let bottom: ClothItem = clothItems.randomElement()!
+            if top != bottom {
+                clothFit = ClothFit(items: [top.id, bottom.id], star: false)
+                if !triedClothFits.contains(clothFit!) {
+                    found = true
+                }
+            }
+        }
+        return clothFit
+    }
 }
 
 struct ShuffleView_Previews: PreviewProvider {
-    static var clothFits = ClothFit.data
     static var previews: some View {
-        ShuffleView(clothFits: clothFits)
+        ShuffleView(clothFits: .constant(ClothFit.data), clothItems: ClothItem.data, triedClothFits: .constant(ClothFit.data), clothFit: ClothFit.data[0])
     }
 }

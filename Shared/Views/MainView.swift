@@ -15,17 +15,32 @@ struct MainView: View {
     let saveAction: () -> Void
     var body: some View {
         TabView {
-            ShuffleView(clothFits: clothFits)
+            ShuffleView(clothFits: $clothFits, clothItems: clothItems, triedClothFits: $userData.triedClothFits, clothFit: randomClothFit(clothItems: clothItems, triedClothFits: userData.triedClothFits)!)
                 .tabItem { Label("Cloth", systemImage:"shuffle") }
             AddView(clothItems: $clothItems)
                 .tabItem { Label("Add", systemImage:"plus.circle") }
-            ClosetView(clothItems: $clothItems)
+            ClosetView(clothItems: $clothItems, clothFits: clothFits)
                 .tabItem { Label("Closet", systemImage:"book") }
             AccountView(userData: $userData)
                 .tabItem { Label("Account", systemImage:"person") }
         }
         .accentColor(.green)
         .onChange(of: scenePhase) { phase in if phase == .inactive { saveAction() } }
+    }
+    private func randomClothFit(clothItems: [ClothItem], triedClothFits: [ClothFit]) -> ClothFit? {
+        var found: Bool = false
+        var clothFit: ClothFit? = nil
+        while !found {
+            let top: ClothItem = clothItems.randomElement()!
+            let bottom: ClothItem = clothItems.randomElement()!
+            if top != bottom {
+                clothFit = ClothFit(items: [top.id, bottom.id], star: false)
+                if !triedClothFits.contains(clothFit!) {
+                    found = true
+                }
+            }
+        }
+        return clothFit
     }
 }
 

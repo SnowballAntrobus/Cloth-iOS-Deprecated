@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct ClothItem: Identifiable, Codable {
+struct ClothItem: Identifiable, Codable, Equatable {
     var id: UUID
     var type: String
     var color: String
