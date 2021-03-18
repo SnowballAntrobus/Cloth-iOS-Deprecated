@@ -18,12 +18,8 @@ struct ClosetView: View {
         NavigationView {
         VStack {
             HStack {
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Image(systemName: "line.horizontal.3.decrease.circle")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(.green)
-                })
+                EditButton()
+                    .foregroundColor(.green)
                 Spacer()
                 Button(action: {itemType = !itemType}, label: {
                     Text(itemType ? "Cloth" : "Fit")
@@ -34,12 +30,15 @@ struct ClosetView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(clothItems) {clothItem in
+                            VStack {
                             NavigationLink(
                                 destination: ClothItemDetailView(clothItem: binding(for: clothItem))) {
                                 ClothItemView(clothItem: clothItem)
                                     .frame(width: 100, height: 100)
                                 }
                         }
+                            .overlay(DeleteButton(number: clothItem, numbers: $clothItems, onDelete: removeRows), alignment: .topTrailing)
+                        }.onDelete(perform: removeRows)
                     }
                 }
                 .padding(.top, 10)
@@ -73,7 +72,36 @@ struct ClosetView: View {
             }
             return $clothItems[clothItemIndex]
     }
+    func removeRows(at offsets: IndexSet) {
+            withAnimation {
+                clothItems.remove(atOffsets: offsets)
+            }
+    }
 }
+
+struct DeleteButton<T>: View where T: Equatable {
+    @Environment(\.editMode) var editMode
+
+    let number: T
+    @Binding var numbers: [T]
+    let onDelete: (IndexSet) -> ()
+
+    var body: some View {
+        VStack {
+            if self.editMode?.wrappedValue == .active {
+                Button(action: {
+                    if let index = numbers.firstIndex(of: number) {
+                        self.onDelete(IndexSet(integer: index))
+                    }
+                }) {
+                    Image(systemName: "minus.circle")
+                }
+                .offset(x: 10, y: 0)
+            }
+        }
+    }
+}
+
 
 struct ClosetView_Previews: PreviewProvider {
     static var previews: some View {
