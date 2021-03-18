@@ -12,5 +12,5 @@ enum ClothItemType: String, Equatable, CaseIterable {
     case top  = "Top"
     case bottom = "Bottom"
 
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    var id: String { self.rawValue }
 }

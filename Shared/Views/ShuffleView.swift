@@ -75,7 +75,9 @@ struct ShuffleView: View {
         var clothFit: ClothFit? = nil
         while !found {
             let top: ClothItem = clothItems.randomElement()!
+            if top.type != "Top" {break}
             let bottom: ClothItem = clothItems.randomElement()!
+            if bottom.type != "Bottom" {break}
             if top != bottom {
                 clothFit = ClothFit(items: [top.id, bottom.id], star: false)
                 if !triedClothFits.contains(clothFit!) {

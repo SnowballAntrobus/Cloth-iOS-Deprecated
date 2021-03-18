@@ -10,12 +10,17 @@ import Combine
 
 struct ClothItemEditView: View {
     @Binding var clothItemData: ClothItem.Datas
+    @State var selection: ClothItemType = .top
     var body: some View {
         List {
             HStack {
                 Label("Type", systemImage: "book.closed")
                     .foregroundColor(.green)
-                TextField("Type", text: $clothItemData.type)
+                    Picker("", selection: $selection) {
+                        ForEach(ClothItemType.allCases, id: \.self) { value in
+                            Text(value.rawValue.capitalized)
+                                }
+                            }
             }
             HStack {
                 Label("Color", systemImage: "paintpalette")

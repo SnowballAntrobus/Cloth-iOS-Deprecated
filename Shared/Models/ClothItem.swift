@@ -35,17 +35,17 @@ struct ClothItem: Identifiable, Codable, Equatable {
 extension ClothItem {
     static var data: [ClothItem] {
         [
-            ClothItem(type: "top", color: "pink", brand:"FYE", price: "50", image: nil),
-            ClothItem(type: "top", color: "brown", brand:"Gucci", price: "100", image: nil),
-            ClothItem(type: "bottom", color: "green", brand:"pong", price: "500", image: nil),
-            ClothItem(type: "bottom", color: "yellow", brand:"AWL", price: "20", image: nil)
+            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50", image: nil),
+            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100", image: nil),
+            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500", image: nil),
+            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20", image: nil)
         ]
     }
 }
 
 extension ClothItem {
     struct Datas {
-        var type: String = ""
+        var type: ClothItemType = .top
         var color: String = ""
         var brand: String = ""
         var price: String = ""
@@ -53,11 +53,11 @@ extension ClothItem {
     }
 
     var data: Datas {
-        return Datas(type: type, color: color, brand: brand, price: price, image: image)
+        return Datas(type: ClothItemType(rawValue: type) ?? ClothItemType(rawValue: "Top")!, color: color, brand: brand, price: price, image: image)
     }
     
     mutating func update(from data: Datas) {
-        type = data.type
+        type = data.type.id
         color = data.color
         brand = data.brand
         price = data.price

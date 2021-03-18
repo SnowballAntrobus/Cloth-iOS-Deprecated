@@ -62,7 +62,7 @@ struct AddView: View {
                                     .navigationBarItems(leading: Button("Dismiss") {
                                         activeSheet = nil
                                     }, trailing: Button("Add") {
-                                        let newclothItem = ClothItem(type: newclothItemData.type, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: selectedImage)
+                                        let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: selectedImage)
                                             clothItems.append(newclothItem)
                                         activeSheet = nil
                                         })
