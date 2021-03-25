@@ -16,7 +16,9 @@ class User: ObservableObject {
                 fatalError("Can't find documents directory.")
             }
         }
-    private static var fileURL: URL { return documentsFolder.appendingPathComponent("cloth.data") }
+    private static var clothItemsURL: URL { return documentsFolder.appendingPathComponent("clothItems.data") }
+    private static var clothFitsURL: URL { return documentsFolder.appendingPathComponent("clothFits.data") }
+    //private static var userDataURL: URL { return documentsFolder.appendingPathComponent("userData.data") }
     
     @Published var userData: UserData = UserData.data[0]
     @Published var clothItems: [ClothItem] = []
@@ -24,12 +26,10 @@ class User: ObservableObject {
     
     func load() {
             DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let data = try? Data(contentsOf: Self.fileURL) else {
+                guard let data = try? Data(contentsOf: Self.clothItemsURL) else {
                     #if DEBUG
                     DispatchQueue.main.async {
                         self?.clothItems = ClothItem.data
-                        self?.clothFits = ClothFit.data
-                        self?.userData = UserData.data[0]
                     }
                     #endif
                     return
@@ -37,16 +37,25 @@ class User: ObservableObject {
                 guard let clothItems = try? JSONDecoder().decode([ClothItem].self, from: data) else {
                     fatalError("Can't decode saved cloth item data.")
                 }
-//                guard let clothFits = try? JSONDecoder().decode([ClothFit].self, from: data) else {
-//                    fatalError("Can't decode saved cloth fit data.")
-//                }
-//                guard let userData = try? JSONDecoder().decode(UserData.self, from: data) else {
-//                    fatalError("Can't decode saved cloth user data.")
-//                }
                 DispatchQueue.main.async {
                     self?.clothItems = clothItems
-//                    self?.clothFits = clothFits
-//                    self?.userData = userData
+                }
+            }
+        
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                guard let data = try? Data(contentsOf: Self.clothFitsURL) else {
+                    #if DEBUG
+                    DispatchQueue.main.async {
+                        self?.clothFits = ClothFit.data
+                    }
+                    #endif
+                    return
+                }
+                guard let clothFits = try? JSONDecoder().decode([ClothFit].self, from: data) else {
+                    fatalError("Can't decode saved cloth item data.")
+                }
+                DispatchQueue.main.async {
+                    self?.clothFits = clothFits
                 }
             }
     }
@@ -56,7 +65,18 @@ class User: ObservableObject {
                 guard let clothItems = self?.clothItems else { fatalError("Self out of scope") }
                 guard let data = try? JSONEncoder().encode(clothItems) else { fatalError("Error encoding data") }
                 do {
-                    let outfile = Self.fileURL
+                    let outfile = Self.clothItemsURL
+                    try data.write(to: outfile)
+                } catch {
+                    fatalError("Can't write to file")
+                }
+            }
+        
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                guard let clothFits = self?.clothFits else { fatalError("Self out of scope") }
+                guard let data = try? JSONEncoder().encode(clothFits) else { fatalError("Error encoding data") }
+                do {
+                    let outfile = Self.clothFitsURL
                     try data.write(to: outfile)
                 } catch {
                     fatalError("Can't write to file")
