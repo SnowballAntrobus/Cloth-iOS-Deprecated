@@ -22,6 +22,6 @@ struct CropperView: UIViewRepresentable {
 
 struct CropperView_Previews: PreviewProvider {
     static var previews: some View {
-        CropperView(croppedImage: .constant(UIImage(systemName: "UserImage")))
+        CropperView(croppedImage: .constant(UIImage(contentsOfFile: "pants")))
     }
 }
