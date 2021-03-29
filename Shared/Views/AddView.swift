@@ -32,7 +32,7 @@ struct AddView: View {
                             .foregroundColor(.green)
                 })
                     .padding()
-            }
+            }.navigationBarHidden(true)
         }
     }
 }

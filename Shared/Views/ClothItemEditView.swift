@@ -12,6 +12,22 @@ struct ClothItemEditView: View {
     @Binding var clothItemData: ClothItem.Datas
     var body: some View {
         List {
+            HStack{
+                Spacer()
+                if clothItemData.image != nil {
+                    let image: UIImage = UIImage(data: clothItemData.image!)!
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(10)
+                } else {
+                    Image(systemName: "square.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(10)
+                }
+                Spacer()
+            }
             HStack {
                 Label("Type", systemImage: "book.closed")
                     .foregroundColor(.green)

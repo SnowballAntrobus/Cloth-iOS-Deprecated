@@ -10,19 +10,39 @@ import SwiftUI
 struct CropperView: View {
     @State var imageSize: CGSize = .zero
     
-    let pants = UIImage(named: "pants")
+    @Binding var image: UIImage?
     @State var points: [CGPoint] = []
-    @State var pointsRezised: [CGPoint] = []
+    @State var pointsResized: [CGPoint] = []
     
     @State var croppedImage: UIImage?
+    @State var croppedImageData: Data?
+    
+    @Binding var clothItems: [ClothItem]
+    @State private var newclothItemData = ClothItem.Datas()
+    @State var activeSheet = false
     var body: some View {
             if (croppedImage != nil){
-                Image(uiImage: croppedImage ?? UIImage(systemName: "circle")!)
-                    .resizable()
-                    .scaledToFit()
+                VStack {
+                    Image(uiImage: croppedImage ?? UIImage(systemName: "circle")!)
+                        .resizable()
+                        .scaledToFit()
+                    Button(action: {croppedImage = nil; points = []; pointsResized = []}, label: {
+                        Text("Reset")
+                    }).padding()
+                    Button(action: {croppedImageData = croppedImage!.pngData()!; newclothItemData.image = croppedImageData; activeSheet = true}, label: {
+                        Text("Go")
+                    }).padding()
+                    .sheet(isPresented: $activeSheet) {
+                        NavigationView {
+                            ClothItemEditView(clothItemData: $newclothItemData)
+                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false})
+                            }
+                    }
+
+                }
             } else {
                 VStack{
-                    Image(uiImage: pants!)
+                    Image(uiImage: image ?? UIImage(systemName: "circle")!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .background(rectReader())
@@ -30,7 +50,8 @@ struct CropperView: View {
                         .overlay(DrawShape(points: points)
                             .stroke(lineWidth: 5)
                             .foregroundColor(.green))
-                    Button(action: {cropImage()}, label: { Text("Crop") })
+                    Button(action: {cropImage()}, label: { Text("Crop") }).padding()
+                    Button(action: {points = []; pointsResized = []}, label: { Text("Reset") }).padding()
                 }
             }
     }
@@ -40,8 +61,8 @@ struct CropperView: View {
             let imageSize = geometry.size
             DispatchQueue.main.async {
                 self.imageSize = imageSize
-                self.imageSize.height = pants!.size.height / imageSize.height
-                self.imageSize.width = pants!.size.width / imageSize.width
+                self.imageSize.height = image!.size.height / imageSize.height
+                self.imageSize.width = image!.size.width / imageSize.width
             }
             return AnyView(Rectangle().fill(Color.clear))
         }
@@ -54,18 +75,18 @@ struct CropperView: View {
         x = x * imageSize.width
         y = y * imageSize.height
         
-        pointsRezised.append(CGPoint(x: x, y: y))
+        pointsResized.append(CGPoint(x: x, y: y))
         points.append(value.location)
     }
     
     private func cropImage() {
-        croppedImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: pants), withinPoints: pointsRezised)
+        croppedImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: image), withinPoints: pointsResized)
     }
 }
 
 struct CropperView_Previews: PreviewProvider {
     static var previews: some View {
-        CropperView()
+        CropperView(image: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
     }
 }
 

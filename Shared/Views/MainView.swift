@@ -23,8 +23,6 @@ struct MainView: View {
                 .tabItem { Label("Closet", systemImage:"book") }
             AccountView(userData: $userData)
                 .tabItem { Label("Account", systemImage:"person") }
-            CropperView()
-                .tabItem { Label("Test", systemImage:"square") }
         }
         .accentColor(.green)
         .onChange(of: scenePhase) { phase in if phase == .inactive { saveAction() } }
