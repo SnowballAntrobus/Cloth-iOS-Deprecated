@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import AVFoundation
 
 struct CropperView: View {
-    @State var frame: CGSize = .zero
+    @State var imageSize: CGSize = .zero
     
     let pants = UIImage(named: "pants")
     @State var points: [CGPoint] = []
@@ -23,45 +22,43 @@ struct CropperView: View {
                     .scaledToFit()
             } else {
                 VStack{
-                    GeometryReader { (geometry) in
-                                    self.makeView(geometry)
-                                }
+                    Image(uiImage: pants!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .background(rectReader())
+                        .gesture(DragGesture().onChanged( { value in self.addNewPoint(value)}))
+                        .overlay(DrawShape(points: points)
+                            .stroke(lineWidth: 5)
+                            .foregroundColor(.green))
                     Button(action: {cropImage()}, label: { Text("Crop") })
                 }
             }
     }
     
-    private func makeView(_ geometry: GeometryProxy) -> some View {
-        print(geometry.size.width, geometry.size.height)
+    private func rectReader() -> some View {
+        return GeometryReader { (geometry) -> AnyView in
+            let imageSize = geometry.size
             DispatchQueue.main.async {
-                self.frame = geometry.size
-                self.frame.height = pants!.size.height / frame.height
-                self.frame.width = pants!.size.width / frame.width
+                self.imageSize = imageSize
+                self.imageSize.height = pants!.size.height / imageSize.height
+                self.imageSize.width = pants!.size.width / imageSize.width
             }
-
-            return Image(uiImage: pants!)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .gesture(DragGesture().onChanged( { value in self.addNewPoint(value)}))
-                                .overlay(DrawShape(points: points)
-                                            .stroke(lineWidth: 5)
-                                            .foregroundColor(.green))
+            return AnyView(Rectangle().fill(Color.clear))
         }
+    }
 
     private func addNewPoint(_ value: DragGesture.Value) {
-        var x = value.location.x
-        var y = value.location.y
+        var x: CGFloat = value.location.x
+        var y: CGFloat = value.location.y
         
-        x = x * frame.height
-        y = y * frame.height
+        x = x * imageSize.width
+        y = y * imageSize.height
         
         pointsRezised.append(CGPoint(x: x, y: y))
         points.append(value.location)
     }
     
     private func cropImage() {
-        print(points)
-        print(pointsRezised)
         croppedImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: pants), withinPoints: pointsRezised)
     }
 }
