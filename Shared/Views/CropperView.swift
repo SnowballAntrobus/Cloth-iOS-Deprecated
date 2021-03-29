@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CropperView: View {
     @State var imageSize: CGSize = .zero
-    
-    @Binding var image: UIImage?
     @State var points: [CGPoint] = []
     @State var pointsResized: [CGPoint] = []
+    
+    @Binding var image: UIImage?
     
     @State var croppedImage: UIImage?
     @State var croppedImageData: Data?
@@ -20,6 +20,9 @@ struct CropperView: View {
     @Binding var clothItems: [ClothItem]
     @State private var newclothItemData = ClothItem.Datas()
     @State var activeSheet = false
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
             if (croppedImage != nil){
                 VStack {
@@ -35,7 +38,7 @@ struct CropperView: View {
                     .sheet(isPresented: $activeSheet) {
                         NavigationView {
                             ClothItemEditView(clothItemData: $newclothItemData)
-                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false})
+                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
                             }
                     }
 

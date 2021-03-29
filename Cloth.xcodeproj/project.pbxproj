@@ -150,21 +150,21 @@
 			isa = PBXGroup;
 			children = (
 				9BB7DE5425F60F2000AD3147 /* ClothApp.swift */,
+				9B11102926014A0E00271DD2 /* MainView.swift */,
+				9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */,
 				9B9074A626124AB000A3D0E3 /* AddView.swift */,
 				9B11104226018B6000271DD2 /* AddClothItemImageView.swift */,
+				9B4406972601D96D00F16FED /* ImagePickerView.swift */,
 				9B824430260D5F390057398A /* CropperView.swift */,
 				9BF2C38E2612524500ADEBA4 /* AddClothItemView.swift */,
 				9B9074AD26124D2000A3D0E3 /* AddClothFitView.swift */,
-				9B11102926014A0E00271DD2 /* MainView.swift */,
-				9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */,
-				9B0CB54925F825E60098DB8F /* AccountView.swift */,
 				9B0CB56225F888AF0098DB8F /* ClosetView.swift */,
 				9B11100526008FE700271DD2 /* ClothItemView.swift */,
 				9B11101E2601023F00271DD2 /* ClothItemDetailView.swift */,
 				9B11103026015B7900271DD2 /* ClothItemEditView.swift */,
 				9B11101726009FB400271DD2 /* ClothFitView.swift */,
 				9B11103B26016B1600271DD2 /* ClothFitEditView.swift */,
-				9B4406972601D96D00F16FED /* ImagePickerView.swift */,
+				9B0CB54925F825E60098DB8F /* AccountView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
