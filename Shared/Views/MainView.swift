@@ -17,7 +17,7 @@ struct MainView: View {
         TabView {
             ShuffleView(clothFits: $clothFits, clothItems: clothItems, triedClothFits: $userData.triedClothFits, clothFit: randomClothFit(clothItems: clothItems, triedClothFits: userData.triedClothFits))
                 .tabItem { Label("Cloth", systemImage:"shuffle") }
-            AddView(clothItems: $clothItems)
+            AddClothItemImageView(clothItems: $clothItems)
                 .tabItem { Label("Add", systemImage:"plus.circle") }
             ClosetView(clothItems: $clothItems, clothFits: clothFits)
                 .tabItem { Label("Closet", systemImage:"book") }
