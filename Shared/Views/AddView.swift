@@ -10,6 +10,7 @@ import SwiftUI
 struct AddView: View {
     @Binding var clothItems: [ClothItem]
     @Binding var clothFits: [ClothFit]
+    @Binding var userData: UserData
     var body: some View {
         NavigationView {
             VStack {
@@ -24,7 +25,7 @@ struct AddView: View {
                 })
                     .padding()
                 NavigationLink(
-                    destination: AddClothFitView(clothFits: $clothFits),
+                    destination: AddClothFitView(clothFits: $clothFits, clothItems: clothItems, userData: $userData),
                     label: {
                         Text("Add Fit")
                             .frame(width: 300, height: 100)
@@ -39,6 +40,6 @@ struct AddView: View {
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data))
+        AddView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data), userData: .constant(UserData.data[0]))
     }
 }

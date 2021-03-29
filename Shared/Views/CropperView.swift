@@ -33,7 +33,7 @@ struct CropperView: View {
                         Text("Reset")
                     }).padding()
                     Button(action: {croppedImageData = croppedImage!.pngData()!; newclothItemData.image = croppedImageData; activeSheet = true}, label: {
-                        Text("Go")
+                        Text("Add")
                     }).padding()
                     .sheet(isPresented: $activeSheet) {
                         NavigationView {

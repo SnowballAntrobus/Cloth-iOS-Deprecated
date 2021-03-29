@@ -55,8 +55,6 @@
 		9BB7DE8025F60F2700AD3147 /* ShuffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */; };
 		9BB7DE8125F60F2700AD3147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5625F60F2700AD3147 /* Assets.xcassets */; };
 		9BB7DE8225F60F2700AD3147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5625F60F2700AD3147 /* Assets.xcassets */; };
-		9BF2C38F2612524500ADEBA4 /* AddClothItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2C38E2612524500ADEBA4 /* AddClothItemView.swift */; };
-		9BF2C3902612524500ADEBA4 /* AddClothItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2C38E2612524500ADEBA4 /* AddClothItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,7 +109,6 @@
 		9BB7DE7625F60F2700AD3147 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB7DE7A25F60F2700AD3147 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9BB7DE7C25F60F2700AD3147 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BF2C38E2612524500ADEBA4 /* AddClothItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClothItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +153,6 @@
 				9B11104226018B6000271DD2 /* AddClothItemImageView.swift */,
 				9B4406972601D96D00F16FED /* ImagePickerView.swift */,
 				9B824430260D5F390057398A /* CropperView.swift */,
-				9BF2C38E2612524500ADEBA4 /* AddClothItemView.swift */,
 				9B9074AD26124D2000A3D0E3 /* AddClothFitView.swift */,
 				9B0CB56225F888AF0098DB8F /* ClosetView.swift */,
 				9B11100526008FE700271DD2 /* ClothItemView.swift */,
@@ -409,7 +405,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B11104326018B6000271DD2 /* AddClothItemImageView.swift in Sources */,
-				9BF2C38F2612524500ADEBA4 /* AddClothItemView.swift in Sources */,
 				9BB7DE7F25F60F2700AD3147 /* ShuffleView.swift in Sources */,
 				9B824423260D5CA00057398A /* ZImageCropper.swift in Sources */,
 				9B11102A26014A0E00271DD2 /* MainView.swift in Sources */,
@@ -439,7 +434,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B11104426018B6000271DD2 /* AddClothItemImageView.swift in Sources */,
-				9BF2C3902612524500ADEBA4 /* AddClothItemView.swift in Sources */,
 				9BB7DE8025F60F2700AD3147 /* ShuffleView.swift in Sources */,
 				9B824424260D5CA00057398A /* ZImageCropper.swift in Sources */,
 				9B11102B26014A0E00271DD2 /* MainView.swift in Sources */,
