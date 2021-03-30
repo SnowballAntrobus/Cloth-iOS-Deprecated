@@ -12,32 +12,23 @@ struct ClothItemsViewer: View {
     @Binding var clothItems: [ClothItem]
     @Binding var selectItem: ClothItem?
     var body: some View {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(clothItems) {clothItem in
-                        VStack {
-                            Button(action: {selectItem = clothItem}, label: {
-                                ClothItemView(clothItem: clothItem)
-                                    .frame(width: 100, height: 100)
-                            })
-                    }
-                        .overlay(DeleteButton(number: clothItem, numbers: $clothItems, onDelete: removeRows), alignment: .topTrailing)
-                    }.onDelete(perform: removeRows)
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(clothItems) {clothItem in
+                    Button(action: {selectItem = clothItem}, label: {
+                        if (selectItem == clothItem) {
+                            ClothItemView(clothItem: clothItem)
+                                .frame(width: 100, height: 100)
+                                .background(RoundedRectangle(cornerRadius: 4).stroke())
+                                .foregroundColor(.green)
+                        }else {
+                            ClothItemView(clothItem: clothItem)
+                                .frame(width: 100, height: 100)
+                        }
+                    })
                 }
+            }
         }
-    }
-    
-    private func binding(for clothItem: ClothItem) -> Binding<ClothItem> {
-            guard let clothItemIndex = clothItems.firstIndex(where: { $0.id == clothItem.id }) else {
-                fatalError("Can't find scrum in array")
-            }
-            return $clothItems[clothItemIndex]
-    }
-    
-    func removeRows(at offsets: IndexSet) {
-            withAnimation {
-                clothItems.remove(atOffsets: offsets)
-            }
     }
 }
 

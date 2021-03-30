@@ -14,23 +14,36 @@ struct ClothFitView: View {
     var body: some View {
         if clothFit != nil {
             let fit = clothFit!
-            List{
-                ForEach(fit.items, id: \.self) { clothItemId in
-                    HStack {
-                        Spacer()
-                        let clothItem: ClothItem? = findClothItem(clothItems: clothItems, clothItemId: clothItemId)
-                        if clothItem?.image != nil {
-                            let image: UIImage = UIImage(data: clothItem!.image!)!
-                            Image(uiImage: image)
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                        } else {
-                            Image(systemName: "square.fill")
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                        }
-                        Spacer()
+            VStack {
+                HStack {
+                    Spacer()
+                    let clothItem: ClothItem? = findClothItem(clothItems: clothItems, clothItemId: fit.items[0])
+                    if clothItem?.image != nil {
+                        let image: UIImage = UIImage(data: clothItem!.image!)!
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                    } else {
+                        Image(systemName: "square.fill")
+                            .resizable()
+                            .frame(width: 100, height: 100)
                     }
+                    Spacer()
+                }
+                HStack {
+                    Spacer()
+                    let clothItem: ClothItem? = findClothItem(clothItems: clothItems, clothItemId: fit.items[1])
+                    if clothItem?.image != nil {
+                        let image: UIImage = UIImage(data: clothItem!.image!)!
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                    } else {
+                        Image(systemName: "square.fill")
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                    }
+                    Spacer()
                 }
             }
         } else {

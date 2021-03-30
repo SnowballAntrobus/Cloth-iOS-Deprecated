@@ -65,7 +65,7 @@ struct AddClothFitView: View {
                 }
                 .alert(isPresented: $showingAlertSelection) { Alert(title: Text("Wrong Selection"), message: Text("Items are incompatible or missing"), dismissButton: .default(Text("Got it!")))
                 }
-            }
+            }.padding()
             .sheet(item: $activeSheet) { item in
                 switch item {
                 case .top:
