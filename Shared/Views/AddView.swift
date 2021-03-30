@@ -25,7 +25,7 @@ struct AddView: View {
                 })
                     .padding()
                 NavigationLink(
-                    destination: AddClothFitView(clothFits: $clothFits, clothItems: clothItems, userData: $userData),
+                    destination: AddClothFitView(clothFits: $clothFits, clothItems: $clothItems, userData: $userData),
                     label: {
                         Text("Add Fit")
                             .frame(width: 300, height: 100)
