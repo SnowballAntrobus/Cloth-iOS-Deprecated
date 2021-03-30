@@ -70,7 +70,7 @@ class User: ObservableObject {
                 return
             }
             guard let clothFits = try? JSONDecoder().decode([ClothFit].self, from: data) else {
-                fatalError("Can't decode saved cloth item data.")
+                fatalError("Can't decode saved cloth fit data.")
             }
             DispatchQueue.main.async {
                 self?.clothFits = clothFits
