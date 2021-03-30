@@ -10,6 +10,7 @@ import SwiftUI
 struct ClothItemsView: View {
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     @Binding var clothItems: [ClothItem]
+    let clothFits: [ClothFit]
     var body: some View {
         NavigationView {
             ScrollView {
@@ -17,7 +18,7 @@ struct ClothItemsView: View {
                     ForEach(clothItems) {clothItem in
                         VStack {
                         NavigationLink(
-                            destination: ClothItemDetailView(clothItem: binding(for: clothItem))) {
+                            destination: ClothItemDetailView(clothItem: binding(for: clothItem), clothFits: clothFits, clothItems: clothItems)) {
                             ClothItemView(clothItem: clothItem)
                                 .frame(width: 100, height: 100)
                             }
@@ -45,6 +46,6 @@ struct ClothItemsView: View {
 
 struct ClothItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        ClothItemsView(clothItems: .constant(ClothItem.data))
+        ClothItemsView(clothItems: .constant(ClothItem.data), clothFits: ClothFit.data)
     }
 }

@@ -27,7 +27,7 @@ struct ClosetView: View {
                     })
                 }
                 if itemType {
-                    ClothItemsView(clothItems: $clothItems)
+                    ClothItemsView(clothItems: $clothItems, clothFits: clothFits)
                     .padding(.top, 10)
                     .navigationBarHidden(true)
                 } else {
