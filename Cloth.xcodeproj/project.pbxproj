@@ -37,6 +37,8 @@
 		9B2D2D0226128B3000A06236 /* ClothItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D2D0026128B3000A06236 /* ClothItemsView.swift */; };
 		9B2D2D08261299A600A06236 /* ClothItemViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D2D07261299A600A06236 /* ClothItemViewer.swift */; };
 		9B2D2D09261299A600A06236 /* ClothItemViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D2D07261299A600A06236 /* ClothItemViewer.swift */; };
+		9B2D2D0F2612BEE800A06236 /* ClothFitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D2D0E2612BEE800A06236 /* ClothFitsView.swift */; };
+		9B2D2D102612BEE800A06236 /* ClothFitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D2D0E2612BEE800A06236 /* ClothFitsView.swift */; };
 		9B4406982601D96D00F16FED /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4406972601D96D00F16FED /* ImagePickerView.swift */; };
 		9B4406992601D96D00F16FED /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4406972601D96D00F16FED /* ImagePickerView.swift */; };
 		9B44069F2601D9E400F16FED /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44069E2601D9E400F16FED /* Coordinator.swift */; };
@@ -94,6 +96,7 @@
 		9B11104926019AE300271DD2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9B2D2D0026128B3000A06236 /* ClothItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItemsView.swift; sourceTree = "<group>"; };
 		9B2D2D07261299A600A06236 /* ClothItemViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItemViewer.swift; sourceTree = "<group>"; };
+		9B2D2D0E2612BEE800A06236 /* ClothFitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothFitsView.swift; sourceTree = "<group>"; };
 		9B4406972601D96D00F16FED /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		9B44069E2601D9E400F16FED /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTypeEnum.swift; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 				9B11101E2601023F00271DD2 /* ClothItemDetailView.swift */,
 				9B11103026015B7900271DD2 /* ClothItemEditView.swift */,
 				9B11101726009FB400271DD2 /* ClothFitView.swift */,
+				9B2D2D0E2612BEE800A06236 /* ClothFitsView.swift */,
 				9B11103B26016B1600271DD2 /* ClothFitEditView.swift */,
 				9B0CB54925F825E60098DB8F /* AccountView.swift */,
 			);
@@ -427,6 +431,7 @@
 				9B11101126009E8000271DD2 /* ClothFit.swift in Sources */,
 				9BB7DE7D25F60F2700AD3147 /* ClothApp.swift in Sources */,
 				9B2D2D0126128B3000A06236 /* ClothItemsView.swift in Sources */,
+				9B2D2D0F2612BEE800A06236 /* ClothFitsView.swift in Sources */,
 				9B44069F2601D9E400F16FED /* Coordinator.swift in Sources */,
 				9B0CB54A25F825E60098DB8F /* AccountView.swift in Sources */,
 				9B9074A726124AB000A3D0E3 /* AddView.swift in Sources */,
@@ -458,6 +463,7 @@
 				9B11101226009E8000271DD2 /* ClothFit.swift in Sources */,
 				9BB7DE7E25F60F2700AD3147 /* ClothApp.swift in Sources */,
 				9B2D2D0226128B3000A06236 /* ClothItemsView.swift in Sources */,
+				9B2D2D102612BEE800A06236 /* ClothFitsView.swift in Sources */,
 				9B4406A02601D9E400F16FED /* Coordinator.swift in Sources */,
 				9B0CB54B25F825E60098DB8F /* AccountView.swift in Sources */,
 				9B9074A826124AB000A3D0E3 /* AddView.swift in Sources */,
