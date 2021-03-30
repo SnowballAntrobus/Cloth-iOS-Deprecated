@@ -10,7 +10,6 @@ import SwiftUI
 struct ClothFitView: View {
     let clothFit: ClothFit?
     let clothItems: [ClothItem]
-    var idx: Int = 0
     var body: some View {
         if clothFit != nil {
             let fit = clothFit!

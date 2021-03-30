@@ -20,6 +20,8 @@ struct AddClothFitView: View {
     @Binding var clothItems: [ClothItem]
     @Binding var userData: UserData
     
+    @State var clothItemsFiltered: [ClothItem]?
+    
     @State var top: ClothItem?
     @State var bottom: ClothItem?
     @State var star: Bool = false
@@ -31,7 +33,7 @@ struct AddClothFitView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Button(action: {activeSheet = .top}, label: {
+                Button(action: {clothItemsFiltered = clothItems.filter{$0.type == "Top"}; activeSheet = .top}, label: {
                     if top != nil {
                         ClothItemView(clothItem: top!)
                     }else {
@@ -42,7 +44,7 @@ struct AddClothFitView: View {
                         .padding()
                     }
                 })
-                Button(action: {activeSheet = .bottom}, label: {
+                Button(action: {clothItemsFiltered = clothItems.filter{$0.type == "Bottom"}; activeSheet = .bottom}, label: {
                     if bottom != nil {
                         ClothItemView(clothItem: bottom!)
                     }else {
@@ -70,14 +72,14 @@ struct AddClothFitView: View {
                 switch item {
                 case .top:
                     NavigationView {
-                        ClothItemsViewer(clothItems: $clothItems, selectItem: $top)
+                        ClothItemsViewer(clothItems: $clothItemsFiltered, selectItem: $top)
                             .navigationBarItems(leading: Text("Top"), trailing: Button(action: {activeSheet = nil}, label: {
                                 Text("Done")
                             }))
                     }
                 case .bottom:
                     NavigationView {
-                        ClothItemsViewer(clothItems: $clothItems, selectItem: $bottom)
+                        ClothItemsViewer(clothItems: $clothItemsFiltered, selectItem: $bottom)
                             .navigationBarItems(leading: Text("Bottom"), trailing: Button(action: {activeSheet = nil}, label: {
                                 Text("Done")
                             }))

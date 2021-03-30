@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ClothItemsViewer: View {
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
-    @Binding var clothItems: [ClothItem]
+    @Binding var clothItems: [ClothItem]?
     @Binding var selectItem: ClothItem?
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(clothItems) {clothItem in
+                ForEach(clothItems!) {clothItem in
                     Button(action: {selectItem = clothItem}, label: {
                         if (selectItem == clothItem) {
                             ClothItemView(clothItem: clothItem)
