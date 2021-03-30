@@ -36,7 +36,7 @@ struct ClothItemsView: View {
         return $clothItems[clothItemIndex]
     }
     
-    func removeRows(at offsets: IndexSet) {
+    private func removeRows(at offsets: IndexSet) {
         offsets.forEach { (i) in
             let removedItem = clothItems[i]
             removeFits(removedItem: removedItem)

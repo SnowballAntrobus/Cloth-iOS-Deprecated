@@ -60,7 +60,7 @@ struct ClothItemDetailView: View {
                     Text("\(clothItem.price)")
                 }
                 NavigationLink(
-                    destination: ClothFitsView(clothItems: $clothItems, clothFits: clothFitsFiltered ?? clothFits),
+                    destination: ClothFitsViewer(clothItems: $clothItems, clothFits: clothFitsFiltered ?? clothFits),
                     label: {
                         Text("Show Fits")
                             .foregroundColor(.green)
