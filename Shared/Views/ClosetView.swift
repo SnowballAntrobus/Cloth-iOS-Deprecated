@@ -12,7 +12,9 @@ struct ClosetView: View {
     @Binding var clothItems: [ClothItem]
     
     @State var selectItem: ClothItem? = nil
-    let clothFits: [ClothFit]
+    @Binding var clothFits: [ClothFit]
+    
+    @Binding var userData: UserData
     
     var body: some View {
         NavigationView {
@@ -27,7 +29,7 @@ struct ClosetView: View {
                     })
                 }
                 if itemType {
-                    ClothItemsView(clothItems: $clothItems, clothFits: clothFits)
+                    ClothItemsView(clothItems: $clothItems, clothFits: $clothFits, userData: $userData)
                     .padding(.top, 10)
                     .navigationBarHidden(true)
                 } else {
@@ -40,32 +42,9 @@ struct ClosetView: View {
     }
 }
 
-struct DeleteButton<T>: View where T: Equatable {
-    @Environment(\.editMode) var editMode
-
-    let number: T
-    @Binding var numbers: [T]
-    let onDelete: (IndexSet) -> ()
-
-    var body: some View {
-        VStack {
-            if self.editMode?.wrappedValue == .active {
-                Button(action: {
-                    if let index = numbers.firstIndex(of: number) {
-                        self.onDelete(IndexSet(integer: index))
-                    }
-                }) {
-                    Image(systemName: "minus.circle")
-                }
-                .offset(x: 10, y: 0)
-            }
-        }
-    }
-}
-
 
 struct ClosetView_Previews: PreviewProvider {
     static var previews: some View {
-        ClosetView(clothItems: .constant(ClothItem.data), clothFits: ClothFit.data)
+        ClosetView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data), userData: .constant(UserData.data[0]))
     }
 }

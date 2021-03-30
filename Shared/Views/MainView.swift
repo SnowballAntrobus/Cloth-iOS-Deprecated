@@ -19,7 +19,7 @@ struct MainView: View {
                 .tabItem { Label("Cloth", systemImage:"shuffle") }
             AddView(clothItems: $clothItems, clothFits: $clothFits, userData: $userData)
                 .tabItem { Label("Add", systemImage:"plus.circle") }
-            ClosetView(clothItems: $clothItems, clothFits: clothFits)
+            ClosetView(clothItems: $clothItems, clothFits: $clothFits, userData: $userData)
                 .tabItem { Label("Closet", systemImage:"book") }
             AccountView(userData: $userData)
                 .tabItem { Label("Account", systemImage:"person") }
