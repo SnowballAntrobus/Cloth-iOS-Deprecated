@@ -8,12 +8,12 @@
 import SwiftUI
 
 enum ActiveSheet: Identifiable {
-     case top, bottom
-
-     var id: Int {
-         hashValue
-     }
- }
+    case top, bottom
+    
+    var id: Int {
+        hashValue
+    }
+}
 
 struct AddClothFitView: View {
     @Binding var clothFits: [ClothFit]
@@ -31,61 +31,58 @@ struct AddClothFitView: View {
     @State private var showingAlertFit = false
     @State private var showingAlertSelection = false
     var body: some View {
-        NavigationView {
-            VStack {
-                Button(action: {clothItemsFiltered = clothItems.filter{$0.type == "Top"}; activeSheet = .top}, label: {
-                    if top != nil {
-                        ClothItemView(clothItem: top!)
-                    }else {
+        VStack {
+            Button(action: {clothItemsFiltered = clothItems.filter{$0.type == "Top"}; activeSheet = .top}, label: {
+                if top != nil {
+                    ClothItemView(clothItem: top!)
+                }else {
                     Image(systemName: "square.tophalf.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 300, height: 300)
                         .padding()
-                    }
-                })
-                Button(action: {clothItemsFiltered = clothItems.filter{$0.type == "Bottom"}; activeSheet = .bottom}, label: {
-                    if bottom != nil {
-                        ClothItemView(clothItem: bottom!)
-                    }else {
+                }
+            })
+            Button(action: {clothItemsFiltered = clothItems.filter{$0.type == "Bottom"}; activeSheet = .bottom}, label: {
+                if bottom != nil {
+                    ClothItemView(clothItem: bottom!)
+                }else {
                     Image(systemName: "square.bottomhalf.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 300, height: 300)
                         .padding()
-                    }
-                }).navigationBarHidden(true)
-                
-                HStack {
-                    Button(action: {star = true; addFit(); star = false}, label: {
-                        Image(systemName: "star")
-                    }).padding()
-                    Button(action: {addFit()}, label: {Text("Add")}).padding()
                 }
-                    
-                .alert(isPresented: $showingAlertFit) { Alert(title: Text("Wrong Selection"), message: Text("Fit already exists"), dismissButton: .default(Text("Got it!")))
+            })
+            
+            HStack {
+                Button(action: {star = true; addFit(); star = false}, label: {
+                    Image(systemName: "star")
+                }).padding()
+                Button(action: {addFit()}, label: {Text("Add")}).padding()
+            }
+            
+            .alert(isPresented: $showingAlertFit) { Alert(title: Text("Wrong Selection"), message: Text("Fit already exists"), dismissButton: .default(Text("Got it!")))
+            }
+            .alert(isPresented: $showingAlertSelection) { Alert(title: Text("Wrong Selection"), message: Text("Items are incompatible or missing"), dismissButton: .default(Text("Got it!")))
+            }
+        }.padding()
+        .sheet(item: $activeSheet) { item in
+            switch item {
+            case .top:
+                NavigationView {
+                    ClothItemsViewer(clothItems: $clothItemsFiltered, selectItem: $top)
+                        .navigationBarItems(leading: Text("Top"), trailing: Button(action: {activeSheet = nil}, label: {
+                            Text("Done")
+                        }))
                 }
-                .alert(isPresented: $showingAlertSelection) { Alert(title: Text("Wrong Selection"), message: Text("Items are incompatible or missing"), dismissButton: .default(Text("Got it!")))
+            case .bottom:
+                NavigationView {
+                    ClothItemsViewer(clothItems: $clothItemsFiltered, selectItem: $bottom)
+                        .navigationBarItems(leading: Text("Bottom"), trailing: Button(action: {activeSheet = nil}, label: {
+                            Text("Done")
+                        }))
                 }
-            }.padding()
-            .sheet(item: $activeSheet) { item in
-                switch item {
-                case .top:
-                    NavigationView {
-                        ClothItemsViewer(clothItems: $clothItemsFiltered, selectItem: $top)
-                            .navigationBarItems(leading: Text("Top"), trailing: Button(action: {activeSheet = nil}, label: {
-                                Text("Done")
-                            }))
-                    }
-                case .bottom:
-                    NavigationView {
-                        ClothItemsViewer(clothItems: $clothItemsFiltered, selectItem: $bottom)
-                            .navigationBarItems(leading: Text("Bottom"), trailing: Button(action: {activeSheet = nil}, label: {
-                                Text("Done")
-                            }))
-                    }
-                }
-                
             }
         }
     }

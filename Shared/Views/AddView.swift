@@ -21,8 +21,8 @@ struct AddView: View {
                             .frame(width: 300, height: 100)
                             .background(RoundedRectangle(cornerRadius: 4).stroke())
                             .foregroundColor(.green)
-                            
-                })
+                        
+                    })
                     .padding()
                 NavigationLink(
                     destination: AddClothFitView(clothFits: $clothFits, clothItems: $clothItems, userData: $userData),
@@ -31,7 +31,7 @@ struct AddView: View {
                             .frame(width: 300, height: 100)
                             .background(RoundedRectangle(cornerRadius: 4).stroke())
                             .foregroundColor(.green)
-                })
+                    })
                     .padding()
             }.navigationBarHidden(true)
         }
