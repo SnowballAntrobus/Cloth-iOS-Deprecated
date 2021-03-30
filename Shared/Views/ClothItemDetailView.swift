@@ -13,7 +13,8 @@ struct ClothItemDetailView: View {
     @State private var isPresented = false
     let clothFits: [ClothFit]
     @State var clothFitsFiltered: [ClothFit]?
-    let clothItems: [ClothItem]
+    @Binding var clothItems: [ClothItem]
+    
     var body: some View {
         VStack {
             List {
@@ -58,14 +59,12 @@ struct ClothItemDetailView: View {
                     Spacer()
                     Text("\(clothItem.price)")
                 }
-                HStack {
-                    NavigationLink(
-                        destination: ClothFitsView(clothItems: clothItems, clothFits: clothFitsFiltered ?? clothFits),
-                        label: {
-                            Text("Show Fits")
-                                .foregroundColor(.green)
-                        })
-                }
+                NavigationLink(
+                    destination: ClothFitsView(clothItems: $clothItems, clothFits: clothFitsFiltered ?? clothFits),
+                    label: {
+                        Text("Show Fits")
+                            .foregroundColor(.green)
+                    })
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarItems(trailing: Button("Edit"){
@@ -95,7 +94,7 @@ struct ClothItemDetailView: View {
 struct ClothItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ClothItemDetailView(clothItem: .constant(ClothItem.data[0]), clothFits: ClothFit.data, clothItems: ClothItem.data)
+            ClothItemDetailView(clothItem: .constant(ClothItem.data[0]), clothFits: ClothFit.data, clothItems: .constant(ClothItem.data))
         }
     }
 }

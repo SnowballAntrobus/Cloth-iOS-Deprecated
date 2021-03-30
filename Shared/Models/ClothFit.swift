@@ -12,6 +12,8 @@ struct ClothFit: Identifiable, Codable {
     var id: UUID
     var items: [UUID]
     var star: Bool = false
+    var use: Int = 0
+    var price: String = "0"
     
     init(id: UUID = UUID(), items: [UUID], star: Bool) {
         self.id = id

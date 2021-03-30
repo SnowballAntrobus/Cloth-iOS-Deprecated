@@ -12,13 +12,12 @@ struct ClothItemsView: View {
     @Binding var clothItems: [ClothItem]
     let clothFits: [ClothFit]
     var body: some View {
-        NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(clothItems) {clothItem in
                         VStack {
                         NavigationLink(
-                            destination: ClothItemDetailView(clothItem: binding(for: clothItem), clothFits: clothFits, clothItems: clothItems)) {
+                            destination: ClothItemDetailView(clothItem: binding(for: clothItem), clothFits: clothFits, clothItems: $clothItems)) {
                             ClothItemView(clothItem: clothItem)
                                 .frame(width: 100, height: 100)
                             }
@@ -27,7 +26,6 @@ struct ClothItemsView: View {
                     }.onDelete(perform: removeRows)
                 }
             }.navigationBarHidden(true)
-        }
     }
     
     private func binding(for clothItem: ClothItem) -> Binding<ClothItem> {

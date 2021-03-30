@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ClothFitsView: View {
-    let clothItems: [ClothItem]
+    @Binding var clothItems: [ClothItem]
     let clothFits: [ClothFit]
     
     var body: some View {
@@ -19,8 +19,12 @@ struct ClothFitsView: View {
                     ForEach(clothFits) {clothFit in
                         HStack {
                             Spacer()
-                            ClothFitView(clothFit: clothFit, clothItems: clothItems)
-                                .frame(width: 300, height: 250)
+                            NavigationLink(
+                                destination: ClothFitDetailView(clothItems: $clothItems, clothFit: clothFit, clothFits: clothFits),
+                                label: {
+                                    ClothFitView(clothFit: clothFit, clothItems: clothItems)
+                                        .frame(width: 300, height: 250)
+                                })
                             Spacer()
                         }
                     }
@@ -31,6 +35,6 @@ struct ClothFitsView: View {
 
 struct ClothFitsView_Previews: PreviewProvider {
     static var previews: some View {
-        ClothFitsView(clothItems: ClothItem.data, clothFits: ClothFit.data)
+        ClothFitsView(clothItems: .constant(ClothItem.data), clothFits: ClothFit.data)
     }
 }

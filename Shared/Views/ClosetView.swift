@@ -31,7 +31,7 @@ struct ClosetView: View {
                     .padding(.top, 10)
                     .navigationBarHidden(true)
                 } else {
-                    ClothFitsView(clothItems: clothItems, clothFits: clothFits)
+                    ClothFitsView(clothItems: $clothItems, clothFits: clothFits)
                     .navigationBarHidden(true)
                 }
             }
