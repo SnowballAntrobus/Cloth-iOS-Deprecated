@@ -36,7 +36,8 @@ struct ClosetView: View {
                 }
             }
             .padding()
-        }    }
+        }
+    }
 }
 
 struct DeleteButton<T>: View where T: Equatable {
