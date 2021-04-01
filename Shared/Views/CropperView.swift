@@ -26,6 +26,7 @@ struct CropperView: View {
     var body: some View {
             if (croppedImage != nil){
                 VStack {
+                    Text("\(pointsResized.count)")
                     Image(uiImage: croppedImage ?? UIImage(systemName: "circle")!)
                         .resizable()
                         .scaledToFit()

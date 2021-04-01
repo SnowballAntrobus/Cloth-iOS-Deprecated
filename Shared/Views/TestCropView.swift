@@ -13,12 +13,14 @@ struct TestCropView: View {
     @State var points : String = ""
     @State var preProcessImage: UIImage?
     @State var contouredImage: UIImage?
+    @State var path: [CGPoint]?
     
     var body: some View {
         
         VStack{
             
-            Text("Contours: \(points)")
+            Text("Num points: \(points)")
+            Text("Size: \((UIImage(named: "pants")?.size.width)!) x \((UIImage(named: "pants")?.size.height)!)")
             
             Image("pants")
                 .resizable()
@@ -39,7 +41,24 @@ struct TestCropView: View {
             Button("Detect Contours", action: {
                 detectVisionContours()
             })
+            Button("Crop", action: {
+                crop()
+            })
         }
+    }
+    
+    func crop(){
+        var pathF:[CGPoint] = []
+        var i = 0
+        for p in path! {
+            if i % 10 == 0 {
+                pathF.append(p)
+                print(p)
+            }
+            i += 1
+        }
+        self.points  = String(pathF.count)
+        self.contouredImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: contouredImage), withinPoints: pathF)
     }
     
     func detectVisionContours(){
@@ -51,7 +70,7 @@ struct TestCropView: View {
             let contourRequest = VNDetectContoursRequest.init()
             contourRequest.revision = VNDetectContourRequestRevision1
             contourRequest.contrastAdjustment = 1.0
-            contourRequest.maximumImageDimension = 512
+            contourRequest.maximumImageDimension = Int((UIImage(named: "pants")?.size.height)!)
             
             
             let requestHandler = VNImageRequestHandler.init(ciImage: inputImage, options: [:])
@@ -59,18 +78,26 @@ struct TestCropView: View {
             try! requestHandler.perform([contourRequest])
             let contoursObservation = contourRequest.results?.first as! VNContoursObservation
             
-            self.points  = String(contoursObservation.contourCount)
-            self.contouredImage = drawContours(contoursObservation: contoursObservation, sourceImage: sourceImage.cgImage!)
+            let contour = drawContours(contoursObservation: contoursObservation, sourceImage: sourceImage.cgImage!)
+            self.contouredImage = contour.0
             
+            var p: [CGPoint] = []
+            for c in contour.1 {
+                p.append(CGPoint(x: CGFloat(c[0])*1000, y: CGFloat(c[1])*1000))
+            }
+            
+            self.path = p
+            
+            self.points  = String(contour.1.count)
         } else {
             self.points = "Could not load image"
         }
     }
     
-    public func drawContours(contoursObservation: VNContoursObservation, sourceImage: CGImage) -> UIImage {
+    public func drawContours(contoursObservation: VNContoursObservation, sourceImage: CGImage) -> (UIImage, [simd_float2]) {
         let size = CGSize(width: sourceImage.width, height: sourceImage.height)
         let renderer = UIGraphicsImageRenderer(size: size)
-        
+        var childcontour: VNContour? = nil
         let renderedImage = renderer.image { (context) in
             let renderingContext = context.cgContext
             
@@ -93,7 +120,7 @@ struct TestCropView: View {
                 }
             }
             var childlen: Int = contour.childContours[0].pointCount
-            var childcontour: VNContour = contour.childContours[0]
+            childcontour = contour.childContours[0]
             for c in contour.childContours {
                 if c.pointCount > childlen {
                     childlen = c.pointCount
@@ -101,11 +128,11 @@ struct TestCropView: View {
                 }
             }
                 
-            renderingContext.addPath(childcontour.normalizedPath)
+            renderingContext.addPath(childcontour!.normalizedPath)
             renderingContext.strokePath()
         }
         
-        return renderedImage
+        return (renderedImage, childcontour!.normalizedPoints)
     }
     
 }
