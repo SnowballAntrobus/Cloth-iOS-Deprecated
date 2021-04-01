@@ -13,6 +13,7 @@ struct TestCropView: View {
     @State var points : String = ""
     @State var contouredImage: UIImage?
     @State var path: [CGPoint]?
+    @State var imageRatio: CGSize = .zero
     @State var imageSize: CGSize = .zero
     
     @State var image: UIImage? = UIImage(named: "pants")
@@ -36,6 +37,7 @@ struct TestCropView: View {
             
             Text("Num points: \(points)")
             Text("Size: \(imageSize.width) x \(imageSize.height)")
+            Text("Ratio: \(imageRatio.width) x \(imageRatio.height)")
             
             
             
@@ -53,8 +55,9 @@ struct TestCropView: View {
             let imageSize = geometry.size
             DispatchQueue.main.async {
                 self.imageSize = imageSize
-                self.imageSize.height = image!.size.height / imageSize.height
-                self.imageSize.width = image!.size.width / imageSize.width
+                self.imageRatio.height = image!.size.height / imageSize.height
+                self.imageRatio.width = image!.size.width / imageSize.width
+                self.imageSize = image!.size
             }
             return AnyView(Rectangle().fill(Color.clear))
         }
@@ -83,7 +86,7 @@ struct TestCropView: View {
             let contourRequest = VNDetectContoursRequest.init()
             contourRequest.revision = VNDetectContourRequestRevision1
             contourRequest.contrastAdjustment = 1.0
-            contourRequest.maximumImageDimension = Int((UIImage(named: "pants")?.size.height)!)
+            contourRequest.maximumImageDimension = Int(image!.size.height)
             
             
             let requestHandler = VNImageRequestHandler.init(ciImage: inputImage, options: [:])
@@ -96,7 +99,7 @@ struct TestCropView: View {
             
             var p: [CGPoint] = []
             for c in contour.1 {
-                p.append(CGPoint(x: CGFloat(c[0])*1000*imageSize.width, y: CGFloat(c[1])*1000*imageSize.height))
+                p.append(CGPoint(x: CGFloat(c[0])*imageSize.width, y: imageSize.height - CGFloat(c[1])*imageSize.height))
             }
             
             self.path = p
