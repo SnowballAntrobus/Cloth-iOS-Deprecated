@@ -88,12 +88,6 @@ struct CropperView: View {
     }
 }
 
-struct CropperView_Previews: PreviewProvider {
-    static var previews: some View {
-        CropperView(image: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
-    }
-}
-
 struct DrawShape: Shape {
 
     var points: [CGPoint]
@@ -109,5 +103,11 @@ struct DrawShape: Shape {
 
         }
         return path
+    }
+}
+
+struct CropperView_Previews: PreviewProvider {
+    static var previews: some View {
+        CropperView(image: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
     }
 }

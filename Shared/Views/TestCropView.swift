@@ -11,32 +11,33 @@ import Vision
 struct TestCropView: View {
     
     @State var points : String = ""
-    @State var preProcessImage: UIImage?
     @State var contouredImage: UIImage?
     @State var path: [CGPoint]?
+    @State var imageSize: CGSize = .zero
+    
+    @State var image: UIImage? = UIImage(named: "pants")
     
     var body: some View {
         
         VStack{
+            if (contouredImage != nil){
+                VStack {
+                    Image(uiImage: contouredImage ?? UIImage(systemName: "circle")!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
+                
+            } else {
+                Image(uiImage: image ?? UIImage(systemName: "circle")!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .background(rectReader())
+            }
             
             Text("Num points: \(points)")
-            Text("Size: \((UIImage(named: "pants")?.size.width)!) x \((UIImage(named: "pants")?.size.height)!)")
+            Text("Size: \(imageSize.width) x \(imageSize.height)")
             
-            Image("pants")
-                .resizable()
-                .scaledToFit()
             
-            if let image = preProcessImage{
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-            }
-            
-            if let image = contouredImage{
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-            }
             
             Button("Detect Contours", action: {
                 detectVisionContours()
@@ -47,7 +48,19 @@ struct TestCropView: View {
         }
     }
     
-    func crop(){
+    private func rectReader() -> some View {
+        return GeometryReader { (geometry) -> AnyView in
+            let imageSize = geometry.size
+            DispatchQueue.main.async {
+                self.imageSize = imageSize
+                self.imageSize.height = image!.size.height / imageSize.height
+                self.imageSize.width = image!.size.width / imageSize.width
+            }
+            return AnyView(Rectangle().fill(Color.clear))
+        }
+    }
+    
+    private func crop(){
         var pathF:[CGPoint] = []
         var i = 0
         for p in path! {
@@ -61,9 +74,9 @@ struct TestCropView: View {
         self.contouredImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: contouredImage), withinPoints: pathF)
     }
     
-    func detectVisionContours(){
+    private func detectVisionContours(){
         _ = CIContext()
-        if let sourceImage = UIImage.init(named: "pants")
+        if let sourceImage = image
         {
             let inputImage = CIImage.init(cgImage: sourceImage.cgImage!)
             
@@ -83,7 +96,7 @@ struct TestCropView: View {
             
             var p: [CGPoint] = []
             for c in contour.1 {
-                p.append(CGPoint(x: CGFloat(c[0])*1000, y: CGFloat(c[1])*1000))
+                p.append(CGPoint(x: CGFloat(c[0])*1000*imageSize.width, y: CGFloat(c[1])*1000*imageSize.height))
             }
             
             self.path = p
@@ -127,7 +140,7 @@ struct TestCropView: View {
                     childcontour = c
                 }
             }
-                
+            
             renderingContext.addPath(childcontour!.normalizedPath)
             renderingContext.strokePath()
         }
