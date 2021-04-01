@@ -57,7 +57,7 @@ struct TestCropView: View {
             i += 1
         }
         self.points  = String(pathF.count)
-        self.contouredImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: contouredImage), withinPoints: pathF)
+        self.contouredImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: image), withinPoints: pathF)
     }
     
     private func detectVisionContours(){
