@@ -13,8 +13,7 @@ struct TestCropView: View {
     @State var points : String = ""
     @State var contouredImage: UIImage?
     @State var path: [CGPoint]?
-    @State var imageRatio: CGSize = .zero
-    @State var imageSize: CGSize = .zero
+    @State var imageSize: CGSize = UIImage(named: "pants")!.size
     
     @State var image: UIImage? = UIImage(named: "pants")
     
@@ -32,13 +31,10 @@ struct TestCropView: View {
                 Image(uiImage: image ?? UIImage(systemName: "circle")!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .background(rectReader())
             }
             
             Text("Num points: \(points)")
             Text("Size: \(imageSize.width) x \(imageSize.height)")
-            Text("Ratio: \(imageRatio.width) x \(imageRatio.height)")
-            
             
             
             Button("Detect Contours", action: {
@@ -47,19 +43,6 @@ struct TestCropView: View {
             Button("Crop", action: {
                 crop()
             })
-        }
-    }
-    
-    private func rectReader() -> some View {
-        return GeometryReader { (geometry) -> AnyView in
-            let imageSize = geometry.size
-            DispatchQueue.main.async {
-                self.imageSize = imageSize
-                self.imageRatio.height = image!.size.height / imageSize.height
-                self.imageRatio.width = image!.size.width / imageSize.width
-                self.imageSize = image!.size
-            }
-            return AnyView(Rectangle().fill(Color.clear))
         }
     }
     
