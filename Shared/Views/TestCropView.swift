@@ -15,9 +15,17 @@ struct TestCropView: View {
     @State var path: [CGPoint]?
     @State var imageSize: CGSize = UIImage(named: "pants")!.size
     
-    @State var image: UIImage? = UIImage(named: "pants")
+    @Binding var image: UIImage?
+    
+    @State var cn = true
     
     var body: some View {
+        if cn {
+            VStack{
+        CropperView(image: $image, clothItems: .constant(ClothItem.data))
+                Button("y", action:{cn = false})
+            }
+        }else {
         
         VStack{
             if (contouredImage != nil){
@@ -32,17 +40,13 @@ struct TestCropView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
-            
-            Text("Num points: \(points)")
-            Text("Size: \(imageSize.width) x \(imageSize.height)")
-            
-            
             Button("Detect Contours", action: {
                 detectVisionContours()
             })
             Button("Crop", action: {
                 crop()
             })
+        }
         }
     }
     
@@ -138,6 +142,6 @@ struct TestCropView: View {
 
 struct TestCropView_Previews: PreviewProvider {
     static var previews: some View {
-        TestCropView()
+        TestCropView(image: .constant(UIImage(named: "pants")))
     }
 }
