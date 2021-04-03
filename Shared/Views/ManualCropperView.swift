@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CropperView: View {
+struct ManualCropperView: View {
     @State var imageSize: CGSize = .zero
     @State var points: [CGPoint] = []
     @State var pointsResized: [CGPoint] = []
@@ -106,8 +106,8 @@ struct DrawShape: Shape {
     }
 }
 
-struct CropperView_Previews: PreviewProvider {
+struct ManualCropperView_Previews: PreviewProvider {
     static var previews: some View {
-        CropperView(image: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
+        ManualCropperView(image: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
     }
 }

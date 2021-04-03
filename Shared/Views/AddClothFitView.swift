@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum ActiveSheet: Identifiable {
+private enum ActiveSheet: Identifiable {
     case top, bottom
     
     var id: Int {
@@ -26,7 +26,7 @@ struct AddClothFitView: View {
     @State var bottom: ClothItem?
     @State var star: Bool = false
     
-    @State var activeSheet: ActiveSheet?
+    @State private var activeSheet: ActiveSheet?
     
     @State private var showingAlertFit = false
     @State private var showingAlertSelection = false

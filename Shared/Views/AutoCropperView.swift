@@ -8,25 +8,20 @@
 import SwiftUI
 import Vision
 
-struct TestCropView: View {
+struct AutoCropperView: View {
     
     @State var points : String = ""
     @State var contouredImage: UIImage?
     @State var path: [CGPoint]?
-    @State var imageSize: CGSize = UIImage(named: "pants")!.size
+    @State var imageSize: CGSize = CGSize.zero
     
     @Binding var image: UIImage?
     
-    @State var cn = true
+    @Binding var clothItems: [ClothItem]
+    
+    @State var activeSheet = false
     
     var body: some View {
-        if cn {
-            VStack{
-        CropperView(image: $image, clothItems: .constant(ClothItem.data))
-                Button("y", action:{cn = false})
-            }
-        }else {
-        
         VStack{
             if (contouredImage != nil){
                 VStack {
@@ -44,9 +39,24 @@ struct TestCropView: View {
                 detectVisionContours()
             })
             Button("Crop", action: {
+                detectVisionContours()
                 crop()
             })
-        }
+            
+            .navigationBarItems(leading: Button("Done") {
+                                    if contouredImage != nil {
+                                        activeSheet = true
+                                    }})
+            .sheet(isPresented: $activeSheet, content: {
+                VStack {
+                    NavigationLink(
+                        destination: Text("RetouchView"),
+                        label: {
+                            Text("Retouch")
+                        })
+                    Button("Done") {}
+                }
+            })
         }
     }
     
@@ -66,6 +76,7 @@ struct TestCropView: View {
     
     private func detectVisionContours(){
         _ = CIContext()
+        imageSize = image!.size
         if let sourceImage = image
         {
             let inputImage = CIImage.init(cgImage: sourceImage.cgImage!)
@@ -140,8 +151,8 @@ struct TestCropView: View {
     
 }
 
-struct TestCropView_Previews: PreviewProvider {
+struct AutoCropperView_Previews: PreviewProvider {
     static var previews: some View {
-        TestCropView(image: .constant(UIImage(named: "pants")))
+        AutoCropperView(image: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
     }
 }

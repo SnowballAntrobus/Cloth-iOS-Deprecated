@@ -8,10 +8,18 @@
 import SwiftUI
 import Vision
 
+private enum ActiveSheet: Identifiable {
+    case picker, adder
+    
+    var id: Int {
+        hashValue
+    }
+}
+
 struct AddClothItemImageView: View {
     @Binding var clothItems: [ClothItem]
     
-    @State var activeSheet = false
+    @State private var activeSheet: ActiveSheet?
     
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
@@ -33,26 +41,41 @@ struct AddClothItemImageView: View {
             }
             
             Button("Camera") {
-                activeSheet = true
+                activeSheet = .picker
                 self.sourceType = .camera
                 self.isImagePickerDisplay.toggle()
             }.padding()
             
             Button("Photo") {
-                activeSheet = true
+                activeSheet = .picker
                 self.sourceType = .photoLibrary
                 self.isImagePickerDisplay.toggle()
             }.padding()
             
-            NavigationLink(
-                destination: CropperView(image: $selectedImage, clothItems: $clothItems),
-                label: {
-                    Image(systemName: "plus")
-                }).padding()
-                
-                .sheet(isPresented: $activeSheet) {
+            .navigationBarItems(leading: Button("Add") {
+                                    if selectedImage != nil {
+                                        activeSheet = .adder
+                                    }})
+            
+            .sheet(item: $activeSheet) { item in
+                switch item {
+                case .picker:
                     ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+                case .adder:
+                    VStack {
+                        NavigationLink(
+                            destination: ManualCropperView(image: $selectedImage, clothItems: $clothItems),
+                            label: {
+                                Text("Manual Crop")
+                            })
+                        NavigationLink(
+                            destination: Text("Destination"),
+                            label: {
+                                Text("Auto Crop")
+                            })
+                    }
                 }
+            }
         }
     }
 }
