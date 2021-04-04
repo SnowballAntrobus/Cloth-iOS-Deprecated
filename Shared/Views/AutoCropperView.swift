@@ -11,21 +11,26 @@ import Vision
 struct AutoCropperView: View {
     
     @State var points : String = ""
-    @State var contouredImage: UIImage?
+    @State var croppedImage: UIImage?
     @State var path: [CGPoint]?
     @State var imageSize: CGSize = CGSize.zero
     
     @Binding var image: UIImage?
+    @State var croppedImageData: Data?
+    
+    @State private var newclothItemData = ClothItem.Datas()
     
     @Binding var clothItems: [ClothItem]
     
     @State var activeSheet = false
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         VStack{
-            if (contouredImage != nil){
+            if (croppedImage != nil){
                 VStack {
-                    Image(uiImage: contouredImage ?? UIImage(systemName: "circle")!)
+                    Image(uiImage: croppedImage ?? UIImage(systemName: "circle")!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
@@ -44,19 +49,26 @@ struct AutoCropperView: View {
             })
             
             .navigationBarItems(leading: Button("Done") {
-                                    if contouredImage != nil {
+                                    if croppedImage != nil {
+                                        croppedImageData = croppedImage!.pngData()!
+                                        newclothItemData.image = croppedImageData
                                         activeSheet = true
                                     }})
-            .sheet(isPresented: $activeSheet, content: {
+            
+            .sheet(isPresented: $activeSheet) {
                 VStack {
                     NavigationLink(
                         destination: Text("RetouchView"),
                         label: {
                             Text("Retouch")
                         })
-                    Button("Done") {}
+                    NavigationLink(
+                        destination: ClothItemEditView(clothItemData: $newclothItemData).navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()}),
+                        label: {
+                            Text("Done")
+                        })
                 }
-            })
+            }
         }
     }
     
@@ -71,7 +83,7 @@ struct AutoCropperView: View {
             i += 1
         }
         self.points  = String(pathF.count)
-        self.contouredImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: image), withinPoints: pathF)
+        self.croppedImage = ZImageCropper.cropImage(ofImageView: UIImageView(image: image), withinPoints: pathF)
     }
     
     private func detectVisionContours(){
@@ -93,7 +105,7 @@ struct AutoCropperView: View {
             let contoursObservation = contourRequest.results?.first as! VNContoursObservation
             
             let contour = drawContours(contoursObservation: contoursObservation, sourceImage: sourceImage.cgImage!)
-            self.contouredImage = contour.0
+            self.croppedImage = contour.0
             
             var p: [CGPoint] = []
             for c in contour.1 {

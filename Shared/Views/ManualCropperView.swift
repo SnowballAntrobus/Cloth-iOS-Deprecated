@@ -24,40 +24,51 @@ struct ManualCropperView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-            if (croppedImage != nil){
-                VStack {
-                    Text("\(pointsResized.count)")
-                    Image(uiImage: croppedImage ?? UIImage(systemName: "circle")!)
-                        .resizable()
-                        .scaledToFit()
-                    Button(action: {croppedImage = nil; points = []; pointsResized = []}, label: {
-                        Text("Reset")
-                    }).padding()
-                    Button(action: {croppedImageData = croppedImage!.pngData()!; newclothItemData.image = croppedImageData; activeSheet = true}, label: {
-                        Text("Add")
-                    }).padding()
-                    .sheet(isPresented: $activeSheet) {
-                        NavigationView {
-                            ClothItemEditView(clothItemData: $newclothItemData)
-                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
-                            }
+        if (croppedImage != nil){
+            VStack {
+                Image(uiImage: croppedImage ?? UIImage(systemName: "circle")!)
+                    .resizable()
+                    .scaledToFit()
+                Button(action: {croppedImage = nil; points = []; pointsResized = []}, label: {
+                    Text("Reset")
+                }).padding()
+                
+                .navigationBarItems(leading: Button("Done") {
+                                        if croppedImage != nil {
+                                            croppedImageData = croppedImage!.pngData()!
+                                            newclothItemData.image = croppedImageData
+                                            activeSheet = true
+                                        }})
+                
+                .sheet(isPresented: $activeSheet) {
+                    VStack {
+                        NavigationLink(
+                            destination: Text("RetouchView"),
+                            label: {
+                                Text("Retouch")
+                            })
+                        NavigationLink(
+                            destination: ClothItemEditView(clothItemData: $newclothItemData).navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()}),
+                            label: {
+                                Text("Done")
+                            })
                     }
-
-                }
-            } else {
-                VStack{
-                    Image(uiImage: image ?? UIImage(systemName: "circle")!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .background(rectReader())
-                        .gesture(DragGesture().onChanged( { value in self.addNewPoint(value)}))
-                        .overlay(DrawShape(points: points)
-                            .stroke(lineWidth: 5)
-                            .foregroundColor(.green))
-                    Button(action: {cropImage()}, label: { Text("Crop") }).padding()
-                    Button(action: {points = []; pointsResized = []}, label: { Text("Reset") }).padding()
                 }
             }
+        } else {
+            VStack{
+                Image(uiImage: image ?? UIImage(systemName: "circle")!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .background(rectReader())
+                    .gesture(DragGesture().onChanged( { value in self.addNewPoint(value)}))
+                    .overlay(DrawShape(points: points)
+                                .stroke(lineWidth: 5)
+                                .foregroundColor(.green))
+                Button(action: {cropImage()}, label: { Text("Crop") }).padding()
+                Button(action: {points = []; pointsResized = []}, label: { Text("Reset") }).padding()
+            }
+        }
     }
     
     private func rectReader() -> some View {
@@ -71,7 +82,7 @@ struct ManualCropperView: View {
             return AnyView(Rectangle().fill(Color.clear))
         }
     }
-
+    
     private func addNewPoint(_ value: DragGesture.Value) {
         var x: CGFloat = value.location.x
         var y: CGFloat = value.location.y
@@ -89,18 +100,18 @@ struct ManualCropperView: View {
 }
 
 struct DrawShape: Shape {
-
+    
     var points: [CGPoint]
-
+    
     // drawing is happening here
     func path(in rect: CGRect) -> Path {
         var path = Path()
         guard let firstPoint = points.first else { return path }
-
+        
         path.move(to: firstPoint)
         for pointIndex in 1..<points.count {
             path.addLine(to: points[pointIndex])
-
+            
         }
         return path
     }
