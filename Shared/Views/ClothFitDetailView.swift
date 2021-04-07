@@ -64,7 +64,7 @@ struct ClothFitDetailView: View {
             }
         }
     }
-    private func findClothItem(clothItems: [ClothItem], clothItemId: UUID) -> ClothItem? {
+    private func findClothItem(clothItems: [ClothItem], clothItemId: String) -> ClothItem? {
         for i in 0..<clothItems.count {
             if clothItems[i].id == clothItemId {
                 return clothItems[i]

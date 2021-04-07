@@ -1,0 +1,6 @@
+framework module Pods_Cloth__iOS_ {
+  umbrella header "Pods-Cloth (iOS)-umbrella.h"
+
+  export *
+  module * { export * }
+}

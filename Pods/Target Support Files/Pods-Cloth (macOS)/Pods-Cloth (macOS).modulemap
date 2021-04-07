@@ -1,0 +1,6 @@
+framework module Pods_Cloth__macOS_ {
+  umbrella header "Pods-Cloth (macOS)-umbrella.h"
+
+  export *
+  module * { export * }
+}

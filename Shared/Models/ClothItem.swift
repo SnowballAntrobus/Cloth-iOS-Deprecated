@@ -9,15 +9,14 @@ import Foundation
 import SwiftUI
 
 struct ClothItem: Identifiable, Codable, Equatable {
-    var id: UUID
+    var id: String = UUID().uuidString
     var type: String
     var color: String
     var brand: String
     var price: String
     var image: Data? = UIImage(systemName: "square.fill")?.pngData()!
     
-    init(id: UUID = UUID(), type: String, color: String, brand: String, price: String, image: UIImage?) {
-        self.id = id
+    init(type: String, color: String, brand: String, price: String, image: UIImage?) {
         self.type = type
         self.color = color
         self.brand = brand
