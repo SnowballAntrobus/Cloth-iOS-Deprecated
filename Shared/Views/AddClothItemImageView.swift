@@ -8,18 +8,10 @@
 import SwiftUI
 import Vision
 
-private enum ActiveSheet: Identifiable {
-    case picker, adder
-    
-    var id: Int {
-        hashValue
-    }
-}
-
 struct AddClothItemImageView: View {
     @Binding var clothItems: [ClothItem]
     
-    @State private var activeSheet: ActiveSheet?
+    @State private var activeSheet = false
     
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
@@ -41,44 +33,33 @@ struct AddClothItemImageView: View {
             }
             
             Button("Camera") {
-                activeSheet = .picker
+                activeSheet = true
                 self.sourceType = .camera
                 self.isImagePickerDisplay.toggle()
             }.padding()
             
             Button("Photo") {
-                activeSheet = .picker
+                activeSheet = true
                 self.sourceType = .photoLibrary
                 self.isImagePickerDisplay.toggle()
             }.padding()
             
-            .navigationBarItems(leading: Button("Add") {
-                                    if selectedImage != nil {
-                                        activeSheet = .adder
-                                    }})
-            
-            .sheet(item: $activeSheet) { item in
-                switch item {
-                case .picker:
-                    ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
-                case .adder:
-                    VStack {
-                        NavigationLink(
-                            destination: ManualCropperView(image: $selectedImage, clothItems: $clothItems),
-                            label: {
-                                Text("Manual Crop")
-                            })
-                        NavigationLink(
-                            destination: Text("Destination"),
-                            label: {
-                                Text("Auto Crop")
-                            })
-                    }
-                }
+            .sheet(isPresented: $activeSheet) {
+                ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
             }
+            
+            if selectedImage != nil {
+                NavigationLink(
+                    destination: CropModeView(selectedImage: $selectedImage, clothItems: $clothItems),
+                    label: {
+                        Text("Add")
+                    }).padding()
+            }
+            
         }
     }
 }
+
 
 struct AddClothItemImageView_Previews: PreviewProvider {
     static var previews: some View {

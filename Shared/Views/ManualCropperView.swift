@@ -33,25 +33,16 @@ struct ManualCropperView: View {
                     Text("Reset")
                 }).padding()
                 
-                .navigationBarItems(leading: Button("Done") {
-                                        if croppedImage != nil {
-                                            croppedImageData = croppedImage!.pngData()!
-                                            newclothItemData.image = croppedImageData
-                                            activeSheet = true
-                                        }})
+                Button(action: {croppedImageData = croppedImage!.pngData()!; newclothItemData.image = croppedImageData; activeSheet = true}, label: {
+                                        Text("Add")
+                                    }).padding()
                 
                 .sheet(isPresented: $activeSheet) {
                     VStack {
-                        NavigationLink(
-                            destination: Text("RetouchView"),
-                            label: {
-                                Text("Retouch")
-                            })
-                        NavigationLink(
-                            destination: ClothItemEditView(clothItemData: $newclothItemData).navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()}),
-                            label: {
-                                Text("Done")
-                            })
+                        NavigationView {
+                            ClothItemEditView(clothItemData: $newclothItemData)
+                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
+                        }
                     }
                 }
             }
