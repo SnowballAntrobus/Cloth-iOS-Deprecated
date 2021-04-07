@@ -47,6 +47,12 @@
 		9B5BB15526193C2A0031E4D2 /* CropModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BB15326193C2A0031E4D2 /* CropModeView.swift */; };
 		9B6473FC2613192400A5E3EE /* ClothFitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6473FB2613192400A5E3EE /* ClothFitDetailView.swift */; };
 		9B6473FD2613192400A5E3EE /* ClothFitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6473FB2613192400A5E3EE /* ClothFitDetailView.swift */; };
+		9B665D63261E61FD00082AB3 /* ClothItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B665D62261E61FD00082AB3 /* ClothItemRepository.swift */; };
+		9B665D64261E61FD00082AB3 /* ClothItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B665D62261E61FD00082AB3 /* ClothItemRepository.swift */; };
+		9B665D6A261E621100082AB3 /* ClothFitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B665D69261E621100082AB3 /* ClothFitRepository.swift */; };
+		9B665D6B261E621100082AB3 /* ClothFitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B665D69261E621100082AB3 /* ClothFitRepository.swift */; };
+		9B665D71261E622900082AB3 /* UserDataRepositroy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B665D70261E622900082AB3 /* UserDataRepositroy.swift */; };
+		9B665D72261E622900082AB3 /* UserDataRepositroy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B665D70261E622900082AB3 /* UserDataRepositroy.swift */; };
 		9B6D4F1C2615836F0093129A /* AutoCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D4F1B2615836F0093129A /* AutoCropperView.swift */; };
 		9B6D4F1D2615836F0093129A /* AutoCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D4F1B2615836F0093129A /* AutoCropperView.swift */; };
 		9B6E8B702602D91500BDF859 /* ClothingTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */; };
@@ -112,6 +118,9 @@
 		9B44069E2601D9E400F16FED /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9B5BB15326193C2A0031E4D2 /* CropModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropModeView.swift; sourceTree = "<group>"; };
 		9B6473FB2613192400A5E3EE /* ClothFitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothFitDetailView.swift; sourceTree = "<group>"; };
+		9B665D62261E61FD00082AB3 /* ClothItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItemRepository.swift; sourceTree = "<group>"; };
+		9B665D69261E621100082AB3 /* ClothFitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothFitRepository.swift; sourceTree = "<group>"; };
+		9B665D70261E622900082AB3 /* UserDataRepositroy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataRepositroy.swift; sourceTree = "<group>"; };
 		9B6D4F1B2615836F0093129A /* AutoCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCropperView.swift; sourceTree = "<group>"; };
 		9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTypeEnum.swift; sourceTree = "<group>"; };
 		9B824422260D5CA00057398A /* ZImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZImageCropper.swift; sourceTree = "<group>"; };
@@ -205,6 +214,9 @@
 				9B11104926019AE300271DD2 /* UserData.swift */,
 				9B110FFE26008FC300271DD2 /* ClothItem.swift */,
 				9B11101026009E8000271DD2 /* ClothFit.swift */,
+				9B665D62261E61FD00082AB3 /* ClothItemRepository.swift */,
+				9B665D69261E621100082AB3 /* ClothFitRepository.swift */,
+				9B665D70261E622900082AB3 /* UserDataRepositroy.swift */,
 				9B44069E2601D9E400F16FED /* Coordinator.swift */,
 				9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */,
 				9B824422260D5CA00057398A /* ZImageCropper.swift */,
@@ -542,11 +554,14 @@
 				9B11103126015B7900271DD2 /* ClothItemEditView.swift in Sources */,
 				9B11101826009FB400271DD2 /* ClothFitView.swift in Sources */,
 				9B110FFF26008FC300271DD2 /* ClothItem.swift in Sources */,
+				9B665D6A261E621100082AB3 /* ClothFitRepository.swift in Sources */,
+				9B665D63261E61FD00082AB3 /* ClothItemRepository.swift in Sources */,
 				9B11101126009E8000271DD2 /* ClothFit.swift in Sources */,
 				9BB7DE7D25F60F2700AD3147 /* ClothApp.swift in Sources */,
 				9B2D2D0126128B3000A06236 /* ClothItemsView.swift in Sources */,
 				9B2D2D0F2612BEE800A06236 /* ClothFitsView.swift in Sources */,
 				9B44069F2601D9E400F16FED /* Coordinator.swift in Sources */,
+				9B665D71261E622900082AB3 /* UserDataRepositroy.swift in Sources */,
 				9B0CB54A25F825E60098DB8F /* AccountView.swift in Sources */,
 				9B9074A726124AB000A3D0E3 /* AddView.swift in Sources */,
 				9B6473FC2613192400A5E3EE /* ClothFitDetailView.swift in Sources */,
@@ -576,11 +591,14 @@
 				9B11103226015B7900271DD2 /* ClothItemEditView.swift in Sources */,
 				9B11101926009FB400271DD2 /* ClothFitView.swift in Sources */,
 				9B11100026008FC300271DD2 /* ClothItem.swift in Sources */,
+				9B665D6B261E621100082AB3 /* ClothFitRepository.swift in Sources */,
+				9B665D64261E61FD00082AB3 /* ClothItemRepository.swift in Sources */,
 				9B11101226009E8000271DD2 /* ClothFit.swift in Sources */,
 				9BB7DE7E25F60F2700AD3147 /* ClothApp.swift in Sources */,
 				9B2D2D0226128B3000A06236 /* ClothItemsView.swift in Sources */,
 				9B2D2D102612BEE800A06236 /* ClothFitsView.swift in Sources */,
 				9B4406A02601D9E400F16FED /* Coordinator.swift in Sources */,
+				9B665D72261E622900082AB3 /* UserDataRepositroy.swift in Sources */,
 				9B0CB54B25F825E60098DB8F /* AccountView.swift in Sources */,
 				9B9074A826124AB000A3D0E3 /* AddView.swift in Sources */,
 				9B6473FD2613192400A5E3EE /* ClothFitDetailView.swift in Sources */,
