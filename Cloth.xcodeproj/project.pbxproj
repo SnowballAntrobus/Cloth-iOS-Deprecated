@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -59,11 +59,6 @@
 		9B9074A826124AB000A3D0E3 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9074A626124AB000A3D0E3 /* AddView.swift */; };
 		9B9074AE26124D2000A3D0E3 /* AddClothFitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9074AD26124D2000A3D0E3 /* AddClothFitView.swift */; };
 		9B9074AF26124D2000A3D0E3 /* AddClothFitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9074AD26124D2000A3D0E3 /* AddClothFitView.swift */; };
-		9B9135C2261D5DA2003EFEB5 /* MongoKitten in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9135C1261D5DA2003EFEB5 /* MongoKitten */; };
-		9B9135C9261D69C0003EFEB5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9135C8261D69C0003EFEB5 /* Realm */; };
-		9B9135CB261D69C0003EFEB5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9135CA261D69C0003EFEB5 /* RealmSwift */; };
-		9B9F9141261DA85000E560E1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F9140261DA85000E560E1 /* AppState.swift */; };
-		9B9F9142261DA85000E560E1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F9140261DA85000E560E1 /* AppState.swift */; };
 		9B9F9148261DAA2100E560E1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F9147261DAA2100E560E1 /* UserPreferences.swift */; };
 		9B9F9149261DAA2100E560E1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F9147261DAA2100E560E1 /* UserPreferences.swift */; };
 		9B9F914F261DAA6100E560E1 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F914E261DAA6100E560E1 /* Photo.swift */; };
@@ -122,7 +117,6 @@
 		9B824430260D5F390057398A /* ManualCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCropperView.swift; sourceTree = "<group>"; };
 		9B9074A626124AB000A3D0E3 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		9B9074AD26124D2000A3D0E3 /* AddClothFitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClothFitView.swift; sourceTree = "<group>"; };
-		9B9F9140261DA85000E560E1 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		9B9F9147261DAA2100E560E1 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		9B9F914E261DAA6100E560E1 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		9BB7DE5425F60F2000AD3147 /* ClothApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothApp.swift; sourceTree = "<group>"; };
@@ -146,9 +140,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B9135CB261D69C0003EFEB5 /* RealmSwift in Frameworks */,
-				9B9135C9261D69C0003EFEB5 /* Realm in Frameworks */,
-				9B9135C2261D5DA2003EFEB5 /* MongoKitten in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +205,6 @@
 				9B44069E2601D9E400F16FED /* Coordinator.swift */,
 				9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */,
 				9B824422260D5CA00057398A /* ZImageCropper.swift */,
-				9B9F9140261DA85000E560E1 /* AppState.swift */,
 				9B9F9147261DAA2100E560E1 /* UserPreferences.swift */,
 				9B9F914E261DAA6100E560E1 /* Photo.swift */,
 			);
@@ -306,9 +296,6 @@
 			);
 			name = "Cloth (iOS)";
 			packageProductDependencies = (
-				9B9135C1261D5DA2003EFEB5 /* MongoKitten */,
-				9B9135C8261D69C0003EFEB5 /* Realm */,
-				9B9135CA261D69C0003EFEB5 /* RealmSwift */,
 			);
 			productName = "Cloth (iOS)";
 			productReference = 9BB7DE5B25F60F2700AD3147 /* Cloth.app */;
@@ -402,8 +389,6 @@
 			);
 			mainGroup = 9BB7DE4E25F60F1F00AD3147;
 			packageReferences = (
-				9B9135C0261D5DA2003EFEB5 /* XCRemoteSwiftPackageReference "MongoKitten" */,
-				9B9135C7261D69C0003EFEB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 9BB7DE5C25F60F2700AD3147 /* Products */;
 			projectDirPath = "";
@@ -482,7 +467,6 @@
 				9B4406982601D96D00F16FED /* ImagePickerView.swift in Sources */,
 				9B2F7CF32613C4C8007AA319 /* ClothFitsViewer.swift in Sources */,
 				9B9F9148261DAA2100E560E1 /* UserPreferences.swift in Sources */,
-				9B9F9141261DA85000E560E1 /* AppState.swift in Sources */,
 				9B11101F2601023F00271DD2 /* ClothItemDetailView.swift in Sources */,
 				9B11100626008FE700271DD2 /* ClothItemView.swift in Sources */,
 				9B0CB56325F888AF0098DB8F /* ClosetView.swift in Sources */,
@@ -520,7 +504,6 @@
 				9B4406992601D96D00F16FED /* ImagePickerView.swift in Sources */,
 				9B2F7CF42613C4C8007AA319 /* ClothFitsViewer.swift in Sources */,
 				9B9F9149261DAA2100E560E1 /* UserPreferences.swift in Sources */,
-				9B9F9142261DA85000E560E1 /* AppState.swift in Sources */,
 				9B1110202601023F00271DD2 /* ClothItemDetailView.swift in Sources */,
 				9B11100726008FE700271DD2 /* ClothItemView.swift in Sources */,
 				9B0CB56425F888AF0098DB8F /* ClosetView.swift in Sources */,
@@ -901,43 +884,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9B9135C0261D5DA2003EFEB5 /* XCRemoteSwiftPackageReference "MongoKitten" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/OpenKitten/MongoKitten.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.6.5;
-			};
-		};
-		9B9135C7261D69C0003EFEB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-cocoa.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.7.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9B9135C1261D5DA2003EFEB5 /* MongoKitten */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9B9135C0261D5DA2003EFEB5 /* XCRemoteSwiftPackageReference "MongoKitten" */;
-			productName = MongoKitten;
-		};
-		9B9135C8261D69C0003EFEB5 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9B9135C7261D69C0003EFEB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = Realm;
-		};
-		9B9135CA261D69C0003EFEB5 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9B9135C7261D69C0003EFEB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = RealmSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9BB7DE4F25F60F1F00AD3147 /* Project object */;
 }
