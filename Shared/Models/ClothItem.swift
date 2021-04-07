@@ -34,10 +34,10 @@ struct ClothItem: Identifiable, Codable, Equatable {
 extension ClothItem {
     static var data: [ClothItem] {
         [
-            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50", image: nil),
-            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100", image: nil),
-            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500", image: nil),
-            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20", image: nil)
+            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50", image: UIImage(named: "top")),
+            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100", image: UIImage(named: "top")),
+            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500", image: UIImage(named: "pants")),
+            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20", image: UIImage(named: "pants"))
         ]
     }
 }

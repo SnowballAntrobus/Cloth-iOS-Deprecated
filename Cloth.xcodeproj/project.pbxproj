@@ -11,8 +11,6 @@
 		83FC64C69C6147951952D8B5 /* Pods_Cloth__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E474C6ACDA0845486DFDBC5 /* Pods_Cloth__macOS_.framework */; };
 		9B0CB54A25F825E60098DB8F /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB54925F825E60098DB8F /* AccountView.swift */; };
 		9B0CB54B25F825E60098DB8F /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB54925F825E60098DB8F /* AccountView.swift */; };
-		9B0CB55125F8268A0098DB8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB55025F8268A0098DB8F /* User.swift */; };
-		9B0CB55225F8268A0098DB8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB55025F8268A0098DB8F /* User.swift */; };
 		9B0CB56325F888AF0098DB8F /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB56225F888AF0098DB8F /* ClosetView.swift */; };
 		9B0CB56425F888AF0098DB8F /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB56225F888AF0098DB8F /* ClosetView.swift */; };
 		9B110FFF26008FC300271DD2 /* ClothItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B110FFE26008FC300271DD2 /* ClothItem.swift */; };
@@ -96,7 +94,6 @@
 		3E474C6ACDA0845486DFDBC5 /* Pods_Cloth__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloth__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92EEAC3794D1E46D3E1747D8 /* Pods-Cloth (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloth (macOS).release.xcconfig"; path = "Target Support Files/Pods-Cloth (macOS)/Pods-Cloth (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		9B0CB54925F825E60098DB8F /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
-		9B0CB55025F8268A0098DB8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9B0CB56225F888AF0098DB8F /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
 		9B110FFE26008FC300271DD2 /* ClothItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItem.swift; sourceTree = "<group>"; };
 		9B11100526008FE700271DD2 /* ClothItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItemView.swift; sourceTree = "<group>"; };
@@ -205,7 +202,6 @@
 		9B0CB54425F819A70098DB8F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9B0CB55025F8268A0098DB8F /* User.swift */,
 				9B11104926019AE300271DD2 /* UserData.swift */,
 				9B110FFE26008FC300271DD2 /* ClothItem.swift */,
 				9B11101026009E8000271DD2 /* ClothFit.swift */,
@@ -543,7 +539,6 @@
 				9B824431260D5F390057398A /* ManualCropperView.swift in Sources */,
 				9B9074AE26124D2000A3D0E3 /* AddClothFitView.swift in Sources */,
 				9B11104A26019AE300271DD2 /* UserData.swift in Sources */,
-				9B0CB55125F8268A0098DB8F /* User.swift in Sources */,
 				9B11103126015B7900271DD2 /* ClothItemEditView.swift in Sources */,
 				9B11101826009FB400271DD2 /* ClothFitView.swift in Sources */,
 				9B110FFF26008FC300271DD2 /* ClothItem.swift in Sources */,
@@ -578,7 +573,6 @@
 				9B824432260D5F390057398A /* ManualCropperView.swift in Sources */,
 				9B9074AF26124D2000A3D0E3 /* AddClothFitView.swift in Sources */,
 				9B11104B26019AE300271DD2 /* UserData.swift in Sources */,
-				9B0CB55225F8268A0098DB8F /* User.swift in Sources */,
 				9B11103226015B7900271DD2 /* ClothItemEditView.swift in Sources */,
 				9B11101926009FB400271DD2 /* ClothFitView.swift in Sources */,
 				9B11100026008FC300271DD2 /* ClothItem.swift in Sources */,

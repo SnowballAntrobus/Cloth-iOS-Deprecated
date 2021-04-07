@@ -11,8 +11,6 @@ struct MainView: View {
     @Binding var clothItems: [ClothItem]
     @Binding var clothFits: [ClothFit]
     @Binding var userData: UserData
-    @Environment(\.scenePhase) private var scenePhase
-    let saveAction: () -> Void
     var body: some View {
         TabView {
             ShuffleView(clothFits: $clothFits, clothItems: clothItems, triedClothFits: $userData.triedClothFits, clothFit: randomClothFit(clothItems: clothItems, triedClothFits: userData.triedClothFits))
@@ -25,7 +23,6 @@ struct MainView: View {
                 .tabItem { Label("Account", systemImage:"person") }
         }
         .accentColor(.green)
-        .onChange(of: scenePhase) { phase in if phase == .inactive { saveAction() } }
     }
     private func randomClothFit(clothItems: [ClothItem], triedClothFits: [ClothFit]) -> ClothFit? {
         if clothItems.isEmpty {
@@ -51,6 +48,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data), userData: .constant(UserData.data[0]), saveAction: {})
+        MainView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data), userData: .constant(UserData.data[0]))
     }
 }

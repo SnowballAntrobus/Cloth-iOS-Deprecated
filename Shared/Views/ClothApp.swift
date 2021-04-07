@@ -10,15 +10,12 @@ import SwiftUI
 
 @main
 struct ClothApp: App {
-    @ObservedObject private var user = User()
+    @State var clothItems: [ClothItem] = ClothItem.data
+    @State var clothFits: [ClothFit] = ClothFit.data
+    @State var userData: UserData = UserData.data[0]
     var body: some Scene {
         WindowGroup {
-            MainView(clothItems: $user.clothItems, clothFits: $user.clothFits, userData: $user.userData) {
-                user.save()
-            }
-            .onAppear {
-                user.load()
-            }
+            MainView(clothItems: $clothItems, clothFits: $clothFits, userData: $userData)
         }
     }
 }

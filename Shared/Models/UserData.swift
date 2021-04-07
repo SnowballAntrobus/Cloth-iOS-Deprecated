@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class UserData: Codable {
+    var id: String = UUID().uuidString
     var name: String = "Celery Coble"
     var imageName: String = "UserImage"
         var image: Image {
