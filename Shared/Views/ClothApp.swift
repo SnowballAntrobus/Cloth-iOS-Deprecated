@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import RealmSwift
+
+let app = RealmSwift.App(id: "clothapp-hdgci")
 
 @main
-struct ClothApp: App {
+struct ClothApp: SwiftUI.App {
     @ObservedObject private var user = User()
     var body: some Scene {
         WindowGroup {

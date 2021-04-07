@@ -60,6 +60,8 @@
 		9B9074AE26124D2000A3D0E3 /* AddClothFitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9074AD26124D2000A3D0E3 /* AddClothFitView.swift */; };
 		9B9074AF26124D2000A3D0E3 /* AddClothFitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9074AD26124D2000A3D0E3 /* AddClothFitView.swift */; };
 		9B9135C2261D5DA2003EFEB5 /* MongoKitten in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9135C1261D5DA2003EFEB5 /* MongoKitten */; };
+		9B9135C9261D69C0003EFEB5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9135C8261D69C0003EFEB5 /* Realm */; };
+		9B9135CB261D69C0003EFEB5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9135CA261D69C0003EFEB5 /* RealmSwift */; };
 		9BB7DE7025F60F2700AD3147 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE6F25F60F2700AD3147 /* Tests_iOS.swift */; };
 		9BB7DE7B25F60F2700AD3147 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE7A25F60F2700AD3147 /* Tests_macOS.swift */; };
 		9BB7DE7D25F60F2700AD3147 /* ClothApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB7DE5425F60F2000AD3147 /* ClothApp.swift */; };
@@ -135,6 +137,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B9135CB261D69C0003EFEB5 /* RealmSwift in Frameworks */,
+				9B9135C9261D69C0003EFEB5 /* Realm in Frameworks */,
 				9B9135C2261D5DA2003EFEB5 /* MongoKitten in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +295,8 @@
 			name = "Cloth (iOS)";
 			packageProductDependencies = (
 				9B9135C1261D5DA2003EFEB5 /* MongoKitten */,
+				9B9135C8261D69C0003EFEB5 /* Realm */,
+				9B9135CA261D69C0003EFEB5 /* RealmSwift */,
 			);
 			productName = "Cloth (iOS)";
 			productReference = 9BB7DE5B25F60F2700AD3147 /* Cloth.app */;
@@ -385,6 +391,7 @@
 			mainGroup = 9BB7DE4E25F60F1F00AD3147;
 			packageReferences = (
 				9B9135C0261D5DA2003EFEB5 /* XCRemoteSwiftPackageReference "MongoKitten" */,
+				9B9135C7261D69C0003EFEB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 9BB7DE5C25F60F2700AD3147 /* Products */;
 			projectDirPath = "";
@@ -886,6 +893,14 @@
 				minimumVersion = 6.6.5;
 			};
 		};
+		9B9135C7261D69C0003EFEB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.7.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -893,6 +908,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9B9135C0261D5DA2003EFEB5 /* XCRemoteSwiftPackageReference "MongoKitten" */;
 			productName = MongoKitten;
+		};
+		9B9135C8261D69C0003EFEB5 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B9135C7261D69C0003EFEB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		9B9135CA261D69C0003EFEB5 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B9135C7261D69C0003EFEB5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
