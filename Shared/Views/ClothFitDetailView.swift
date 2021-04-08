@@ -10,8 +10,8 @@ import Resolver
 
 struct ClothFitDetailView: View {
     @Binding var clothItemsRepo: ClothItemRepository
-    let clothFit: ClothFit
     let clothFits: [ClothFit]
+    let clothFit: ClothFit
     
     var body: some View {
         List {
@@ -83,6 +83,6 @@ struct ClothFitDetailView: View {
 
 struct ClothFitDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ClothFitDetailView(clothItemsRepo: Resolver.resolve(), clothFit: ClothFit.data[0], clothFits: ClothFit.data)
+        ClothFitDetailView(clothItemsRepo: Resolver.resolve(), clothFits: ClothFit.data, clothFit: ClothFit.data[0])
     }
 }

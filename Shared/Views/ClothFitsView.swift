@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ClothFitsView: View {
     @Binding var clothItemsRepo: ClothItemRepository
@@ -13,15 +14,15 @@ struct ClothFitsView: View {
     
     var body: some View {
             List {
-                if clothFits.isEmpty {
-                    Text("You have \(clothFits.count) fits")
+                if clothFitsRepo.clothFits.isEmpty {
+                    Text("You have \(clothFitsRepo.clothFits.count) fits")
                 } else {
-                    ForEach(clothFits) {clothFit in
+                    ForEach(clothFitsRepo.clothFits) {clothFit in
                         VStack {
                             NavigationLink(
-                                destination: ClothFitDetailView(clothItems: $clothItems, clothFit: clothFit, clothFits: clothFits),
+                                destination: ClothFitDetailView(clothItemsRepo: $clothItemsRepo, clothFits: clothFitsRepo.clothFits, clothFit: clothFit),
                                 label: {
-                                    ClothFitView(clothFit: clothFit, clothItems: clothItems)
+                                    ClothFitView(clothFit: clothFit, clothItems: clothItemsRepo.clothItems)
                                         .frame(width: 300, height: 250)
                                 })
                         }
@@ -30,14 +31,17 @@ struct ClothFitsView: View {
             }
     }
     private func removeRows(at offsets: IndexSet) {
-        withAnimation {
-            clothFits.remove(atOffsets: offsets)
+        for i in offsets {
+            let removeFit = clothFitsRepo.clothFits[i]
+            withAnimation {
+                clothFitsRepo.removeClothFit(removeFit)
+            }
         }
     }
 }
 
 struct ClothFitsView_Previews: PreviewProvider {
     static var previews: some View {
-        ClothFitsView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data))
+        ClothFitsView(clothItemsRepo: .constant(Resolver.resolve()), clothFitsRepo: .constant(Resolver.resolve()))
     }
 }

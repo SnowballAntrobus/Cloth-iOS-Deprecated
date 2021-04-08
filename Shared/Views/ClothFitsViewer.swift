@@ -19,7 +19,7 @@ struct ClothFitsViewer: View {
                 ForEach(clothFits) {clothFit in
                     Spacer()
                     NavigationLink(
-                        destination: ClothFitDetailView(clothItemsRepo: $clothItemsRepo, clothFit: clothFit, clothFits: clothFits),
+                        destination: ClothFitDetailView(clothItemsRepo: $clothItemsRepo, clothFits: clothFits, clothFit: clothFit),
                         label: {
                             ClothFitView(clothFit: clothFit, clothItems: clothItemsRepo.clothItems)
                                 .frame(width: 300, height: 250)

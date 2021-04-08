@@ -17,8 +17,8 @@ struct MainView: View {
         TabView {
             ShuffleView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo, clothFit: randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits))
                 .tabItem { Label("Cloth", systemImage:"shuffle") }
-            //            AddView(clothItems: $clothItems, clothFits: $clothFits, userData: $userData)
-            //                .tabItem { Label("Add", systemImage:"plus.circle") }
+            AddView(clothItems: $clothItems, clothFits: $clothFits, userData: $userData)
+                .tabItem { Label("Add", systemImage:"plus.circle") }
             ClosetView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
                 .tabItem { Label("Closet", systemImage:"book") }
             AccountView(userDataRepo: $userDataRepo)
