@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ClothFitsView: View {
-    @Binding var clothItems: [ClothItem]
-    @Binding var clothFits: [ClothFit]
+    @Binding var clothItemsRepo: ClothItemRepository
+    @Binding var clothFitsRepo: ClothFitRepository
     
     var body: some View {
             List {

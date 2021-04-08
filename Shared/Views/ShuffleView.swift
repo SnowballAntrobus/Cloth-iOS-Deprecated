@@ -6,22 +6,26 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ShuffleView: View {
-    @Binding var clothFits: [ClothFit]
-    let clothItems: [ClothItem]
-    @Binding var triedClothFits: [ClothFit]
+    @Binding var clothItemsRepo: ClothItemRepository
+    @Binding var clothFitsRepo: ClothFitRepository
+    @Binding var userDataRepo: UserDataRepository
     @State var clothFit: ClothFit?
+    @State var updateUserData: UserData?
     var body: some View {
         if clothFit != nil {
                 var fit = clothFit!
             VStack {
-                ClothFitView(clothFit: clothFit, clothItems: clothItems)
+                ClothFitView(clothFit: clothFit, clothItems: clothItemsRepo.clothItems)
                     .frame(width: 300, height: 250)
                 HStack {
                     Button(action: {
-                        triedClothFits.append(fit)
-                        clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
+                        updateUserData = userDataRepo.userDatas[0]
+                        updateUserData!.triedClothFits.append(clothFit!)
+                        userDataRepo.updateUserData(updateUserData!)
+                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
                     }) {
                         Image(systemName: "xmark.circle")
                             .resizable()
@@ -31,9 +35,11 @@ struct ShuffleView: View {
                     Spacer()
                     Button(action: {
                         fit.star = true
-                        clothFits.append(fit)
-                        triedClothFits.append(fit)
-                        clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
+                        clothFitsRepo.clothFits.append(fit)
+                        updateUserData = userDataRepo.userDatas[0]
+                        updateUserData!.triedClothFits.append(clothFit!)
+                        userDataRepo.updateUserData(updateUserData!)
+                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
                     }) {
                         Image(systemName: "star")
                             .resizable()
@@ -42,9 +48,11 @@ struct ShuffleView: View {
                     }
                     Spacer()
                     Button(action: {
-                        clothFits.append(fit)
-                        triedClothFits.append(fit)
-                        clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
+                        clothFitsRepo.clothFits.append(fit)
+                        updateUserData = userDataRepo.userDatas[0]
+                        updateUserData!.triedClothFits.append(clothFit!)
+                        userDataRepo.updateUserData(updateUserData!)
+                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
                     }) {
                         Image(systemName: "checkmark.circle")
                             .resizable()
@@ -57,10 +65,10 @@ struct ShuffleView: View {
             .padding(.top, 150)
         } else {
             VStack {
-                Text("You have \(clothItems.count) items")
+                Text("You have \(clothItemsRepo.clothItems.count) items")
                 Text("please add items")
                 Button(action: {
-                    clothFit = randomClothFit(clothItems: clothItems, triedClothFits: triedClothFits)!
+                    clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
                 }) {
                     Image(systemName: "shuffle")
                         .resizable()
@@ -89,6 +97,6 @@ struct ShuffleView: View {
 
 struct ShuffleView_Previews: PreviewProvider {
     static var previews: some View {
-        ShuffleView(clothFits: .constant(ClothFit.data), clothItems: ClothItem.data, triedClothFits: .constant(ClothFit.data), clothFit: ClothFit.data[0])
+        ShuffleView(clothItemsRepo: .constant(Resolver.resolve()), clothFitsRepo: .constant(Resolver.resolve()), userDataRepo: .constant(Resolver.resolve()))
     }
 }

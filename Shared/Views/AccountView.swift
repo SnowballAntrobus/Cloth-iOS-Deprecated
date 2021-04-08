@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct AccountView: View {
-    @Binding var userData: UserData
+    @Binding var userDataRepo: UserDataRepository
     var body: some View {
         VStack {
             HStack {
-                userData.image
+                userDataRepo.userDatas[0].image
                     .resizable()
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
                     .padding(.leading, 25.0)
                 Spacer()
-                Text(userData.name)
+                Text(userDataRepo.userDatas[0].name)
                     .padding(.trailing, 25.0)
             }
             .padding(.top, 50)
@@ -33,6 +34,6 @@ struct AccountView: View {
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountView(userData: .constant(UserData.data[0]))
+        AccountView(userDataRepo: .constant(Resolver.resolve()))
     }
 }

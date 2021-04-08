@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ClothItemsView: View {
+    @Binding var clothItemsRepo: ClothItemRepository
+    @Binding var clothFitsRepo: ClothFitRepository
+    @Binding var userDataRepo: UserDataRepository
+    
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
-    @Binding var clothItems: [ClothItem]
-    @Binding var clothFits: [ClothFit]
-    @Binding var userData: UserData
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {

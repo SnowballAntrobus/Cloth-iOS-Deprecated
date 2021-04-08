@@ -11,6 +11,7 @@ struct AddView: View {
     @Binding var clothItems: [ClothItem]
     @Binding var clothFits: [ClothFit]
     @Binding var userData: UserData
+    
     var body: some View {
         NavigationView {
             VStack {

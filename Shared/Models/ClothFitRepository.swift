@@ -11,13 +11,13 @@ class BaseClothFitRepository {
   @Published var clothFits = [ClothFit]()
 }
 
-protocol clothFitRepository: BaseClothFitRepository {
+protocol ClothFitRepository: BaseClothFitRepository {
   func addClothItem(_ clothFit: ClothFit)
   func removeClothItem(_ clothFit: ClothFit)
   func updateClothItem(_ clothFit: ClothFit)
 }
 
-class TestDataClothFitRepository: BaseClothFitRepository, clothFitRepository, ObservableObject {
+class TestDataClothFitRepository: BaseClothFitRepository, ClothFitRepository, ObservableObject {
   override init() {
     super.init()
     self.clothFits = ClothFit.data

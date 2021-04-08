@@ -7,35 +7,35 @@
 
 import Foundation
 
-class BaseUserDataRepository {
-  @Published var userDatas = [UserData]()
+class BaseClothItemRepository {
+  @Published var clothItems = [ClothItem]()
 }
 
-protocol UserDataRepository: BaseUserDataRepository {
-  func addUserData(_ userData: UserData)
-  func removeUserData(_ userData: UserData)
-  func updateUserData(_ userData: UserData)
+protocol ClothItemRepository: BaseClothItemRepository {
+  func addClothItem(_ ClothItem: ClothItem)
+  func removeClothItem(_ ClothItem: ClothItem)
+  func updateClothItem(_ ClothItem: ClothItem)
 }
 
-class TestDataUserDataRepository: BaseUserDataRepository, UserDataRepository, ObservableObject {
+class TestDataClothItemRepository: BaseClothItemRepository, ClothItemRepository, ObservableObject {
   override init() {
     super.init()
-    self.userDatas = UserData.data
+    self.clothItems = ClothItem.data
   }
   
-  func addUserData(_ userData: UserData) {
-    userDatas.append(userData)
+  func addClothItem(_ clothItem: ClothItem) {
+    clothItems.append(clothItem)
   }
   
-  func removeUserData(_ userData: UserData) {
-    if let index = userDatas.firstIndex(where: { $0.id == userData.id }) {
-      userDatas.remove(at: index)
+  func removeClothItem(_ clothItem: ClothItem) {
+    if let index = clothItems.firstIndex(where: { $0.id == clothItem.id }) {
+      clothItems.remove(at: index)
     }
   }
   
-  func updateUserData(_ userData: UserData) {
-    if let index = self.userDatas.firstIndex(where: { $0.id == userData.id } ) {
-      self.userDatas[index] = userData
+  func updateClothItem(_ clothItem: ClothItem) {
+    if let index = self.clothItems.firstIndex(where: { $0.id == clothItem.id } ) {
+      self.clothItems[index] = clothItem
     }
   }
 }

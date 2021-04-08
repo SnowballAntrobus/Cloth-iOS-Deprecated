@@ -6,15 +6,15 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ClosetView: View {
+    @Binding var clothItemsRepo: ClothItemRepository
+    @Binding var clothFitsRepo: ClothFitRepository
+    @Binding var userDataRepo: UserDataRepository
+    
     @State private var itemType = true
-    @Binding var clothItems: [ClothItem]
-    
     @State var selectItem: ClothItem? = nil
-    @Binding var clothFits: [ClothFit]
-    
-    @Binding var userData: UserData
     
     var body: some View {
         NavigationView {
@@ -29,11 +29,11 @@ struct ClosetView: View {
                     })
                 }
                 if itemType {
-                    ClothItemsView(clothItems: $clothItems, clothFits: $clothFits, userData: $userData)
+                    ClothItemsView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
                     .padding(.top, 10)
                     .navigationBarHidden(true)
                 } else {
-                    ClothFitsView(clothItems: $clothItems, clothFits: $clothFits)
+                    ClothFitsView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo)
                     .navigationBarHidden(true)
                 }
             }
@@ -45,6 +45,6 @@ struct ClosetView: View {
 
 struct ClosetView_Previews: PreviewProvider {
     static var previews: some View {
-        ClosetView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data), userData: .constant(UserData.data[0]))
+        ClosetView(clothItemsRepo: .constant(Resolver.resolve()), clothFitsRepo: .constant(Resolver.resolve()), userDataRepo: .constant(Resolver.resolve()))
     }
 }
