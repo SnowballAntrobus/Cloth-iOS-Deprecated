@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Firebase
 
 struct ClothItem: Identifiable, Codable, Equatable {
     var id: String = UUID().uuidString
