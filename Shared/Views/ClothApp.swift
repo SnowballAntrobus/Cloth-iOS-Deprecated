@@ -12,9 +12,6 @@ import Firebase
 
 @main
 struct ClothApp: App {
-    @State var clothItemsRepo: ClothItemRepository = Resolver.resolve()
-    @State var clothFitsRepo: ClothFitRepository = Resolver.resolve()
-    @State var userDataRepo: UserDataRepository = Resolver.resolve()
     
     init() {
         FirebaseApp.configure()
@@ -22,7 +19,7 @@ struct ClothApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
+            MainView()
         }
     }
 }

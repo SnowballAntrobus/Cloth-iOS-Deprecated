@@ -9,9 +9,9 @@ import SwiftUI
 import Resolver
 
 struct MainView: View {
-    @Binding var clothItemsRepo: ClothItemRepository
-    @Binding var clothFitsRepo: ClothFitRepository
-    @Binding var userDataRepo: UserDataRepository
+    @State var clothItemsRepo: ClothItemRepository = Resolver.resolve()
+    @State var clothFitsRepo: ClothFitRepository = Resolver.resolve()
+    @State var userDataRepo: UserDataRepository = Resolver.resolve()
     
     var body: some View {
         TabView {
@@ -48,6 +48,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(clothItemsRepo: .constant(Resolver.resolve()), clothFitsRepo: .constant(Resolver.resolve()), userDataRepo: .constant(Resolver.resolve()))
+        MainView(clothItemsRepo: Resolver.resolve(), clothFitsRepo: Resolver.resolve(), userDataRepo: Resolver.resolve())
     }
 }
