@@ -36,7 +36,7 @@ struct MainView: View {
             let top: ClothItem = clothItems.filter{$0.type == "Top"}.randomElement()!
             let bottom: ClothItem = clothItems.filter{$0.type == "Bottom"}.randomElement()!
             if top != bottom {
-                clothFit = ClothFit(items: [top.id, bottom.id], star: false)
+                clothFit = ClothFit(items: [top.id!, bottom.id!], star: false)
                 if !triedClothFits.contains(clothFit!) {
                     found = true
                 }

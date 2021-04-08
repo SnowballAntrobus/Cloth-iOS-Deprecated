@@ -7,13 +7,16 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct ClothFit: Identifiable, Codable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String?
     var items: [String]
     var star: Bool = false
     var use: Int = 0
     var price: String = "0"
+    @ServerTimestamp var createdTime: Timestamp?
     
     init(items: [String], star: Bool) {
         self.items = items
@@ -35,10 +38,10 @@ extension ClothFit: Equatable {
 extension ClothFit {
     static var data: [ClothFit] {
         [
-            ClothFit(items: [ClothItem.data[0].id, ClothItem.data[2].id], star: false),
-            ClothFit(items: [ClothItem.data[1].id, ClothItem.data[3].id], star: false),
-            ClothFit(items: [ClothItem.data[0].id, ClothItem.data[3].id], star: false),
-            ClothFit(items: [ClothItem.data[1].id, ClothItem.data[2].id], star: false)
+            ClothFit(items: [ClothItem.data[0].id!, ClothItem.data[2].id!], star: false),
+            ClothFit(items: [ClothItem.data[1].id!, ClothItem.data[3].id!], star: false),
+            ClothFit(items: [ClothItem.data[0].id!, ClothItem.data[3].id!], star: false),
+            ClothFit(items: [ClothItem.data[1].id!, ClothItem.data[2].id!], star: false)
         ]
     }
 }

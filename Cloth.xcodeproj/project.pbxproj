@@ -211,9 +211,9 @@
 		9B0CB54425F819A70098DB8F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9B11104926019AE300271DD2 /* UserData.swift */,
 				9B110FFE26008FC300271DD2 /* ClothItem.swift */,
 				9B11101026009E8000271DD2 /* ClothFit.swift */,
+				9B11104926019AE300271DD2 /* UserData.swift */,
 				9B665D62261E61FD00082AB3 /* ClothItemRepository.swift */,
 				9B665D69261E621100082AB3 /* ClothFitRepository.swift */,
 				9B665D70261E622900082AB3 /* UserDataRepositroy.swift */,

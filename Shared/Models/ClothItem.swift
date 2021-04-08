@@ -7,15 +7,17 @@
 
 import Foundation
 import SwiftUI
-import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct ClothItem: Identifiable, Codable, Equatable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String?
     var type: String
     var color: String
     var brand: String
     var price: String
     var image: Data? = UIImage(systemName: "square.fill")?.pngData()!
+    @ServerTimestamp var createdTime: Timestamp?
     
     init(type: String, color: String, brand: String, price: String, image: UIImage?) {
         self.type = type

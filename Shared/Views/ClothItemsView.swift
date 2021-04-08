@@ -52,12 +52,12 @@ struct ClothItemsView: View {
     func removeFits(removedItem: ClothItem) {
         var idxsTried: [Int] = []
         for fit in clothFitsRepo.clothFits {
-            if (fit.items.contains(removedItem.id)) {
+            if (fit.items.contains(removedItem.id!)) {
                 clothFitsRepo.removeClothFit(fit)
             }
         }
         for (n, fit) in userDataRepo.userDatas[0].triedClothFits.enumerated() {
-            if (fit.items.contains(removedItem.id)) {
+            if (fit.items.contains(removedItem.id!)) {
                 idxsTried.append(n)
             }
         }

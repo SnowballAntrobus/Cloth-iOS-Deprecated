@@ -88,7 +88,7 @@ struct AddClothFitView: View {
     }
     private func addFit() {
         if (bottom != nil && top != nil && bottom!.type == "Bottom" && top!.type == "Top") {
-            let newClothFit = ClothFit(items: [top!.id, bottom!.id], star: star)
+            let newClothFit = ClothFit(items: [top!.id!, bottom!.id!], star: star)
             if !clothFitsRepo.clothFits.contains(newClothFit) {
                 clothFitsRepo.addClothFit(newClothFit)
                 if !userDataRepo.userDatas[0].triedClothFits.contains(newClothFit) {

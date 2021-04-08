@@ -7,15 +7,18 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class UserData: Codable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String?
     var name: String = "Celery Coble"
     var imageName: String = "UserImage"
         var image: Image {
             Image(imageName)
         }
     var triedClothFits: [ClothFit] = []
+    @ServerTimestamp var createdTime: Timestamp?
     
     init(name: String, imageName: String, triedClothFits: [ClothFit]){
         self.name = name

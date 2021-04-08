@@ -89,7 +89,7 @@ struct ClothItemDetailView: View {
         }
     }
     private func filterFits() {
-        clothFitsFiltered = clothFits.filter{$0.items.contains(clothItem.id)}
+        clothFitsFiltered = clothFits.filter{$0.items.contains(clothItem.id!)}
     }
 }
 
