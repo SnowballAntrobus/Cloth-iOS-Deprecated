@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 private enum ActiveSheet: Identifiable {
     case top, bottom
@@ -16,23 +17,22 @@ private enum ActiveSheet: Identifiable {
 }
 
 struct AddClothFitView: View {
-    @Binding var clothFits: [ClothFit]
-    @Binding var clothItems: [ClothItem]
-    @Binding var userData: UserData
+    @Binding var clothItemsRepo: ClothItemRepository
+    @Binding var clothFitsRepo: ClothFitRepository
+    @Binding var userDataRepo: UserDataRepository
     
     @State var clothItemsFiltered: [ClothItem]?
-    
     @State var top: ClothItem?
     @State var bottom: ClothItem?
     @State var star: Bool = false
-    
     @State private var activeSheet: ActiveSheet?
-    
     @State private var showingAlertFit = false
     @State private var showingAlertSelection = false
+    @State var updateUserData: UserData?
+    
     var body: some View {
         VStack {
-            Button(action: {clothItemsFiltered = clothItems.filter{$0.type == "Top"}; activeSheet = .top}, label: {
+            Button(action: {clothItemsFiltered = clothItemsRepo.clothItems.filter{$0.type == "Top"}; activeSheet = .top}, label: {
                 if top != nil {
                     ClothItemView(clothItem: top!)
                 }else {
@@ -43,7 +43,7 @@ struct AddClothFitView: View {
                         .padding()
                 }
             })
-            Button(action: {clothItemsFiltered = clothItems.filter{$0.type == "Bottom"}; activeSheet = .bottom}, label: {
+            Button(action: {clothItemsFiltered = clothItemsRepo.clothItems.filter{$0.type == "Bottom"}; activeSheet = .bottom}, label: {
                 if bottom != nil {
                     ClothItemView(clothItem: bottom!)
                 }else {
@@ -89,10 +89,12 @@ struct AddClothFitView: View {
     private func addFit() {
         if (bottom != nil && top != nil && bottom!.type == "Bottom" && top!.type == "Top") {
             let newClothFit = ClothFit(items: [top!.id, bottom!.id], star: star)
-            if !clothFits.contains(newClothFit) {
-                clothFits.append(newClothFit)
-                if !userData.triedClothFits.contains(newClothFit) {
-                    userData.triedClothFits.append(newClothFit)
+            if !clothFitsRepo.clothFits.contains(newClothFit) {
+                clothFitsRepo.addClothFit(newClothFit)
+                if !userDataRepo.userDatas[0].triedClothFits.contains(newClothFit) {
+                    updateUserData = userDataRepo.userDatas[0]
+                    updateUserData!.triedClothFits.append(newClothFit)
+                    userDataRepo.updateUserData(updateUserData!)
                 }
             }else {
                 showingAlertFit = true
@@ -105,6 +107,6 @@ struct AddClothFitView: View {
 
 struct AddClothFitView_Previews: PreviewProvider {
     static var previews: some View {
-        AddClothFitView(clothFits: .constant(ClothFit.data), clothItems: .constant(ClothItem.data), userData: .constant(UserData.data[0]))
+        AddClothFitView(clothItemsRepo: .constant(Resolver.resolve()), clothFitsRepo: .constant(Resolver.resolve()), userDataRepo: .constant(Resolver.resolve()))
     }
 }

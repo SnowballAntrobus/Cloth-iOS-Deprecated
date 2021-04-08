@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct AddView: View {
-    @Binding var clothItems: [ClothItem]
-    @Binding var clothFits: [ClothFit]
-    @Binding var userData: UserData
+    @Binding var clothItemsRepo: ClothItemRepository
+    @Binding var clothFitsRepo: ClothFitRepository
+    @Binding var userDataRepo: UserDataRepository
     
     var body: some View {
         NavigationView {
             VStack {
                 NavigationLink(
-                    destination: AddClothItemImageView(clothItems: $clothItems),
+                    destination: AddClothItemImageView(clothItemsRepo: $clothItemsRepo),
                     label: {
                         Text("Add Item")
                             .frame(width: 300, height: 100)
@@ -26,7 +27,7 @@ struct AddView: View {
                     })
                     .padding()
                 NavigationLink(
-                    destination: AddClothFitView(clothFits: $clothFits, clothItems: $clothItems, userData: $userData),
+                    destination: AddClothFitView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo),
                     label: {
                         Text("Add Fit")
                             .frame(width: 300, height: 100)
@@ -41,6 +42,6 @@ struct AddView: View {
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data), userData: .constant(UserData.data[0]))
+        AddView(clothItemsRepo: .constant(Resolver.resolve()), clothFitsRepo: .constant(Resolver.resolve()), userDataRepo: .constant(Resolver.resolve()))
     }
 }

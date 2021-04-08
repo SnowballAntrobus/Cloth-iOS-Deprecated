@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct CropModeView: View {
+    @Binding var clothItemsRepo: ClothItemRepository
     @Binding var selectedImage: UIImage?
-    @Binding var clothItems: [ClothItem]
+    
     var body: some View {
         VStack {
             NavigationLink(
-                destination: ManualCropperView(image: $selectedImage, clothItems: $clothItems),
+                destination: ManualCropperView(clothItemsRepo: $clothItemsRepo, image: $selectedImage),
                 label: {
                     Text("Manual Crop")
                         .frame(width: 300, height: 100)
@@ -22,7 +24,7 @@ struct CropModeView: View {
                 })
                 .padding()
             NavigationLink(
-                destination: AutoCropperView(image: $selectedImage, clothItems: $clothItems),
+                destination: AutoCropperView(clothItemsRepo: $clothItemsRepo, image: $selectedImage),
                 label: {
                     Text("Auto Crop")
                         .frame(width: 300, height: 100)
@@ -36,6 +38,6 @@ struct CropModeView: View {
 
 struct CropModeView_Previews: PreviewProvider {
     static var previews: some View {
-        CropModeView(selectedImage: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
+        CropModeView(clothItemsRepo: .constant(Resolver.resolve()), selectedImage: .constant(UIImage(named: "pants")))
     }
 }

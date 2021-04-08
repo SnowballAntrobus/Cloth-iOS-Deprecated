@@ -12,6 +12,7 @@ struct ShuffleView: View {
     @Binding var clothItemsRepo: ClothItemRepository
     @Binding var clothFitsRepo: ClothFitRepository
     @Binding var userDataRepo: UserDataRepository
+    
     @State var clothFit: ClothFit?
     @State var updateUserData: UserData?
     var body: some View {

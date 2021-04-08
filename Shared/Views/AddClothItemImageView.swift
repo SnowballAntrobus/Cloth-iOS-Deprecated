@@ -7,12 +7,12 @@
 
 import SwiftUI
 import Vision
+import Resolver
 
 struct AddClothItemImageView: View {
-    @Binding var clothItems: [ClothItem]
+    @Binding var clothItemsRepo: ClothItemRepository
     
     @State private var activeSheet = false
-    
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
@@ -50,7 +50,7 @@ struct AddClothItemImageView: View {
             
             if selectedImage != nil {
                 NavigationLink(
-                    destination: CropModeView(selectedImage: $selectedImage, clothItems: $clothItems),
+                    destination: CropModeView(clothItemsRepo: $clothItemsRepo, selectedImage: $selectedImage),
                     label: {
                         Text("Add")
                     }).padding()
@@ -63,6 +63,6 @@ struct AddClothItemImageView: View {
 
 struct AddClothItemImageView_Previews: PreviewProvider {
     static var previews: some View {
-        AddClothItemImageView(clothItems: .constant(ClothItem.data))
+        AddClothItemImageView(clothItemsRepo: .constant(Resolver.resolve()))
     }
 }

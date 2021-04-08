@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ManualCropperView: View {
+    @Binding var clothItemsRepo: ClothItemRepository
+    
     @State var imageSize: CGSize = .zero
     @State var points: [CGPoint] = []
     @State var pointsResized: [CGPoint] = []
@@ -17,7 +20,6 @@ struct ManualCropperView: View {
     @State var croppedImage: UIImage?
     @State var croppedImageData: Data?
     
-    @Binding var clothItems: [ClothItem]
     @State private var newclothItemData = ClothItem.Datas()
     @State var activeSheet = false
     
@@ -41,7 +43,7 @@ struct ManualCropperView: View {
                     VStack {
                         NavigationView {
                             ClothItemEditView(clothItemData: $newclothItemData)
-                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
+                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItemsRepo.addClothItem(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
                         }
                     }
                 }
@@ -110,6 +112,6 @@ struct DrawShape: Shape {
 
 struct ManualCropperView_Previews: PreviewProvider {
     static var previews: some View {
-        ManualCropperView(image: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
+        ManualCropperView(clothItemsRepo: .constant(Resolver.resolve()), image: .constant(UIImage(named: "pants")))
     }
 }

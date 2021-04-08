@@ -7,8 +7,10 @@
 
 import SwiftUI
 import Vision
+import Resolver
 
 struct AutoCropperView: View {
+    @Binding var clothItemsRepo: ClothItemRepository
     
     @State var points : String = ""
     @State var croppedImage: UIImage?
@@ -19,8 +21,6 @@ struct AutoCropperView: View {
     @State var croppedImageData: Data?
     
     @State private var newclothItemData = ClothItem.Datas()
-    
-    @Binding var clothItems: [ClothItem]
     
     @State var activeSheet = false
     
@@ -63,7 +63,7 @@ struct AutoCropperView: View {
                             Text("Retouch")
                         })
                     NavigationLink(
-                        destination: ClothItemEditView(clothItemData: $newclothItemData).navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItems.append(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()}),
+                        destination: ClothItemEditView(clothItemData: $newclothItemData).navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItemsRepo.addClothItem(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()}),
                         label: {
                             Text("Done")
                         })
@@ -165,6 +165,6 @@ struct AutoCropperView: View {
 
 struct AutoCropperView_Previews: PreviewProvider {
     static var previews: some View {
-        AutoCropperView(image: .constant(UIImage(named: "pants")), clothItems: .constant(ClothItem.data))
+        AutoCropperView(clothItemsRepo: .constant(Resolver.resolve()), image: .constant(UIImage(named: "pants")))
     }
 }
