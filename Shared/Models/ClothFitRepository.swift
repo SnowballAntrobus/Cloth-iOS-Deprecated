@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Disk
 
 class BaseClothFitRepository {
   @Published var clothFits = [ClothFit]()
@@ -36,6 +37,53 @@ class TestDataClothFitRepository: BaseClothFitRepository, ClothFitRepository, Ob
   func updateClothFit(_ clothFit: ClothFit) {
     if let index = self.clothFits.firstIndex(where: { $0.id == clothFit.id } ) {
       self.clothFits[index] = clothFit
+    }
+  }
+}
+
+class LocalClothFitRepository: BaseClothFitRepository, ClothFitRepository, ObservableObject {
+  override init() {
+    super.init()
+    loadData()
+  }
+  
+  func addClothFit(_ clothFit: ClothFit) {
+    self.clothFits.append(clothFit)
+    saveData()
+  }
+  
+  func removeClothFit(_ clothFit: ClothFit) {
+    if let index = clothFits.firstIndex(where: { $0.id == clothFit.id }) {
+      clothFits.remove(at: index)
+      saveData()
+    }
+  }
+  
+  func updateClothFit(_ clothFit: ClothFit) {
+    if let index = self.clothFits.firstIndex(where: { $0.id == clothFit.id } ) {
+      self.clothFits[index] = clothFit
+      saveData()
+    }
+  }
+  
+  private func loadData() {
+    if let retrievedClothFits = try? Disk.retrieve("clothFits.json", from: .documents, as: [ClothFit].self) {
+      self.clothFits = retrievedClothFits
+    }
+  }
+  
+  private func saveData() {
+    do {
+      try Disk.save(self.clothFits, to: .documents, as: "clothFits.json")
+    }
+    catch let error as NSError {
+      fatalError("""
+        Domain: \(error.domain)
+        Code: \(error.code)
+        Description: \(error.localizedDescription)
+        Failure Reason: \(error.localizedFailureReason ?? "")
+        Suggestions: \(error.localizedRecoverySuggestion ?? "")
+        """)
     }
   }
 }
