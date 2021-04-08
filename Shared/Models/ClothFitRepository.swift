@@ -7,6 +7,9 @@
 
 import Foundation
 import Disk
+import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class BaseClothFitRepository {
   @Published var clothFits = [ClothFit]()
@@ -87,3 +90,53 @@ class LocalClothFitRepository: BaseClothFitRepository, ClothFitRepository, Obser
     }
   }
 }
+
+class FirestoreClothFitRepository: BaseClothFitRepository, ClothFitRepository, ObservableObject {
+    var db = Firestore.firestore() // (1)
+    
+    override init() {
+        super.init()
+        loadData()
+    }
+    
+    private func loadData() {
+        db.collection("clothFits").order(by: "createdTime").addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+                self.clothFits = querySnapshot.documents.compactMap { document -> ClothFit? in
+                    try? document.data(as: ClothFit.self)
+                }
+            }
+        }
+    }
+    
+    func addClothFit(_ clothFit: ClothFit) {
+        do {
+            let _ = try db.collection("clothFits").addDocument(from: clothFit)
+        }
+        catch {
+            print("There was an error while trying to save a clothFit \(error.localizedDescription).")
+        }
+    }
+    
+    func updateClothFit(_ clothFit: ClothFit) {
+        if let clothFitID = clothFit.id {
+            do {
+                try db.collection("clothFits").document(clothFitID).setData(from: clothFit)
+            }
+            catch {
+                print("There was an error while trying to update a clothFit \(error.localizedDescription).")
+            }
+        }
+    }
+    
+    func removeClothFit(_ clothFit: ClothFit) {
+        if let clothFitID = clothFit.id {
+            db.collection("clothFits").document(clothFitID).delete { (error) in // (1)
+                if let error = error {
+                    print("Error removing document: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+}
+
