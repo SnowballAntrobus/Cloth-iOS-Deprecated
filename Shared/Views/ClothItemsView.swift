@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ClothItemsView: View {
     @Binding var clothItemsRepo: ClothItemRepository
@@ -17,72 +18,71 @@ struct ClothItemsView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(clothItems) {clothItem in
+                ForEach(clothItemsRepo.clothItems) {clothItem in
                     VStack {
                         NavigationLink(
-                            destination: ClothItemDetailView(clothItem: binding(for: clothItem), clothFits: clothFits, clothItems: $clothItems)) {
+                            destination: ClothItemDetailView(clothItemsRepo: $clothItemsRepo, clothItem: binding(for: clothItem), clothFits: clothFitsRepo.clothFits)) {
                             ClothItemView(clothItem: clothItem)
                                 .frame(width: 100, height: 100)
                         }
                     }
-                    .overlay(DeleteButton(number: clothItem, numbers: $clothItems, onDelete: removeRows), alignment: .topTrailing)
+                    .overlay(DeleteButton<ClothItem>(number: clothItem, numbers: $clothItemsRepo, onDelete: removeRows), alignment: .topTrailing)
                 }.onDelete(perform: removeRows)
             }
         }.navigationBarHidden(true)
     }
     
     private func binding(for clothItem: ClothItem) -> Binding<ClothItem> {
-        guard let clothItemIndex = clothItems.firstIndex(where: { $0.id == clothItem.id }) else {
+        guard let clothItemIndex = clothItemsRepo.clothItems.firstIndex(where: { $0.id == clothItem.id }) else {
             fatalError("Can't find scrum in array")
         }
-        return $clothItems[clothItemIndex]
+        return $clothItemsRepo.clothItems[clothItemIndex]
     }
     
     private func removeRows(at offsets: IndexSet) {
+        var removedItem: ClothItem?
         offsets.forEach { (i) in
-            let removedItem = clothItems[i]
-            removeFits(removedItem: removedItem)
+            removedItem = clothItemsRepo.clothItems[i]
+            removeFits(removedItem: removedItem!)
         }
         withAnimation {
-            clothItems.remove(atOffsets: offsets)
+            clothItemsRepo.removeClothItem(removedItem!)
         }
     }
     func removeFits(removedItem: ClothItem) {
-        var idxsFit: [Int] = []
         var idxsTried: [Int] = []
-        for (n, fit) in clothFits.enumerated() {
+        for fit in clothFitsRepo.clothFits {
             if (fit.items.contains(removedItem.id)) {
-                idxsFit.append(n)
+                clothFitsRepo.removeClothFit(fit)
             }
         }
-        for (n, fit) in userData.triedClothFits.enumerated() {
+        for (n, fit) in userDataRepo.userDatas[0].triedClothFits.enumerated() {
             if (fit.items.contains(removedItem.id)) {
                 idxsTried.append(n)
             }
         }
-        clothFits.remove(atOffsets: IndexSet(idxsFit))
-        userData.triedClothFits.remove(atOffsets: IndexSet(idxsTried))
+        userDataRepo.userDatas[0].triedClothFits.remove(atOffsets: IndexSet(idxsTried))
     }
 }
 
 struct ClothItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        ClothItemsView(clothItems: .constant(ClothItem.data), clothFits: .constant(ClothFit.data), userData: .constant(UserData.data[0]))
+        ClothItemsView(clothItemsRepo: Resolver.resolve(), clothFitsRepo: Resolver.resolve(), userDataRepo: Resolver.resolve())
     }
 }
 
 struct DeleteButton<T>: View where T: Equatable {
     @Environment(\.editMode) var editMode
     
-    let number: T
-    @Binding var numbers: [T]
+    let number: ClothItem
+    @Binding var numbers: ClothItemRepository
     let onDelete: (IndexSet) -> ()
     
     var body: some View {
         VStack {
             if self.editMode?.wrappedValue == .active {
                 Button(action: {
-                    if let index = numbers.firstIndex(of: number) {
+                    if let index = numbers.clothItems.firstIndex(of: number) {
                         self.onDelete(IndexSet(integer: index))
                     }
                 }) {

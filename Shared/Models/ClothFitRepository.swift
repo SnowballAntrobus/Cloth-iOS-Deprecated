@@ -12,9 +12,9 @@ class BaseClothFitRepository {
 }
 
 protocol ClothFitRepository: BaseClothFitRepository {
-  func addClothItem(_ clothFit: ClothFit)
-  func removeClothItem(_ clothFit: ClothFit)
-  func updateClothItem(_ clothFit: ClothFit)
+  func addClothFit(_ clothFit: ClothFit)
+  func removeClothFit(_ clothFit: ClothFit)
+  func updateClothFit(_ clothFit: ClothFit)
 }
 
 class TestDataClothFitRepository: BaseClothFitRepository, ClothFitRepository, ObservableObject {
@@ -23,17 +23,17 @@ class TestDataClothFitRepository: BaseClothFitRepository, ClothFitRepository, Ob
     self.clothFits = ClothFit.data
   }
   
-  func addClothItem(_ clothFit: ClothFit) {
+  func addClothFit(_ clothFit: ClothFit) {
     clothFits.append(clothFit)
   }
   
-  func removeClothItem(_ clothFit: ClothFit) {
+  func removeClothFit(_ clothFit: ClothFit) {
     if let index = clothFits.firstIndex(where: { $0.id == clothFit.id }) {
       clothFits.remove(at: index)
     }
   }
   
-  func updateClothItem(_ clothFit: ClothFit) {
+  func updateClothFit(_ clothFit: ClothFit) {
     if let index = self.clothFits.firstIndex(where: { $0.id == clothFit.id } ) {
       self.clothFits[index] = clothFit
     }

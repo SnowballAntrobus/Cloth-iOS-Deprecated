@@ -5,9 +5,10 @@
 //  Created by Dante Gil-Marin on 3/29/21.
 //
 import SwiftUI
+import Resolver
 
 struct ClothFitsViewer: View {
-    @Binding var clothItems: [ClothItem]
+    @Binding var clothItemsRepo: ClothItemRepository
     let clothFits: [ClothFit]
     
     var body: some View {
@@ -18,9 +19,9 @@ struct ClothFitsViewer: View {
                 ForEach(clothFits) {clothFit in
                     Spacer()
                     NavigationLink(
-                        destination: ClothFitDetailView(clothItems: $clothItems, clothFit: clothFit, clothFits: clothFits),
+                        destination: ClothFitDetailView(clothItemsRepo: $clothItemsRepo, clothFit: clothFit, clothFits: clothFits),
                         label: {
-                            ClothFitView(clothFit: clothFit, clothItems: clothItems)
+                            ClothFitView(clothFit: clothFit, clothItems: clothItemsRepo.clothItems)
                                 .frame(width: 300, height: 250)
                         })
                 }
@@ -31,6 +32,6 @@ struct ClothFitsViewer: View {
 
 struct ClothFitsViewer_Previews: PreviewProvider {
     static var previews: some View {
-        ClothFitsViewer(clothItems: .constant(ClothItem.data), clothFits: ClothFit.data)
+        ClothFitsViewer(clothItemsRepo: Resolver.resolve(), clothFits: ClothFit.data)
     }
 }

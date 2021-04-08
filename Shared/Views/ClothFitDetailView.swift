@@ -6,21 +6,22 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ClothFitDetailView: View {
-    @Binding var clothItems: [ClothItem]
+    @Binding var clothItemsRepo: ClothItemRepository
     let clothFit: ClothFit
     let clothFits: [ClothFit]
     
     var body: some View {
         List {
             VStack {
-                let clothItem1: ClothItem? = findClothItem(clothItems: clothItems, clothItemId: clothFit.items[0])
+                let clothItem1: ClothItem? = findClothItem(clothItems: clothItemsRepo.clothItems, clothItemId: clothFit.items[0])
                 HStack{
                     Spacer()
                     if clothItem1 != nil {
                         NavigationLink(
-                            destination: ClothItemDetailView(clothItem: binding(for: clothItem1!), clothFits: clothFits, clothItems: $clothItems)) {
+                            destination: ClothItemDetailView(clothItemsRepo: $clothItemsRepo, clothItem: binding(for: clothItem1!), clothFits: clothFits)) {
                             ClothItemView(clothItem: clothItem1!)
                                 .frame(width: 100, height: 100)
                         }
@@ -31,12 +32,12 @@ struct ClothFitDetailView: View {
                     }
                     Spacer()
                 }
-                let clothItem2: ClothItem? = findClothItem(clothItems: clothItems, clothItemId: clothFit.items[1])
+                let clothItem2: ClothItem? = findClothItem(clothItems: clothItemsRepo.clothItems, clothItemId: clothFit.items[1])
                 HStack{
                     Spacer()
                     if clothItem2 != nil {
                         NavigationLink(
-                            destination: ClothItemDetailView(clothItem: binding(for: clothItem2!), clothFits: clothFits, clothItems: $clothItems)) {
+                            destination: ClothItemDetailView(clothItemsRepo: $clothItemsRepo, clothItem: binding(for: clothItem2!), clothFits: clothFits)) {
                             ClothItemView(clothItem: clothItem2!)
                                 .frame(width: 100, height: 100)
                         }
@@ -73,15 +74,15 @@ struct ClothFitDetailView: View {
         return nil
     }
     private func binding(for clothItem: ClothItem) -> Binding<ClothItem> {
-        guard let clothItemIndex = clothItems.firstIndex(where: { $0.id == clothItem.id }) else {
+        guard let clothItemIndex = clothItemsRepo.clothItems.firstIndex(where: { $0.id == clothItem.id }) else {
             fatalError("Can't find scrum in array")
         }
-        return $clothItems[clothItemIndex]
+        return $clothItemsRepo.clothItems[clothItemIndex]
     }
 }
 
 struct ClothFitDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ClothFitDetailView(clothItems: .constant(ClothItem.data), clothFit: ClothFit.data[0], clothFits: ClothFit.data)
+        ClothFitDetailView(clothItemsRepo: Resolver.resolve(), clothFit: ClothFit.data[0], clothFits: ClothFit.data)
     }
 }

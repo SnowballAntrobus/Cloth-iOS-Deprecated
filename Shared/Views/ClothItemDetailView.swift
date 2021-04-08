@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ClothItemDetailView: View {
+    @Binding var clothItemsRepo: ClothItemRepository
     @Binding var clothItem: ClothItem
+    let clothFits: [ClothFit]
+    
     @State private var clothItemData: ClothItem.Datas = ClothItem.Datas()
     @State private var isPresented = false
-    let clothFits: [ClothFit]
     @State var clothFitsFiltered: [ClothFit]?
-    @Binding var clothItems: [ClothItem]
     
     var body: some View {
         VStack {
@@ -60,7 +62,7 @@ struct ClothItemDetailView: View {
                     Text("\(clothItem.price)")
                 }
                 NavigationLink(
-                    destination: ClothFitsViewer(clothItems: $clothItems, clothFits: clothFitsFiltered ?? clothFits),
+                    destination: ClothFitsViewer(clothItemsRepo: $clothItemsRepo, clothFits: clothFitsFiltered ?? clothFits),
                     label: {
                         Text("Show Fits")
                             .foregroundColor(.green)
@@ -94,7 +96,7 @@ struct ClothItemDetailView: View {
 struct ClothItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ClothItemDetailView(clothItem: .constant(ClothItem.data[0]), clothFits: ClothFit.data, clothItems: .constant(ClothItem.data))
+            ClothItemDetailView(clothItemsRepo: Resolver.resolve(), clothItem: Resolver.resolve(), clothFits: Resolver.resolve())
         }
     }
 }
