@@ -10,6 +10,7 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseStorage
+import FirebaseUI
 import SDWebImageSwiftUI
 
 struct ClothItem: Identifiable, Codable, Equatable {
@@ -56,7 +57,10 @@ struct ClothItem: Identifiable, Codable, Equatable {
         }
     
     func getImage() -> WebImage? {
-        return WebImage(url: URL(string:self.imageURL))
+        SDWebImageManager.defaultImageLoader = StorageImageLoader.shared
+        let ref = Storage.storage().reference().child(self.imageURL)
+        let url = NSURL.sd_URL(with: ref)! as URL
+        return WebImage(url: url)
     }
     
 }
