@@ -18,21 +18,24 @@ struct ClothItem: Identifiable, Codable, Equatable {
     var color: String
     var brand: String
     var price: String
-    var imageURL: String
+    var imageURL: String = ""
     @ServerTimestamp var createdTime: Timestamp?
     
-    init(type: String, color: String, brand: String, price: String, image: UIImage?) {
+    init(type: String, color: String, brand: String, price: String) {
         self.type = type
         self.color = color
         self.brand = brand
         self.price = price
+    }
+    
+    mutating func setImage(image: UIImage?) {
         if image != nil {
             let unwrappedImage: UIImage = image!
             let image = unwrappedImage.pngData()!
             let storage = Storage.storage()
             let storageRef = storage.reference()
             let data = image
-            let dataRef = storageRef.child("images/img.jpg") //TODO: Change
+            let dataRef = storageRef.child("images/\(self.id ?? "error").png")
             var iURL: URL? = nil
             _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
                 print("HERE")
@@ -76,10 +79,10 @@ struct ClothItem: Identifiable, Codable, Equatable {
 extension ClothItem {
     static var data: [ClothItem] {
         [
-            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50", image: UIImage(named: "top")),
-            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100", image: UIImage(named: "top")),
-            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500", image: UIImage(named: "pants")),
-            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20", image: UIImage(named: "pants"))
+            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50"),
+            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100"),
+            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500"),
+            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20")
         ]
     }
 }

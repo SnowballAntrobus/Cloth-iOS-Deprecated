@@ -185,11 +185,11 @@
 			children = (
 				9BB7DE5425F60F2000AD3147 /* ClothApp.swift */,
 				9B11102926014A0E00271DD2 /* MainView.swift */,
-				9B5BB15326193C2A0031E4D2 /* CropModeView.swift */,
 				9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */,
 				9B9074A626124AB000A3D0E3 /* AddView.swift */,
 				9B11104226018B6000271DD2 /* AddClothItemImageView.swift */,
 				9B4406972601D96D00F16FED /* ImagePickerView.swift */,
+				9B5BB15326193C2A0031E4D2 /* CropModeView.swift */,
 				9B824430260D5F390057398A /* ManualCropperView.swift */,
 				9B6D4F1B2615836F0093129A /* AutoCropperView.swift */,
 				9B9074AD26124D2000A3D0E3 /* AddClothFitView.swift */,
