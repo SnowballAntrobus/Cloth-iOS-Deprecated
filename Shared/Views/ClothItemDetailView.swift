@@ -22,9 +22,8 @@ struct ClothItemDetailView: View {
             List {
                 HStack{
                     Spacer()
-                    if clothItem.image != nil {
-                        let image: UIImage = UIImage(data: clothItem.image!)!
-                        Image(uiImage: image)
+                    if clothItem.imageURL != "" {
+                        Image(uiImage: clothItem.getImage()!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .padding(10)

@@ -15,12 +15,12 @@ struct MainView: View {
     
     var body: some View {
         TabView {
-            ShuffleView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo, clothFit: randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits))
-                .tabItem { Label("Cloth", systemImage:"shuffle") }
+//            ShuffleView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo, clothFit: randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits))
+//                .tabItem { Label("Cloth", systemImage:"shuffle") }
             AddView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
                 .tabItem { Label("Add", systemImage:"plus.circle") }
-            ClosetView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
-                .tabItem { Label("Closet", systemImage:"book") }
+//            ClosetView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
+//                .tabItem { Label("Closet", systemImage:"book") }
             AccountView(userDataRepo: $userDataRepo)
                 .tabItem { Label("Account", systemImage:"person") }
         }

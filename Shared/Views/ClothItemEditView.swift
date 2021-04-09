@@ -10,13 +10,14 @@ import Combine
 
 struct ClothItemEditView: View {
     @Binding var clothItemData: ClothItem.Datas
+    var image: UIImage?
+    
     var body: some View {
         List {
             HStack{
                 Spacer()
-                if clothItemData.image != nil {
-                    let image: UIImage = UIImage(data: clothItemData.image!)!
-                    Image(uiImage: image)
+                if image != nil {
+                    Image(uiImage: image!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding(10)

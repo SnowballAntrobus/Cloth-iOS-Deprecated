@@ -50,8 +50,6 @@ struct AutoCropperView: View {
             
             .navigationBarItems(leading: Button("Done") {
                                     if croppedImage != nil {
-                                        croppedImageData = croppedImage!.pngData()!
-                                        newclothItemData.image = croppedImageData
                                         activeSheet = true
                                     }})
             

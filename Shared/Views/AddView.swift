@@ -26,15 +26,15 @@ struct AddView: View {
                         
                     })
                     .padding()
-                NavigationLink(
-                    destination: AddClothFitView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo),
-                    label: {
-                        Text("Add Fit")
-                            .frame(width: 300, height: 100)
-                            .background(RoundedRectangle(cornerRadius: 4).stroke())
-                            .foregroundColor(.green)
-                    })
-                    .padding()
+//                NavigationLink(
+//                    destination: AddClothFitView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo),
+//                    label: {
+//                        Text("Add Fit")
+//                            .frame(width: 300, height: 100)
+//                            .background(RoundedRectangle(cornerRadius: 4).stroke())
+//                            .foregroundColor(.green)
+//                    })
+//                    .padding()
             }.navigationBarHidden(true)
         }
     }

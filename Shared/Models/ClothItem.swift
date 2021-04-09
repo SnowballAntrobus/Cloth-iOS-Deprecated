@@ -10,6 +10,7 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseStorage
+import FirebaseUI
 
 struct ClothItem: Identifiable, Codable, Equatable {
     @DocumentID var id: String?
@@ -17,7 +18,7 @@ struct ClothItem: Identifiable, Codable, Equatable {
     var color: String
     var brand: String
     var price: String
-    var imageURL: URL?
+    var imageURL: String
     @ServerTimestamp var createdTime: Timestamp?
     
     init(type: String, color: String, brand: String, price: String, image: UIImage?) {
@@ -32,6 +33,7 @@ struct ClothItem: Identifiable, Codable, Equatable {
             let storageRef = storage.reference()
             let data = image
             let dataRef = storageRef.child("images/img.jpg")
+            var iURL: URL? = nil
             _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
               guard let metadata = metadata else {
                 print("error uploading image")
@@ -40,16 +42,27 @@ struct ClothItem: Identifiable, Codable, Equatable {
                 _ = metadata.size
               dataRef.downloadURL { (url, error) in
                 if url != nil {
-                    self.imageURL = url
+                    iURL = url!
                 }else {
                     print("error uploading image")
                   return
                 }
               }
             }
+            self.imageURL = iURL!.absoluteString
         } else {
-            self.imageURL = nil
+            self.imageURL = ""
         }
+    }
+    
+    func getImage() -> UIImage? {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let reference = storageRef.child(self.imageURL)
+        let placeholderImage = UIImage(named: "pants.jpg")
+        let imageView: UIImageView = UIImageView(image: placeholderImage)
+        imageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
+        return imageView.image
     }
     
 }
@@ -71,11 +84,10 @@ extension ClothItem {
         var color: String = ""
         var brand: String = ""
         var price: String = ""
-        var image: Data? = UIImage(systemName: "square.fill")?.pngData()!
     }
 
     var data: Datas {
-        return Datas(type: ClothItemType(rawValue: type) ?? ClothItemType(rawValue: "Top")!, color: color, brand: brand, price: price, image: image)
+        return Datas(type: ClothItemType(rawValue: type) ?? ClothItemType(rawValue: "Top")!, color: color, brand: brand, price: price)
     }
     
     mutating func update(from data: Datas) {
@@ -83,6 +95,5 @@ extension ClothItem {
         color = data.color
         brand = data.brand
         price = data.price
-        image = data.image
         }
 }

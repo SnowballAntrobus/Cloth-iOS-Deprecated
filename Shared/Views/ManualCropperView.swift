@@ -18,7 +18,6 @@ struct ManualCropperView: View {
     @Binding var image: UIImage?
     
     @State var croppedImage: UIImage?
-    @State var croppedImageData: Data?
     
     @State private var newclothItemData = ClothItem.Datas()
     @State var activeSheet = false
@@ -35,14 +34,14 @@ struct ManualCropperView: View {
                     Text("Reset")
                 }).padding()
                 
-                Button(action: {croppedImageData = croppedImage!.pngData()!; newclothItemData.image = croppedImageData; activeSheet = true}, label: {
+                Button(action: {activeSheet = true}, label: {
                                         Text("Add")
                                     }).padding()
                 
                 .sheet(isPresented: $activeSheet) {
                     VStack {
                         NavigationView {
-                            ClothItemEditView(clothItemData: $newclothItemData)
+                            ClothItemEditView(clothItemData: $newclothItemData, image: croppedImage)
                                 .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage); clothItemsRepo.addClothItem(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
                         }
                     }
