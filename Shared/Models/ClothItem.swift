@@ -35,40 +35,34 @@ struct ClothItem: Identifiable, Codable, Equatable {
             let storage = Storage.storage()
             let storageRef = storage.reference()
             let data = image
-            let iURL: String = "images/\(String(describing: UUID())).jpg"
+            var iURL: String = "images/\(String(describing: UUID())).jpg"
             let dataRef = storageRef.child(iURL)
-            _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
-                guard let metadata = metadata else {
-                    print("error uploading image")
-                    return
-                }
-                _ = metadata.size
-                dataRef.downloadURL { (url, error) in
-                    if url != nil {
-                    }else {
+            let serialQueue = DispatchQueue(label: "imageupload.serial.queue")
+            serialQueue.sync {
+                _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
+                    guard let metadata = metadata else {
                         print("error uploading image")
                         return
                     }
+                    _ = metadata.size
+                    dataRef.downloadURL { (url, error) in
+                        if error != nil {
+                            print("error uploading image")
+                        } else {
+                            print("doing something")
+                            iURL = url!.absoluteString
+                        }
+                    }
                 }
             }
-            self.imageURL = iURL
+            serialQueue.sync {
+                self.imageURL = iURL
+            }
         }
     }
     
     func getImage() -> WebImage? {
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let reference = storageRef.child(self.imageURL)
-        var iURL: URL? = nil
-        reference.downloadURL { (url, error) in
-            iURL = url?.absoluteURL
-        }
-        if iURL == nil {
-            print("error getting web image")
-            return nil
-        } else {
-            return WebImage(url: iURL)
-        }
+        return WebImage(url: URL(string:self.imageURL))
     }
     
 }
