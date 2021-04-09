@@ -60,7 +60,7 @@ struct AddClothFitView: View {
                     Image(systemName: "star")
                 }).padding()
                 Button(action: {addFit()}, label: {Text("Add")}).padding()
-            }
+            }.padding()
             
             .alert(isPresented: $showingAlertFit) { Alert(title: Text("Wrong Selection"), message: Text("Fit already exists"), dismissButton: .default(Text("Got it!")))
             }

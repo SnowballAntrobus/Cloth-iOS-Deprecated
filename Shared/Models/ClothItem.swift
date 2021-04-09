@@ -35,10 +35,9 @@ struct ClothItem: Identifiable, Codable, Equatable {
             let storage = Storage.storage()
             let storageRef = storage.reference()
             let data = image
-            let dataRef = storageRef.child("images/\(self.id ?? "error").png")
-            var iURL: URL? = nil
+            let iURL: String = "images/\(String(describing: UUID())).jpg"
+            let dataRef = storageRef.child(iURL)
             _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
-                print("HERE")
                 guard let metadata = metadata else {
                     print("error uploading image")
                     return
@@ -46,21 +45,13 @@ struct ClothItem: Identifiable, Codable, Equatable {
                 _ = metadata.size
                 dataRef.downloadURL { (url, error) in
                     if url != nil {
-                        iURL = url!
                     }else {
                         print("error uploading image")
                         return
                     }
                 }
             }
-            if iURL != nil {
-                self.imageURL = iURL!.absoluteString
-            }
-            else {
-                self.imageURL = ""
-            }
-        } else {
-            self.imageURL = ""
+            self.imageURL = iURL
         }
     }
     
@@ -70,7 +61,7 @@ struct ClothItem: Identifiable, Codable, Equatable {
         let reference = storageRef.child(self.imageURL)
         let placeholderImage = UIImage(named: "pants.jpg")
         let imageView: UIImageView = UIImageView(image: placeholderImage)
-        imageView.sd_setImage(with: reference, placeholderImage: placeholderImage)
+        imageView.sd_setImage(with: reference, placeholderImage: placeholderImage) //Issue
         return imageView.image
     }
     
