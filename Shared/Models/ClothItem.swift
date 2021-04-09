@@ -32,24 +32,30 @@ struct ClothItem: Identifiable, Codable, Equatable {
             let storage = Storage.storage()
             let storageRef = storage.reference()
             let data = image
-            let dataRef = storageRef.child("images/img.jpg")
+            let dataRef = storageRef.child("images/img.jpg") //TODO: Change
             var iURL: URL? = nil
             _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
-              guard let metadata = metadata else {
-                print("error uploading image")
-                return
-              }
-                _ = metadata.size
-              dataRef.downloadURL { (url, error) in
-                if url != nil {
-                    iURL = url!
-                }else {
+                print("HERE")
+                guard let metadata = metadata else {
                     print("error uploading image")
-                  return
+                    return
                 }
-              }
+                _ = metadata.size
+                dataRef.downloadURL { (url, error) in
+                    if url != nil {
+                        iURL = url!
+                    }else {
+                        print("error uploading image")
+                        return
+                    }
+                }
             }
-            self.imageURL = iURL!.absoluteString
+            if iURL != nil {
+                self.imageURL = iURL!.absoluteString
+            }
+            else {
+                self.imageURL = ""
+            }
         } else {
             self.imageURL = ""
         }
@@ -85,7 +91,7 @@ extension ClothItem {
         var brand: String = ""
         var price: String = ""
     }
-
+    
     var data: Datas {
         return Datas(type: ClothItemType(rawValue: type) ?? ClothItemType(rawValue: "Top")!, color: color, brand: brand, price: price)
     }
@@ -95,5 +101,5 @@ extension ClothItem {
         color = data.color
         brand = data.brand
         price = data.price
-        }
+    }
 }
