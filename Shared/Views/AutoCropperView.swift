@@ -61,7 +61,17 @@ struct AutoCropperView: View {
                             Text("Retouch")
                         })
                     NavigationLink(
-                        destination: ClothItemEditView(clothItemData: $newclothItemData).navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage!); clothItemsRepo.addClothItem(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()}),
+                        destination: ClothItemEditView(clothItemData: $newclothItemData).navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add")
+                        {
+                            let dataGroup = DispatchGroup()
+                            let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage, dataGroup: dataGroup)
+                            dataGroup.notify(queue: .main) {
+                                clothItemsRepo.addClothItem(newclothItem)
+                                print(newclothItem.imageURL)
+                            }
+                            activeSheet = false
+                            image = nil
+                            self.presentationMode.wrappedValue.dismiss()}),
                         label: {
                             Text("Done")
                         })

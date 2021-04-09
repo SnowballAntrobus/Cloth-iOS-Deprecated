@@ -35,14 +35,24 @@ struct ManualCropperView: View {
                 }).padding()
                 
                 Button(action: {activeSheet = true}, label: {
-                                        Text("Add")
-                                    }).padding()
+                    Text("Add")
+                }).padding()
                 
                 .sheet(isPresented: $activeSheet) {
                     VStack {
                         NavigationView {
                             ClothItemEditView(clothItemData: $newclothItemData, image: croppedImage)
-                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { _ = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage!); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
+                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add")
+                                {
+                                    let dataGroup = DispatchGroup()
+                                    let newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage, dataGroup: dataGroup)
+                                    dataGroup.notify(queue: .main) {
+                                        clothItemsRepo.addClothItem(newclothItem)
+                                        print(newclothItem.imageURL)
+                                    }
+                                    activeSheet = false
+                                    image = nil
+                                    self.presentationMode.wrappedValue.dismiss()})
                         }
                     }
                 }
@@ -114,3 +124,4 @@ struct ManualCropperView_Previews: PreviewProvider {
         ManualCropperView(clothItemsRepo: .constant(Resolver.resolve()), image: .constant(UIImage(named: "pants")))
     }
 }
+

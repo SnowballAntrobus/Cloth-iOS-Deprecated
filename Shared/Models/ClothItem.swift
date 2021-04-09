@@ -21,51 +21,43 @@ struct ClothItem: Identifiable, Codable, Equatable {
     var imageURL: String = ""
     @ServerTimestamp var createdTime: Timestamp?
     
-    init(type: String, color: String, brand: String, price: String, image: UIImage?) {
+    init(type: String, color: String, brand: String, price: String, image: UIImage?, dataGroup: DispatchGroup?) {
         self.type = type
         self.color = color
         self.brand = brand
         self.price = price
-        self.imageURL = setImage(image: image)
+        self.imageURL = setImage(image: image, dataGroup: dataGroup)
     }
     
-    mutating func setImage(image: UIImage?) -> String{
-        if image != nil {
+    private func setImage(image: UIImage?, dataGroup: DispatchGroup?) -> String{
+        if image != nil && dataGroup != nil{
             let unwrappedImage: UIImage = image!
             let image = unwrappedImage.pngData()!
             let storage = Storage.storage()
             let storageRef = storage.reference()
             let data = image
-            var iURL: String = "images/\(String(describing: UUID())).jpg"
+            var iURL = "images/\(String(describing: UUID())).jpg"
             let dataRef = storageRef.child(iURL)
-            let dataGroup = DispatchGroup()
-            dataGroup.enter()
+            dataGroup!.enter()
             _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
                 guard let metadata = metadata else {
                     print("error uploading image")
-                    dataGroup.leave()
+                    dataGroup!.leave()
                     return
                 }
                 _ = metadata.size
                 dataRef.downloadURL { (url, error) in
                     if error != nil {
                         print("error uploading image")
-                        dataGroup.leave()
+                        dataGroup!.leave()
                     } else {
-                        print(url!.absoluteString)
                         iURL = url!.absoluteString
-                        dataGroup.leave()
+                        return iURL
+                        dataGroup!.leave()
                     }
                 }
             }
-            
-            dataGroup.notify(queue: .main) {
-                self.imageURL = iURL
-                print(self.imageURL)
-            }
-            return iURL
         }
-        return ""
     }
     
     func getImage() -> WebImage? {
@@ -77,10 +69,10 @@ struct ClothItem: Identifiable, Codable, Equatable {
 extension ClothItem {
     static var data: [ClothItem] {
         [
-            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50", image: UIImage(named: "pants")),
-            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100", image: UIImage(named: "pants")),
-            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500", image: UIImage(named: "pants")),
-            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20", image: UIImage(named: "pants"))
+//            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50"),
+//            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100"),
+//            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500"),
+//            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20")
         ]
     }
 }
