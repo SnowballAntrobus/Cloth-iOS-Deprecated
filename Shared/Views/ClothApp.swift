@@ -9,8 +9,6 @@
 import SwiftUI
 import Resolver
 import Firebase
-import AWSCore
-import AWSCognito
 
 @main
 struct ClothApp: App {
