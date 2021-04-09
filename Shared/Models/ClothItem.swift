@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 struct ClothItem: Identifiable, Codable, Equatable {
     @DocumentID var id: String?
@@ -16,7 +17,7 @@ struct ClothItem: Identifiable, Codable, Equatable {
     var color: String
     var brand: String
     var price: String
-    var imageURL: String
+    var imageURL: URL?
     @ServerTimestamp var createdTime: Timestamp?
     
     init(type: String, color: String, brand: String, price: String, image: UIImage?) {
@@ -25,9 +26,29 @@ struct ClothItem: Identifiable, Codable, Equatable {
         self.brand = brand
         self.price = price
         if image != nil {
-            s3image(with: id!, type: "png")
+            let unwrappedImage: UIImage = image!
+            let image = unwrappedImage.pngData()!
+            let storage = Storage.storage()
+            let storageRef = storage.reference()
+            let data = image
+            let dataRef = storageRef.child("images/img.jpg")
+            _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
+              guard let metadata = metadata else {
+                print("error uploading image")
+                return
+              }
+                _ = metadata.size
+              dataRef.downloadURL { (url, error) in
+                if url != nil {
+                    self.imageURL = url
+                }else {
+                    print("error uploading image")
+                  return
+                }
+              }
+            }
         } else {
-            imageURL = ""
+            self.imageURL = nil
         }
     }
     
