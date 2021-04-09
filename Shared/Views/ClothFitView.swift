@@ -18,7 +18,7 @@ struct ClothFitView: View {
                     Spacer()
                     let clothItem: ClothItem? = findClothItem(clothItems: clothItems, clothItemId: fit.items[0])
                     if clothItem != nil && clothItem!.imageURL != "" {
-                        Image(uiImage: clothItem!.getImage()!)
+                        clothItem!.getImage()!
                             .resizable()
                             .frame(width: 100, height: 100)
                     } else {
@@ -32,7 +32,7 @@ struct ClothFitView: View {
                     Spacer()
                     let clothItem: ClothItem? = findClothItem(clothItems: clothItems, clothItemId: fit.items[1])
                     if clothItem != nil && clothItem!.imageURL != "" {
-                        Image(uiImage: clothItem!.getImage()!)
+                        clothItem!.getImage()!
                             .resizable()
                             .frame(width: 100, height: 100)
                     } else {

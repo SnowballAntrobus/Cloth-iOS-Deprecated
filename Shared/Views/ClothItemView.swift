@@ -11,7 +11,7 @@ struct ClothItemView: View {
     let clothItem: ClothItem
     var body: some View {
         if clothItem.imageURL != "" {
-            Image(uiImage: clothItem.getImage()!)
+            clothItem.getImage()!
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding(10)

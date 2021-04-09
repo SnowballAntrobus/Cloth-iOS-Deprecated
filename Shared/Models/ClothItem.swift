@@ -10,7 +10,7 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseStorage
-import FirebaseUI
+import SDWebImageSwiftUI
 
 struct ClothItem: Identifiable, Codable, Equatable {
     @DocumentID var id: String?
@@ -55,14 +55,20 @@ struct ClothItem: Identifiable, Codable, Equatable {
         }
     }
     
-    func getImage() -> UIImage? {
+    func getImage() -> WebImage? {
         let storage = Storage.storage()
         let storageRef = storage.reference()
         let reference = storageRef.child(self.imageURL)
-        let placeholderImage = UIImage(named: "pants.jpg")
-        let imageView: UIImageView = UIImageView(image: placeholderImage)
-        imageView.sd_setImage(with: reference, placeholderImage: placeholderImage) //Issue
-        return imageView.image
+        var iURL: URL? = nil
+        reference.downloadURL { (url, error) in
+            iURL = url?.absoluteURL
+        }
+        if iURL == nil {
+            print("error getting web image")
+            return nil
+        } else {
+            return WebImage(url: iURL)
+        }
     }
     
 }

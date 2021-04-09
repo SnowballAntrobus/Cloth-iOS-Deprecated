@@ -12,7 +12,7 @@ target 'Cloth (iOS)' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift', '~> 7.0-beta'
   pod 'Firebase/Storage'
-  pod 'FirebaseUI/Storage'
+  pod 'SDWebImageSwiftUI'
 
 end
 
