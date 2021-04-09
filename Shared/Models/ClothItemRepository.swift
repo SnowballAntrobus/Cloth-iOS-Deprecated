@@ -92,7 +92,7 @@ class LocalClothItemRepository: BaseClothItemRepository, ClothItemRepository, Ob
 }
 
 class FirestoreClothItemRepository: BaseClothItemRepository, ClothItemRepository, ObservableObject {
-    var db = Firestore.firestore() // (1)
+    var db = Firestore.firestore()
     
     override init() {
         super.init()

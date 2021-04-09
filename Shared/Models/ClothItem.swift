@@ -16,7 +16,7 @@ struct ClothItem: Identifiable, Codable, Equatable {
     var color: String
     var brand: String
     var price: String
-    var image: Data? = UIImage(systemName: "square.fill")?.pngData()!
+    var imageURL: String
     @ServerTimestamp var createdTime: Timestamp?
     
     init(type: String, color: String, brand: String, price: String, image: UIImage?) {
@@ -25,10 +25,9 @@ struct ClothItem: Identifiable, Codable, Equatable {
         self.brand = brand
         self.price = price
         if image != nil {
-            let unwrappedImage: UIImage = image!
-            self.image = unwrappedImage.pngData()!
+            s3image(with: id!, type: "png")
         } else {
-            self.image = UIImage(systemName: "square.fill")?.pngData()!
+            imageURL = ""
         }
     }
     

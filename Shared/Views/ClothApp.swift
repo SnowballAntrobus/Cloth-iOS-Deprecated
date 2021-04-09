@@ -9,6 +9,8 @@
 import SwiftUI
 import Resolver
 import Firebase
+import AWSCore
+import AWSCognito
 
 @main
 struct ClothApp: App {
@@ -38,3 +40,6 @@ extension Resolver: ResolverRegistering {
         register { TestDataUserDataRepository() as UserDataRepository }.scope(.application)
     }
 }
+
+
+
