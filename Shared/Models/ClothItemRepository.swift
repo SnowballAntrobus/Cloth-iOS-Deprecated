@@ -110,6 +110,7 @@ class FirestoreClothItemRepository: BaseClothItemRepository, ClothItemRepository
     }
     
     func addClothItem(_ clothItem: ClothItem) {
+        print("adding new item")
         do {
             let _ = try db.collection("clothItems").addDocument(from: clothItem)
         }

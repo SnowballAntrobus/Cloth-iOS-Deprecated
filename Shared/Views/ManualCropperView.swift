@@ -42,7 +42,7 @@ struct ManualCropperView: View {
                     VStack {
                         NavigationView {
                             ClothItemEditView(clothItemData: $newclothItemData, image: croppedImage)
-                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { var newclothItem = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price); newclothItem.setImage(image: croppedImage); clothItemsRepo.addClothItem(newclothItem); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
+                                .navigationBarItems(leading: Button("Dismiss") { activeSheet = false}, trailing: Button("Add") { _ = ClothItem(type: newclothItemData.type.id, color: newclothItemData.color, brand: newclothItemData.brand, price: newclothItemData.price, image: croppedImage!); activeSheet = false; image = nil; self.presentationMode.wrappedValue.dismiss()})
                         }
                     }
                 }
