@@ -21,44 +21,39 @@ struct ClothItem: Identifiable, Codable, Equatable {
     var imageURL: String = ""
     @ServerTimestamp var createdTime: Timestamp?
     
-    init(type: String, color: String, brand: String, price: String, image: UIImage?, dataGroup: DispatchGroup?) {
+    init(type: String, color: String, brand: String, price: String) {
         self.type = type
         self.color = color
         self.brand = brand
         self.price = price
-        self.imageURL = setImage(image: image, dataGroup: dataGroup)
     }
     
-    private func setImage(image: UIImage?, dataGroup: DispatchGroup?) -> String{
-        if image != nil && dataGroup != nil{
-            let unwrappedImage: UIImage = image!
-            let image = unwrappedImage.pngData()!
-            let storage = Storage.storage()
-            let storageRef = storage.reference()
-            let data = image
-            var iURL = "images/\(String(describing: UUID())).jpg"
-            let dataRef = storageRef.child(iURL)
-            dataGroup!.enter()
-            _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
-                guard let metadata = metadata else {
-                    print("error uploading image")
-                    dataGroup!.leave()
-                    return
-                }
-                _ = metadata.size
-                dataRef.downloadURL { (url, error) in
-                    if error != nil {
+    mutating func setImage(image: UIImage?) {
+            if image != nil {
+                let unwrappedImage: UIImage = image!
+                let image = unwrappedImage.pngData()!
+                let storage = Storage.storage()
+                let storageRef = storage.reference()
+                let data = image
+                let iURL: String = "images/\(String(describing: UUID())).jpg"
+                let dataRef = storageRef.child(iURL)
+                _ = dataRef.putData(data, metadata: nil) { (metadata, error) in
+                    guard let metadata = metadata else {
                         print("error uploading image")
-                        dataGroup!.leave()
-                    } else {
-                        iURL = url!.absoluteString
-                        return iURL
-                        dataGroup!.leave()
+                        return
+                    }
+                    _ = metadata.size
+                    dataRef.downloadURL { (url, error) in
+                        if url != nil {
+                        }else {
+                            print("error uploading image")
+                            return
+                        }
                     }
                 }
+                self.imageURL = iURL
             }
         }
-    }
     
     func getImage() -> WebImage? {
         return WebImage(url: URL(string:self.imageURL))
@@ -69,10 +64,10 @@ struct ClothItem: Identifiable, Codable, Equatable {
 extension ClothItem {
     static var data: [ClothItem] {
         [
-//            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50"),
-//            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100"),
-//            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500"),
-//            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20")
+            ClothItem(type: "Top", color: "pink", brand:"FYE", price: "50"),
+            ClothItem(type: "Top", color: "brown", brand:"Gucci", price: "100"),
+            ClothItem(type: "Bottom", color: "green", brand:"pong", price: "500"),
+            ClothItem(type: "Bottom", color: "yellow", brand:"AWL", price: "20")
         ]
     }
 }
