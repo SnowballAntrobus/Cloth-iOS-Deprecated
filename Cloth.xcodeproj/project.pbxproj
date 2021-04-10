@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B5347DA911A5AC59A717570 /* Pods_Cloth__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 131586CF90C298A060890162 /* Pods_Cloth__iOS_.framework */; };
-		83FC64C69C6147951952D8B5 /* Pods_Cloth__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E474C6ACDA0845486DFDBC5 /* Pods_Cloth__macOS_.framework */; };
 		9B0CB54A25F825E60098DB8F /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB54925F825E60098DB8F /* AccountView.swift */; };
 		9B0CB54B25F825E60098DB8F /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB54925F825E60098DB8F /* AccountView.swift */; };
 		9B0CB56325F888AF0098DB8F /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CB56225F888AF0098DB8F /* ClosetView.swift */; };
@@ -43,6 +41,8 @@
 		9B4406992601D96D00F16FED /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4406972601D96D00F16FED /* ImagePickerView.swift */; };
 		9B44069F2601D9E400F16FED /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44069E2601D9E400F16FED /* Coordinator.swift */; };
 		9B4406A02601D9E400F16FED /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44069E2601D9E400F16FED /* Coordinator.swift */; };
+		9B52CCA3262124C500BD386A /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B52CCA2262124C500BD386A /* testView.swift */; };
+		9B52CCA4262124C500BD386A /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B52CCA2262124C500BD386A /* testView.swift */; };
 		9B5BB15426193C2A0031E4D2 /* CropModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BB15326193C2A0031E4D2 /* CropModeView.swift */; };
 		9B5BB15526193C2A0031E4D2 /* CropModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BB15326193C2A0031E4D2 /* CropModeView.swift */; };
 		9B6473FC2613192400A5E3EE /* ClothFitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6473FB2613192400A5E3EE /* ClothFitDetailView.swift */; };
@@ -95,10 +95,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		131586CF90C298A060890162 /* Pods_Cloth__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloth__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		14FCEDEAFAB25377D6DC17C9 /* Pods-Cloth (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloth (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Cloth (macOS)/Pods-Cloth (macOS).debug.xcconfig"; sourceTree = "<group>"; };
-		3E474C6ACDA0845486DFDBC5 /* Pods_Cloth__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloth__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		92EEAC3794D1E46D3E1747D8 /* Pods-Cloth (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloth (macOS).release.xcconfig"; path = "Target Support Files/Pods-Cloth (macOS)/Pods-Cloth (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		9B0CB54925F825E60098DB8F /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		9B0CB56225F888AF0098DB8F /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
 		9B110FFE26008FC300271DD2 /* ClothItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItem.swift; sourceTree = "<group>"; };
@@ -116,6 +112,7 @@
 		9B2F7CF22613C4C8007AA319 /* ClothFitsViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothFitsViewer.swift; sourceTree = "<group>"; };
 		9B4406972601D96D00F16FED /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		9B44069E2601D9E400F16FED /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		9B52CCA2262124C500BD386A /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 		9B5BB15326193C2A0031E4D2 /* CropModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropModeView.swift; sourceTree = "<group>"; };
 		9B6473FB2613192400A5E3EE /* ClothFitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothFitDetailView.swift; sourceTree = "<group>"; };
 		9B665D62261E61FD00082AB3 /* ClothItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothItemRepository.swift; sourceTree = "<group>"; };
@@ -142,8 +139,6 @@
 		9BB7DE7A25F60F2700AD3147 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9BB7DE7C25F60F2700AD3147 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BE2B6B5261E449800529C69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		B41493B49D199AD95701EEA9 /* Pods-Cloth (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloth (iOS).debug.xcconfig"; path = "Target Support Files/Pods-Cloth (iOS)/Pods-Cloth (iOS).debug.xcconfig"; sourceTree = "<group>"; };
-		F83225B8002AF51B31AFCEFC /* Pods-Cloth (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloth (iOS).release.xcconfig"; path = "Target Support Files/Pods-Cloth (iOS)/Pods-Cloth (iOS).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +146,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B5347DA911A5AC59A717570 /* Pods_Cloth__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +153,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83FC64C69C6147951952D8B5 /* Pods_Cloth__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +197,7 @@
 				9B2F7CF22613C4C8007AA319 /* ClothFitsViewer.swift */,
 				9B6473FB2613192400A5E3EE /* ClothFitDetailView.swift */,
 				9B0CB54925F825E60098DB8F /* AccountView.swift */,
+				9B52CCA2262124C500BD386A /* testView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,8 +227,6 @@
 				9BB7DE6E25F60F2700AD3147 /* Tests iOS */,
 				9BB7DE7925F60F2700AD3147 /* Tests macOS */,
 				9BB7DE5C25F60F2700AD3147 /* Products */,
-				DADA0BA051D75E95E8AEBE1D /* Pods */,
-				F336AAE5B20B3C632C17D97F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -295,26 +287,6 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
-		DADA0BA051D75E95E8AEBE1D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B41493B49D199AD95701EEA9 /* Pods-Cloth (iOS).debug.xcconfig */,
-				F83225B8002AF51B31AFCEFC /* Pods-Cloth (iOS).release.xcconfig */,
-				14FCEDEAFAB25377D6DC17C9 /* Pods-Cloth (macOS).debug.xcconfig */,
-				92EEAC3794D1E46D3E1747D8 /* Pods-Cloth (macOS).release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		F336AAE5B20B3C632C17D97F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				131586CF90C298A060890162 /* Pods_Cloth__iOS_.framework */,
-				3E474C6ACDA0845486DFDBC5 /* Pods_Cloth__macOS_.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,11 +294,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BB7DE8525F60F2700AD3147 /* Build configuration list for PBXNativeTarget "Cloth (iOS)" */;
 			buildPhases = (
-				F3E8BEBF7C799910F2BC8476 /* [CP] Check Pods Manifest.lock */,
 				9BB7DE5725F60F2700AD3147 /* Sources */,
 				9BB7DE5825F60F2700AD3147 /* Frameworks */,
 				9BB7DE5925F60F2700AD3147 /* Resources */,
-				82398FBE7D32EE67DB91966E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -341,7 +311,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BB7DE8825F60F2700AD3147 /* Build configuration list for PBXNativeTarget "Cloth (macOS)" */;
 			buildPhases = (
-				035FE658007E4450BC3A7BF2 /* [CP] Check Pods Manifest.lock */,
 				9BB7DE5F25F60F2700AD3147 /* Sources */,
 				9BB7DE6025F60F2700AD3147 /* Frameworks */,
 				9BB7DE6125F60F2700AD3147 /* Resources */,
@@ -472,70 +441,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		035FE658007E4450BC3A7BF2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Cloth (macOS)-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		82398FBE7D32EE67DB91966E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cloth (iOS)/Pods-Cloth (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cloth (iOS)/Pods-Cloth (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cloth (iOS)/Pods-Cloth (iOS)-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F3E8BEBF7C799910F2BC8476 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Cloth (iOS)-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		9BB7DE5725F60F2700AD3147 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -566,6 +471,7 @@
 				9B9074A726124AB000A3D0E3 /* AddView.swift in Sources */,
 				9B6473FC2613192400A5E3EE /* ClothFitDetailView.swift in Sources */,
 				9B6E8B702602D91500BDF859 /* ClothingTypeEnum.swift in Sources */,
+				9B52CCA3262124C500BD386A /* testView.swift in Sources */,
 				9B4406982601D96D00F16FED /* ImagePickerView.swift in Sources */,
 				9B2F7CF32613C4C8007AA319 /* ClothFitsViewer.swift in Sources */,
 				9B11101F2601023F00271DD2 /* ClothItemDetailView.swift in Sources */,
@@ -603,6 +509,7 @@
 				9B9074A826124AB000A3D0E3 /* AddView.swift in Sources */,
 				9B6473FD2613192400A5E3EE /* ClothFitDetailView.swift in Sources */,
 				9B6E8B712602D91500BDF859 /* ClothingTypeEnum.swift in Sources */,
+				9B52CCA4262124C500BD386A /* testView.swift in Sources */,
 				9B4406992601D96D00F16FED /* ImagePickerView.swift in Sources */,
 				9B2F7CF42613C4C8007AA319 /* ClothFitsViewer.swift in Sources */,
 				9B1110202601023F00271DD2 /* ClothItemDetailView.swift in Sources */,
@@ -756,7 +663,6 @@
 		};
 		9BB7DE8625F60F2700AD3147 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B41493B49D199AD95701EEA9 /* Pods-Cloth (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -764,7 +670,7 @@
 				DEVELOPMENT_TEAM = 8QAU9CM882;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -779,7 +685,6 @@
 		};
 		9BB7DE8725F60F2700AD3147 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F83225B8002AF51B31AFCEFC /* Pods-Cloth (iOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -787,7 +692,7 @@
 				DEVELOPMENT_TEAM = 8QAU9CM882;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -803,7 +708,6 @@
 		};
 		9BB7DE8925F60F2700AD3147 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14FCEDEAFAB25377D6DC17C9 /* Pods-Cloth (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -829,7 +733,6 @@
 		};
 		9BB7DE8A25F60F2700AD3147 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92EEAC3794D1E46D3E1747D8 /* Pods-Cloth (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

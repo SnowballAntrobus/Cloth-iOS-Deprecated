@@ -57,9 +57,9 @@ struct ClothItem: Identifiable, Codable, Equatable {
         }
     
     func getImage() -> WebImage? {
-        SDWebImageManager.defaultImageLoader = StorageImageLoader.shared
+        SDImageLoadersManager.shared.loaders = [FirebaseUI.StorageImageLoader.shared]
+        SDWebImageManager.defaultImageLoader = SDImageLoadersManager.shared
         let ref = Storage.storage().reference().child(self.imageURL)
-        print(ref)
         let url = NSURL.sd_URL(with: ref)! as URL
         return WebImage(url: url)
     }

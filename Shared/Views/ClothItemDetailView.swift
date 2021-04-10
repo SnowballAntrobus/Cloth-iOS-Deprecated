@@ -23,7 +23,7 @@ struct ClothItemDetailView: View {
                 HStack{
                     Spacer()
                     if clothItem.imageURL != "" {
-                        clothItem.getImage()!
+                        clothItem.getImage()?
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .padding(10)
