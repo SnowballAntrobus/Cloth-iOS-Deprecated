@@ -7,7 +7,7 @@
 
 import SwiftUI
 import FirebaseStorage
-import FirebaseUI
+import FirebaseStorageUI
 import SDWebImageSwiftUI
 
 struct testView: View {
@@ -15,7 +15,7 @@ struct testView: View {
         VStack {
             WebImage(url: (NSURL.sd_URL(with: Storage.storage().reference().child("images/48E92936-1EE0-4F60-9D73-9CC1BDAC4B67.jpg"))! as URL))
         }.onAppear() {
-            SDImageLoadersManager.shared.loaders = [FirebaseUI.StorageImageLoader.shared]
+            SDImageLoadersManager.shared.loaders = [FirebaseStorageUI.StorageImageLoader.shared]
             SDWebImageManager.defaultImageLoader = SDImageLoadersManager.shared
         }
     }
