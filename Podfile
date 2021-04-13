@@ -15,6 +15,7 @@ target 'Cloth (iOS)' do
   pod 'FirebaseUI'
   pod 'SDWebImage', '~> 5.6'
   pod 'SDWebImageSwiftUI'
+  pod 'Firebase/Auth'
 
 end
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -59,6 +59,8 @@
 		9B6D4F1D2615836F0093129A /* AutoCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D4F1B2615836F0093129A /* AutoCropperView.swift */; };
 		9B6E8B702602D91500BDF859 /* ClothingTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */; };
 		9B6E8B712602D91500BDF859 /* ClothingTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */; };
+		9B7D0DCC26261F5E0080465D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0DCB26261F5E0080465D /* AuthenticationService.swift */; };
+		9B7D0DCD26261F5E0080465D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0DCB26261F5E0080465D /* AuthenticationService.swift */; };
 		9B824423260D5CA00057398A /* ZImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B824422260D5CA00057398A /* ZImageCropper.swift */; };
 		9B824424260D5CA00057398A /* ZImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B824422260D5CA00057398A /* ZImageCropper.swift */; };
 		9B824431260D5F390057398A /* ManualCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B824430260D5F390057398A /* ManualCropperView.swift */; };
@@ -137,6 +139,7 @@
 		9B665D70261E622900082AB3 /* UserDataRepositroy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataRepositroy.swift; sourceTree = "<group>"; };
 		9B6D4F1B2615836F0093129A /* AutoCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCropperView.swift; sourceTree = "<group>"; };
 		9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTypeEnum.swift; sourceTree = "<group>"; };
+		9B7D0DCB26261F5E0080465D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		9B824422260D5CA00057398A /* ZImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZImageCropper.swift; sourceTree = "<group>"; };
 		9B824430260D5F390057398A /* ManualCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCropperView.swift; sourceTree = "<group>"; };
 		9B9074A626124AB000A3D0E3 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
@@ -213,7 +216,6 @@
 				53ACA87FFB05E59E69E1929C /* Pods-Cloth (macOS).debug.xcconfig */,
 				9B1748B7690460760D3B3DB5 /* Pods-Cloth (macOS).release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -258,6 +260,7 @@
 				9B44069E2601D9E400F16FED /* Coordinator.swift */,
 				9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */,
 				9B824422260D5CA00057398A /* ZImageCropper.swift */,
+				9B7D0DCB26261F5E0080465D /* AuthenticationService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				9B824423260D5CA00057398A /* ZImageCropper.swift in Sources */,
 				9B2D2D08261299A600A06236 /* ClothItemViewer.swift in Sources */,
 				9B11102A26014A0E00271DD2 /* MainView.swift in Sources */,
+				9B7D0DCC26261F5E0080465D /* AuthenticationService.swift in Sources */,
 				9B824431260D5F390057398A /* ManualCropperView.swift in Sources */,
 				9B9074AE26124D2000A3D0E3 /* AddClothFitView.swift in Sources */,
 				9B11104A26019AE300271DD2 /* UserData.swift in Sources */,
@@ -623,6 +627,7 @@
 				9B824424260D5CA00057398A /* ZImageCropper.swift in Sources */,
 				9B2D2D09261299A600A06236 /* ClothItemViewer.swift in Sources */,
 				9B11102B26014A0E00271DD2 /* MainView.swift in Sources */,
+				9B7D0DCD26261F5E0080465D /* AuthenticationService.swift in Sources */,
 				9B824432260D5F390057398A /* ManualCropperView.swift in Sources */,
 				9B9074AF26124D2000A3D0E3 /* AddClothFitView.swift in Sources */,
 				9B11104B26019AE300271DD2 /* UserData.swift in Sources */,
