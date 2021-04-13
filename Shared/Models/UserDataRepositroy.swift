@@ -76,7 +76,6 @@ class FirestoreUserDataRepository: BaseUserDataRepository, UserDataRepository, O
     private func loadData() {
         db.collection(userDatasPath)
             .whereField("userId", isEqualTo: self.userId)
-            .order(by: "createdTime")
             .addSnapshotListener { (querySnapshot, error) in
                 if let querySnapshot = querySnapshot {
                     self.userDatas = querySnapshot.documents.compactMap { document -> UserData? in

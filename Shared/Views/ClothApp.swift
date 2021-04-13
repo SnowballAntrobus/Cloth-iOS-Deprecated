@@ -34,8 +34,10 @@ struct ClothApp: App {
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
         register { AuthenticationService() }.scope(.application)
+        
         register { FirestoreClothItemRepository() as ClothItemRepository }.scope(.application)
         register { FirestoreClothFitRepository() as ClothFitRepository }.scope(.application)
+        //        register { FirestoreUserDataRepository() as UserDataRepository }.scope(.application)
         
         //        register { LocalClothItemRepository() as ClothItemRepository }.scope(.application)
         //        register { LocalClothFitRepository() as ClothFitRepository }.scope(.application)
