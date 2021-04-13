@@ -14,10 +14,14 @@ import FirebaseUI
 @main
 struct ClothApp: App {
     
+    @Injected var authenticationService: AuthenticationService
+    
     init() {
         FirebaseApp.configure()
         SDImageLoadersManager.shared.loaders = [FirebaseUI.StorageImageLoader.shared]
         SDWebImageManager.defaultImageLoader = SDImageLoadersManager.shared
+        
+        authenticationService.signIn()
     }
     
     var body: some Scene {
@@ -29,6 +33,7 @@ struct ClothApp: App {
 
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
+        register { AuthenticationService() }.scope(.application)
         register { FirestoreClothItemRepository() as ClothItemRepository }.scope(.application)
         register { FirestoreClothFitRepository() as ClothFitRepository }.scope(.application)
         
