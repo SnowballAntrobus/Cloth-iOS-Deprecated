@@ -11,24 +11,28 @@ import Resolver
 struct AccountView: View {
     @Binding var userDataRepo: UserDataRepository
     var body: some View {
-        VStack {
-            HStack {
-                userDataRepo.userDatas[0].image
-                    .resizable()
-                    .frame(width: 75, height: 75)
-                    .clipShape(Circle())
-                    .padding(.leading, 25.0)
-                Spacer()
-                Text(userDataRepo.userDatas[0].name)
-                    .padding(.trailing, 25.0)
+        if userDataRepo.userData != nil {
+            VStack {
+                HStack {
+                    userDataRepo.userData!.image
+                        .resizable()
+                        .frame(width: 75, height: 75)
+                        .clipShape(Circle())
+                        .padding(.leading, 25.0)
+                    Spacer()
+                    Text(userDataRepo.userData!.name)
+                        .padding(.trailing, 25.0)
+                }
+                .padding(.top, 50)
+                HStack {
+                    Text("StatsView")
+                }
+                .padding(.top, 50)
             }
-            .padding(.top, 50)
-            HStack {
-                Text("StatsView")
-            }
-            .padding(.top, 50)
+            .padding()
+        } else {
+            PleaseCreateAccount()
         }
-        .padding()
     }
 }
 

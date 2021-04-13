@@ -17,27 +17,31 @@ struct ClosetView: View {
     @State var selectItem: ClothItem? = nil
     
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    EditButton()
-                        .foregroundColor(.green)
-                    Spacer()
-                    Button(action: {itemType = !itemType}, label: {
-                        Text(itemType ? "Cloth" : "Fit")
+        if userDataRepo.userData != nil {
+            NavigationView {
+                VStack {
+                    HStack {
+                        EditButton()
                             .foregroundColor(.green)
-                    })
+                        Spacer()
+                        Button(action: {itemType = !itemType}, label: {
+                            Text(itemType ? "Cloth" : "Fit")
+                                .foregroundColor(.green)
+                        })
+                    }
+                    if itemType {
+                        ClothItemsView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
+                            .padding(.top, 10)
+                            .navigationBarHidden(true)
+                    } else {
+                        ClothFitsView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo)
+                            .navigationBarHidden(true)
+                    }
                 }
-                if itemType {
-                    ClothItemsView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
-                    .padding(.top, 10)
-                    .navigationBarHidden(true)
-                } else {
-                    ClothFitsView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo)
-                    .navigationBarHidden(true)
-                }
+                .padding()
             }
-            .padding()
+        } else {
+            PleaseCreateAccount()
         }
     }
 }

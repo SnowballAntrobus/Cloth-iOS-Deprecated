@@ -14,6 +14,7 @@ import Combine
 
 class BaseUserDataRepository {
     @Published var userDatas = [UserData]()
+    @Published var userData: UserData? = nil
 }
 
 protocol UserDataRepository: BaseUserDataRepository {
@@ -26,6 +27,7 @@ class TestDataUserDataRepository: BaseUserDataRepository, UserDataRepository, Ob
     override init() {
         super.init()
         self.userDatas = UserData.data
+        self.userData = UserData.data[0]
     }
     
     func addUserData(_ userData: UserData) {
@@ -74,12 +76,21 @@ class FirestoreUserDataRepository: BaseUserDataRepository, UserDataRepository, O
     }
     
     private func loadData() {
+        db.collection("userId").order(by: "createdTime").addSnapshotListener { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+                self.userDatas = querySnapshot.documents.compactMap { document -> UserData? in
+                    try? document.data(as: UserData.self)
+                }
+            }
+        }
+        
         db.collection(userDatasPath)
             .whereField("userId", isEqualTo: self.userId)
             .addSnapshotListener { (querySnapshot, error) in
                 if let querySnapshot = querySnapshot {
-                    self.userDatas = querySnapshot.documents.compactMap { document -> UserData? in
-                        try? document.data(as: UserData.self)
+                    querySnapshot.documents.forEach() { doc in
+                        self.userData = try? doc.data(as: UserData.self)
+                        
                     }
                 }
             }

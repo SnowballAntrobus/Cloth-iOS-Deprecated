@@ -14,28 +14,32 @@ struct AddView: View {
     @Binding var userDataRepo: UserDataRepository
     
     var body: some View {
-        NavigationView {
-            VStack {
-                NavigationLink(
-                    destination: AddClothItemImageView(clothItemsRepo: $clothItemsRepo),
-                    label: {
-                        Text("Add Item")
-                            .frame(width: 300, height: 100)
-                            .background(RoundedRectangle(cornerRadius: 4).stroke())
-                            .foregroundColor(.green)
-                        
-                    })
-                    .padding()
-                NavigationLink(
-                    destination: AddClothFitView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo),
-                    label: {
-                        Text("Add Fit")
-                            .frame(width: 300, height: 100)
-                            .background(RoundedRectangle(cornerRadius: 4).stroke())
-                            .foregroundColor(.green)
-                    })
-                    .padding()
-            }.navigationBarHidden(true)
+        if userDataRepo.userData != nil {
+            NavigationView {
+                VStack {
+                    NavigationLink(
+                        destination: AddClothItemImageView(clothItemsRepo: $clothItemsRepo),
+                        label: {
+                            Text("Add Item")
+                                .frame(width: 300, height: 100)
+                                .background(RoundedRectangle(cornerRadius: 4).stroke())
+                                .foregroundColor(.green)
+                            
+                        })
+                        .padding()
+                    NavigationLink(
+                        destination: AddClothFitView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo),
+                        label: {
+                            Text("Add Fit")
+                                .frame(width: 300, height: 100)
+                                .background(RoundedRectangle(cornerRadius: 4).stroke())
+                                .foregroundColor(.green)
+                        })
+                        .padding()
+                }.navigationBarHidden(true)
+            }
+        } else {
+            PleaseCreateAccount()
         }
     }
 }

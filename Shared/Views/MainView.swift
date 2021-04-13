@@ -15,7 +15,7 @@ struct MainView: View {
     
     var body: some View {
         TabView {
-            ShuffleView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo, clothFit: randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits))
+            ShuffleView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
                 .tabItem { Label("Cloth", systemImage:"shuffle") }
             AddView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
                 .tabItem { Label("Add", systemImage:"plus.circle") }
@@ -23,28 +23,8 @@ struct MainView: View {
                 .tabItem { Label("Closet", systemImage:"book") }
             AccountView(userDataRepo: $userDataRepo)
                 .tabItem { Label("Account", systemImage:"person") }
-//            testView()
-//                .tabItem { Label("Test", systemImage:"square") }
         }
         .accentColor(.green)
-    }
-    private func randomClothFit(clothItems: [ClothItem], triedClothFits: [ClothFit]) -> ClothFit? {
-        if clothItems.isEmpty {
-            return nil
-        }
-        var found: Bool = false
-        var clothFit: ClothFit? = nil
-        while !found {
-            let top: ClothItem = clothItems.filter{$0.type == "Top"}.randomElement()!
-            let bottom: ClothItem = clothItems.filter{$0.type == "Bottom"}.randomElement()!
-            if top != bottom {
-                clothFit = ClothFit(items: [top.id!, bottom.id!], star: false)
-                if !triedClothFits.contains(clothFit!) {
-                    found = true
-                }
-            }
-        }
-        return clothFit
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  GameView.swift
+//  ShuffleView.swift
 //  Shared
 //
 //  Created by Dante Gil-Marin on 3/8/21.
@@ -17,7 +17,7 @@ struct ShuffleView: View {
     @State var updateUserData: UserData?
     var body: some View {
         if clothFit != nil {
-                var fit = clothFit!
+            var fit = clothFit!
             VStack {
                 ClothFitView(clothFit: clothFit, clothItems: clothItemsRepo.clothItems)
                     .frame(width: 300, height: 250)
@@ -65,20 +65,25 @@ struct ShuffleView: View {
             }
             .padding(.top, 150)
         } else {
-            VStack {
-                Text("You have \(clothItemsRepo.clothItems.count) items")
-                Text("please add items")
-                Button(action: {
-                    clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
-                }) {
-                    Image(systemName: "shuffle")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(.green)
+            if userDataRepo.userData != nil {
+                VStack {
+                    Text("You have \(clothItemsRepo.clothItems.count) items")
+                    Text("please add items")
+                    Button(action: {
+                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
+                    }) {
+                        Image(systemName: "shuffle")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.green)
+                    }
                 }
+            } else {
+                PleaseCreateAccount()
             }
         }
     }
+    
     private func randomClothFit(clothItems: [ClothItem], triedClothFits: [ClothFit]) -> ClothFit? {
         var found: Bool = false
         var clothFit: ClothFit? = nil

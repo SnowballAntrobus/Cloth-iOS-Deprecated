@@ -37,15 +37,11 @@ extension Resolver: ResolverRegistering {
         
         register { FirestoreClothItemRepository() as ClothItemRepository }.scope(.application)
         register { FirestoreClothFitRepository() as ClothFitRepository }.scope(.application)
-        //        register { FirestoreUserDataRepository() as UserDataRepository }.scope(.application)
-        
-        //        register { LocalClothItemRepository() as ClothItemRepository }.scope(.application)
-        //        register { LocalClothFitRepository() as ClothFitRepository }.scope(.application)
-        //        register { LocalUserDataRepository() as UserDataRepository }.scope(.application)
+        register { FirestoreUserDataRepository() as UserDataRepository }.scope(.application)
         
         //        register { TestDataClothItemRepository() as ClothItemRepository }.scope(.application)
         //        register { TestDataClothFitRepository() as ClothFitRepository }.scope(.application)
-        register { TestDataUserDataRepository() as UserDataRepository }.scope(.application)
+        //        register { TestDataUserDataRepository() as UserDataRepository }.scope(.application)
     }
 }
 
