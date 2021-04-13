@@ -9,12 +9,15 @@
 import SwiftUI
 import Resolver
 import Firebase
+import FirebaseUI
 
 @main
 struct ClothApp: App {
     
     init() {
         FirebaseApp.configure()
+        SDImageLoadersManager.shared.loaders = [FirebaseUI.StorageImageLoader.shared]
+        SDWebImageManager.defaultImageLoader = SDImageLoadersManager.shared
     }
     
     var body: some Scene {
