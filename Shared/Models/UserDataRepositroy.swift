@@ -48,8 +48,8 @@ class TestDataUserDataRepository: BaseUserDataRepository, UserDataRepository, Ob
 class FirestoreUserDataRepository: BaseUserDataRepository, UserDataRepository, ObservableObject {
     var db = Firestore.firestore()
     
-    @Injected var authenticationService: AuthenticationService // (1)
-    var userDatasPath: String = "userDatas" // (2)
+    @Injected var authenticationService: AuthenticationService
+    var userDatasPath: String = "userDatas"
     var userId: String = "unknown"
     
     private var cancellables = Set<AnyCancellable>()
@@ -57,25 +57,25 @@ class FirestoreUserDataRepository: BaseUserDataRepository, UserDataRepository, O
     override init() {
         super.init()
         
-        authenticationService.$user // (3)
+        authenticationService.$user
             .compactMap { user in
-                user?.uid // (4)
+                user?.uid
             }
-            .assign(to: \.userId, on: self) // (5)
+            .assign(to: \.userId, on: self)
             .store(in: &cancellables)
         
         // (re)load data if user changes
-        authenticationService.$user // (6)
-            .receive(on: DispatchQueue.main) // (7)
+        authenticationService.$user
+            .receive(on: DispatchQueue.main)
             .sink { user in
-                self.loadData() // (8)
+                self.loadData()
             }
             .store(in: &cancellables)
     }
     
     private func loadData() {
         db.collection(userDatasPath)
-            .whereField("userId", isEqualTo: self.userId) // (9)
+            .whereField("userId", isEqualTo: self.userId)
             .order(by: "createdTime")
             .addSnapshotListener { (querySnapshot, error) in
                 if let querySnapshot = querySnapshot {
@@ -89,7 +89,7 @@ class FirestoreUserDataRepository: BaseUserDataRepository, UserDataRepository, O
     func addUserData(_ userData: UserData) {
         do {
             let userData = userData
-            userData.userId = self.userId // (10)
+            userData.userId = self.userId
             let _ = try db.collection(userDatasPath).addDocument(from: userData)
         }
         catch {
