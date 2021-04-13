@@ -19,6 +19,7 @@ class UserData: Codable {
         }
     var triedClothFits: [ClothFit] = []
     @ServerTimestamp var createdTime: Timestamp?
+    var userId: String?
     
     init(name: String, imageName: String, triedClothFits: [ClothFit]){
         self.name = name
