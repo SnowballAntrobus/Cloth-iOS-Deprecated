@@ -15,8 +15,10 @@ struct MainView: View {
     
     var body: some View {
         TabView {
+            LandingView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
+            .tabItem { Label("Cloth", systemImage:"network") }
             ShuffleView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
-                .tabItem { Label("Cloth", systemImage:"shuffle") }
+                .tabItem { Label("Shuffle", systemImage:"shuffle") }
             AddView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)
                 .tabItem { Label("Add", systemImage:"plus.circle") }
             ClosetView(clothItemsRepo: $clothItemsRepo, clothFitsRepo: $clothFitsRepo, userDataRepo: $userDataRepo)

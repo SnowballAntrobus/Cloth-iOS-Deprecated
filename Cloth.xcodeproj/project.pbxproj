@@ -61,8 +61,8 @@
 		9B7D0DCD26261F5E0080465D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0DCB26261F5E0080465D /* AuthenticationService.swift */; };
 		9B7D0E27262646E80080465D /* PleaseCreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0E26262646E80080465D /* PleaseCreateAccount.swift */; };
 		9B7D0E28262646E80080465D /* PleaseCreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0E26262646E80080465D /* PleaseCreateAccount.swift */; };
-		9B7D0E2D262648DD0080465D /* ClothView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0E2C262648DD0080465D /* ClothView.swift */; };
-		9B7D0E2E262648DD0080465D /* ClothView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0E2C262648DD0080465D /* ClothView.swift */; };
+		9B7D0E2D262648DD0080465D /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0E2C262648DD0080465D /* LandingView.swift */; };
+		9B7D0E2E262648DD0080465D /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0E2C262648DD0080465D /* LandingView.swift */; };
 		9B824423260D5CA00057398A /* ZImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B824422260D5CA00057398A /* ZImageCropper.swift */; };
 		9B824424260D5CA00057398A /* ZImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B824422260D5CA00057398A /* ZImageCropper.swift */; };
 		9B824431260D5F390057398A /* ManualCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B824430260D5F390057398A /* ManualCropperView.swift */; };
@@ -142,7 +142,7 @@
 		9B6E8B6F2602D91500BDF859 /* ClothingTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTypeEnum.swift; sourceTree = "<group>"; };
 		9B7D0DCB26261F5E0080465D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		9B7D0E26262646E80080465D /* PleaseCreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseCreateAccount.swift; sourceTree = "<group>"; };
-		9B7D0E2C262648DD0080465D /* ClothView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothView.swift; sourceTree = "<group>"; };
+		9B7D0E2C262648DD0080465D /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		9B824422260D5CA00057398A /* ZImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZImageCropper.swift; sourceTree = "<group>"; };
 		9B824430260D5F390057398A /* ManualCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCropperView.swift; sourceTree = "<group>"; };
 		9B9074A626124AB000A3D0E3 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 			children = (
 				9BB7DE5425F60F2000AD3147 /* ClothApp.swift */,
 				9B11102926014A0E00271DD2 /* MainView.swift */,
-				9B7D0E2C262648DD0080465D /* ClothView.swift */,
+				9B7D0E2C262648DD0080465D /* LandingView.swift */,
 				9BB7DE5525F60F2000AD3147 /* ShuffleView.swift */,
 				9B9074A626124AB000A3D0E3 /* AddView.swift */,
 				9B11104226018B6000271DD2 /* AddClothItemImageView.swift */,
@@ -607,7 +607,7 @@
 				9B2D2D0126128B3000A06236 /* ClothItemsView.swift in Sources */,
 				9B2D2D0F2612BEE800A06236 /* ClothFitsView.swift in Sources */,
 				9B44069F2601D9E400F16FED /* Coordinator.swift in Sources */,
-				9B7D0E2D262648DD0080465D /* ClothView.swift in Sources */,
+				9B7D0E2D262648DD0080465D /* LandingView.swift in Sources */,
 				9B665D71261E622900082AB3 /* UserDataRepositroy.swift in Sources */,
 				9B0CB54A25F825E60098DB8F /* AccountView.swift in Sources */,
 				9B9074A726124AB000A3D0E3 /* AddView.swift in Sources */,
@@ -647,7 +647,7 @@
 				9B2D2D0226128B3000A06236 /* ClothItemsView.swift in Sources */,
 				9B2D2D102612BEE800A06236 /* ClothFitsView.swift in Sources */,
 				9B4406A02601D9E400F16FED /* Coordinator.swift in Sources */,
-				9B7D0E2E262648DD0080465D /* ClothView.swift in Sources */,
+				9B7D0E2E262648DD0080465D /* LandingView.swift in Sources */,
 				9B665D72261E622900082AB3 /* UserDataRepositroy.swift in Sources */,
 				9B0CB54B25F825E60098DB8F /* AccountView.swift in Sources */,
 				9B9074A826124AB000A3D0E3 /* AddView.swift in Sources */,
