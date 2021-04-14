@@ -17,14 +17,17 @@ class UserData: Codable {
         var image: Image {
             Image(imageName)
         }
-    var triedClothFits: [ClothFit] = []
+    var ownedClothItems: [String] = []
+    var wishClothItems: [String] = []
+    var ownedClothFits: [String] = []
+    var wishClothFits: [String] = []
+    var triedClothFits: [[String]] = []
     @ServerTimestamp var createdTime: Timestamp?
     var userId: String?
     
-    init(name: String, imageName: String, triedClothFits: [ClothFit]){
+    init(name: String, imageName: String){
         self.name = name
         self.imageName = imageName
-        self.triedClothFits = triedClothFits
     }
 }
 
@@ -33,7 +36,7 @@ class UserData: Codable {
 extension UserData {
     static var data: [UserData] {
         [
-            UserData(name:"Dante Gil-Marin", imageName: "UserImage", triedClothFits: [])
+            UserData(name:"Dante Gil-Marin", imageName: "UserImage")
         ]
     }
 }

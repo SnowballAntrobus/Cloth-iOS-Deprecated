@@ -15,6 +15,7 @@ struct ShuffleView: View {
     
     @State var clothFit: ClothFit?
     @State var updateUserData: UserData?
+    
     var body: some View {
         if clothFit != nil {
             var fit = clothFit!
@@ -23,10 +24,10 @@ struct ShuffleView: View {
                     .frame(width: 300, height: 250)
                 HStack {
                     Button(action: {
-                        updateUserData = userDataRepo.userDatas[0]
-                        updateUserData!.triedClothFits.append(clothFit!)
+                        updateUserData = userDataRepo.userData
+                        updateUserData!.triedClothFits.append([clothFit!.items[0],clothFit!.items[1]])
                         userDataRepo.updateUserData(updateUserData!)
-                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
+                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userData!.triedClothFits)!
                     }) {
                         Image(systemName: "xmark.circle")
                             .resizable()
@@ -37,10 +38,10 @@ struct ShuffleView: View {
                     Button(action: {
                         fit.star = true
                         clothFitsRepo.clothFits.append(fit)
-                        updateUserData = userDataRepo.userDatas[0]
-                        updateUserData!.triedClothFits.append(clothFit!)
+                        updateUserData = userDataRepo.userData
+                        updateUserData!.triedClothFits.append([clothFit!.items[0],clothFit!.items[1]])
                         userDataRepo.updateUserData(updateUserData!)
-                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
+                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userData!.triedClothFits)!
                     }) {
                         Image(systemName: "star")
                             .resizable()
@@ -50,10 +51,10 @@ struct ShuffleView: View {
                     Spacer()
                     Button(action: {
                         clothFitsRepo.clothFits.append(fit)
-                        updateUserData = userDataRepo.userDatas[0]
-                        updateUserData!.triedClothFits.append(clothFit!)
+                        updateUserData = userDataRepo.userData
+                        updateUserData!.triedClothFits.append([clothFit!.items[0],clothFit!.items[1]])
                         userDataRepo.updateUserData(updateUserData!)
-                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
+                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userData!.triedClothFits)!
                     }) {
                         Image(systemName: "checkmark.circle")
                             .resizable()
@@ -70,7 +71,7 @@ struct ShuffleView: View {
                     Text("You have \(clothItemsRepo.clothItems.count) items")
                     Text("please add items")
                     Button(action: {
-                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userDatas[0].triedClothFits)!
+                        clothFit = randomClothFit(clothItems: clothItemsRepo.clothItems, triedClothFits: userDataRepo.userData!.triedClothFits)!
                     }) {
                         Image(systemName: "shuffle")
                             .resizable()
@@ -84,17 +85,13 @@ struct ShuffleView: View {
         }
     }
     
-    private func randomClothFit(clothItems: [ClothItem], triedClothFits: [ClothFit]) -> ClothFit? {
-        var found: Bool = false
+    private func randomClothFit(clothItems: [ClothItem], triedClothFits: [[String]]) -> ClothFit? {
         var clothFit: ClothFit? = nil
-        while !found {
+        while clothFit == nil {
             let top: ClothItem = clothItems.filter{$0.type == "Top"}.randomElement()!
             let bottom: ClothItem = clothItems.filter{$0.type == "Bottom"}.randomElement()!
-            if top != bottom {
+            if !triedClothFits.contains([top.id!,bottom.id!]) {
                 clothFit = ClothFit(items: [top.id!, bottom.id!], star: false)
-                if !triedClothFits.contains(clothFit!) {
-                    found = true
-                }
             }
         }
         return clothFit
