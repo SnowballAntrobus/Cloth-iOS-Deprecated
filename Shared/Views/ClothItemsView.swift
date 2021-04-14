@@ -56,12 +56,12 @@ struct ClothItemsView: View {
                 clothFitsRepo.removeClothFit(fit)
             }
         }
-        for (n, fit) in userDataRepo.userDatas[0].triedClothFits.enumerated() {
+        for (n, fit) in userDataRepo.userData!.triedClothFits.enumerated() {
             if (fit.items.contains(removedItem.id!)) {
                 idxsTried.append(n)
             }
         }
-        userDataRepo.userDatas[0].triedClothFits.remove(atOffsets: IndexSet(idxsTried))
+        userDataRepo.userData.triedClothFits.remove(atOffsets: IndexSet(idxsTried))
     }
 }
 

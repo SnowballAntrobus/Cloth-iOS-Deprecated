@@ -91,9 +91,9 @@ struct AddClothFitView: View {
             let newClothFit = ClothFit(items: [top!.id!, bottom!.id!], star: star)
             if !clothFitsRepo.clothFits.contains(newClothFit) {
                 clothFitsRepo.addClothFit(newClothFit)
-                if !userDataRepo.userDatas[0].triedClothFits.contains(newClothFit) {
-                    updateUserData = userDataRepo.userDatas[0]
-                    updateUserData!.triedClothFits.append(newClothFit)
+                if !userDataRepo.userData!.triedClothFits.contains([newClothFit.items[0], newClothFit.items[1]]) {
+                    updateUserData = userDataRepo.userData
+                    updateUserData!.triedClothFits.append([newClothFit.items[0], newClothFit.items[1]])
                     userDataRepo.updateUserData(updateUserData!)
                 }
             }else {
